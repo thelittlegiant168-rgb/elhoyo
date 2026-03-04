@@ -445,7 +445,7 @@
         <meta property="og:description" content="Bonus new member 100% + free spin 100x di SEWU88SLOT! Slot gacor deposit pulsa tanpa potongan min 10 ribu, jackpot progresif mudah pecah, withdraw instan. Situs slot pulsa terbaik untuk pemula, cuan besar langsung di 2026!"/>
         <meta property="og:type" content="product"/>
         <meta property="og:url" content="https://metrogemilang.my/about-us/?utm_source=OpenGraph&amp;utm_medium=PageTools&amp;utm_campaign=Share"/>
-        <meta property="og:image" content="https://i.etsystatic.com/40031159/r/il/8e4fc2/5831730132/il_1080xN.5831730132_42ug.jpg"/>
+        <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLZ7sQhwex3Air-C3WCMcUSamw5EV815XPjVWIEVySm3zmhbo_Q4lWAs2qtiAIWcGh5BzcsIdVsPCxuLBwgZ4kxqz4D063EXaW-10JZFMFgtUj00mlECPhyphenhyphentiYLqKEzCM_1He0pNozGdYyJ1WhlczgNqNFJAQ295T0drq0tIxNSxdatMwAuDOCg-zUtXu3/s800/Bonus%20new%20member%20100%25%20cuan%20pertama%20gede.png"/>
         <meta property="product:price:amount" content="4.00"/>
         <meta property="product:price:currency" content="GBP"/>
         <meta property="al:ios:url" content="etsy://listing/1679839398?ref=applinks_ios"/>
