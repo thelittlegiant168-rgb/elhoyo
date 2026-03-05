@@ -7,7 +7,7 @@
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
     "content_id": "8835817",
-    "content_site": "https://samafood.com.my/contact-us/",
+    "content_site": "https://zafransecurity.com.my/services/",
     "content_site_id": 88,
     "content_category": "Prov",
     "content_subcategory": "SEWU88SLOT",
@@ -49,7 +49,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width">
 <meta content="Slot gacor server Thailand lagi panas nih, maxwin x10000 gampang banget keluar tanpa rungkad total. Bet kecil mulai 100 perak aja bisa cuan gede, RTP tinggi, pola scatter sering, WD cepet. Deposit murah, bonus melimpah. Langsung daftar, malam ini spin dan cuan bareng!" name="description"/>
-<link rel="prefetch" href="https://samafood.com.my/contact-us/" as="document"/>
+<link rel="prefetch" href="https://zafransecurity.com.my/services/" as="document"/>
 <link rel="amphtml" href="https://samafood-gacorbangetz.pages.dev/" /> 
 <meta name="googlebot-news" content="index, follow" />
 <meta  name="googlebot" content="index, follow" />
@@ -66,7 +66,7 @@
 <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgCf53K9geFMZwojBfM0Ho5E0pa0Jaa4iZ6IP-DymtmfBc2ne9FT7yI6cw67VDG1_9MyXxfvIPLPC4aCopHVBzzxAdOUjCw2EA3pJbSlA8zCzKCQ41q1oURvD3Ptk-EBo7MDm1Jv6vtS73tVE0Al-AUxXW7NIoM_9fStDK4O5S4q2ghPDOeqiRs6xM5Nu7W/s800/Slot%20Gacor%20Server%20Thailand%20%E2%80%93%20Maxwin%20x10000,%20Anti%20Rungkad%20Total!.png" />
 <meta property="og:title" content="Slot Gacor Server Thailand Maxwin x10000 Anti Rungkad Total – Bet Kecil Cuan Gede 2026!" />
 <meta property="og:description" content="Slot gacor server Thailand lagi panas nih, maxwin x10000 gampang banget keluar tanpa rungkad total. Bet kecil mulai 100 perak aja bisa cuan gede, RTP tinggi, pola scatter sering, WD cepet. Deposit murah, bonus melimpah. Langsung daftar, malam ini spin dan cuan bareng!">
-<meta property="og:url" content="https://samafood.com.my/contact-us/" />
+<meta property="og:url" content="https://zafransecurity.com.my/services/" />
 <meta property="og:site_name" content="KOMPAS.com" />
 <meta property="fb:app_id" content="324557847592228" />
 <!-- e:fb meta -->
@@ -109,7 +109,7 @@
 
 
 
-<link rel="canonical" href="https://samafood.com.my/contact-us/" />
+<link rel="canonical" href="https://zafransecurity.com.my/services/" />
 <link rel="dns-prefetch" href="twitter.com">
 <link rel="shortcut icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKV_S0Yl4h2iC1YrK40iERzKFxOUZdN44uAc52FK9s8aOVawE-5aB6nxG-s4_hO1Ebuqz3BOgXpgJgAmvrYuWCN05EfZkG0bV_YWydB9YoC2PXpx6AGwc7kWlzlrUpEpnhJmJpnTxaALYsMsRs3p8QsV_CzxZ6PY9VIALCENGMvTVWpYXG64bfAI0kI8k7/s81/sewu88slot-favicon.png">
     <link rel="stylesheet" href="https://asset.kompas.com/data/2025/08/13/kompascom/desktop/css/kcm2017-article.min.css" type="text/css"> 
@@ -305,10 +305,10 @@ var rl_adx_val = '';
 {
   "@context": "http://schema.org",
   "@type": "WebSite",
-  "url": "https://samafood.com.my/contact-us/",
+  "url": "https://zafransecurity.com.my/services/",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://samafood.com.my/contact-us/?q={search_term_string}",
+    "target": "https://zafransecurity.com.my/services/?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -326,7 +326,7 @@ var rl_adx_val = '';
 {
   "@context" : "http://schema.org",
   "@type" : "Organization",
-  "url": "https://samafood.com.my/contact-us/",
+  "url": "https://zafransecurity.com.my/services/",
   "logo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcXeRPLf0U5V-a9-fyxku2szzSkMtR_EBNgQouVt6EyfnqpqSZNy55yTavpXqg4idqeT8cOGXygoITDsLSj0pE546XpYrgG9fjBfXOAZS_-IWoy7WHyiZbQPNtmsjZg_e_88C2yiC5mJhfqYXaCPx9cEI4FR1tvGyqeo_attUO3Rq3NMXc1J_Ko7EvBnaC/s445/sewu88slot-logo~.png",
   "sameAs" : [
     "https://www.facebook.com/kompascom",
@@ -434,7 +434,7 @@ src="https://www.facebook.com/tr?id=423063207362401&ev=PageView&noscript=1"
             <div class="row col-offset-fluid clearfix">
                 <div class="col-bs10-5 clearfix">
                     <div class="logo">
-                        <a href="https://samafood.com.my/contact-us/" data-google-interstitial="false">
+                        <a href="https://zafransecurity.com.my/services/" data-google-interstitial="false">
                                                             <style>.logo img {width:auto;}.logo {width:auto;}</style>
 
                                                                                                             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcXeRPLf0U5V-a9-fyxku2szzSkMtR_EBNgQouVt6EyfnqpqSZNy55yTavpXqg4idqeT8cOGXygoITDsLSj0pE546XpYrgG9fjBfXOAZS_-IWoy7WHyiZbQPNtmsjZg_e_88C2yiC5mJhfqYXaCPx9cEI4FR1tvGyqeo_attUO3Rq3NMXc1J_Ko7EvBnaC/s445/sewu88slot-logo~.png" alt="Slot Gacor Server Thailand Maxwin x10000 Anti Rungkad Total – Bet Kecil Cuan Gede 2026!">
@@ -448,7 +448,7 @@ src="https://www.facebook.com/tr?id=423063207362401&ev=PageView&noscript=1"
                     <!-- search -->
                     <div class="col-bs12-8 col-offset-0">
                         <div class="header-search-box">
-                            <form action="https://samafood.com.my/contact-us/" class="header-search"
+                            <form action="https://zafransecurity.com.my/services/" class="header-search"
                                 id="fcSearch">
                                 <div class="searchBox-wrap">
                                     <input type="text" name="q" class="header-search-input" value=""
@@ -566,7 +566,7 @@ src="https://www.facebook.com/tr?id=423063207362401&ev=PageView&noscript=1"
         <!-- (ads.skin.full) -->
         <div class="container clearfix nav__wrap">
             <div class="logo logo--sticky">
-                                    <a href="https://samafood.com.my/contact-us/"><img class="lozad" data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcXeRPLf0U5V-a9-fyxku2szzSkMtR_EBNgQouVt6EyfnqpqSZNy55yTavpXqg4idqeT8cOGXygoITDsLSj0pE546XpYrgG9fjBfXOAZS_-IWoy7WHyiZbQPNtmsjZg_e_88C2yiC5mJhfqYXaCPx9cEI4FR1tvGyqeo_attUO3Rq3NMXc1J_Ko7EvBnaC/s445/sewu88slot-logo~.png" alt="Slot Gacor Server Thailand Maxwin x10000 Anti Rungkad Total – Bet Kecil Cuan Gede 2026!" /></a>
+                                    <a href="https://zafransecurity.com.my/services/"><img class="lozad" data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcXeRPLf0U5V-a9-fyxku2szzSkMtR_EBNgQouVt6EyfnqpqSZNy55yTavpXqg4idqeT8cOGXygoITDsLSj0pE546XpYrgG9fjBfXOAZS_-IWoy7WHyiZbQPNtmsjZg_e_88C2yiC5mJhfqYXaCPx9cEI4FR1tvGyqeo_attUO3Rq3NMXc1J_Ko7EvBnaC/s445/sewu88slot-logo~.png" alt="Slot Gacor Server Thailand Maxwin x10000 Anti Rungkad Total – Bet Kecil Cuan Gede 2026!" /></a>
                             </div>
 
               
@@ -1571,7 +1571,7 @@ src="https://www.facebook.com/tr?id=423063207362401&ev=PageView&noscript=1"
         <!-- read header-->
         <div class="read__header col-offset-fluid clearfix">
             <div class="col-bs10-10">
-                <div class="read__time"><a href="https://samafood.com.my/contact-us/">SEWU88SLOT</a></div>
+                <div class="read__time"><a href="https://zafransecurity.com.my/services/">SEWU88SLOT</a></div>
             </div>
               
             <div class="col-bs10-10">            </div>
@@ -1617,7 +1617,7 @@ src="https://www.facebook.com/tr?id=423063207362401&ev=PageView&noscript=1"
                                         <div class="clearfix">
 <p>
 </p><p><strong>Apa Itu SEWU88SLOT?</strong></p>
-<p><a href="https://samafood.com.my/contact-us/" style="color:#02bca2;">SEWU88SLOT</a> 
+<p><a href="https://zafransecurity.com.my/services/" style="color:#02bca2;">SEWU88SLOT</a> 
     Slot gacor server Thailand emang beda kelasnya dibanding yang lain, apalagi di 2026 ini – maxwin x10000 sering muncul tanpa bikin pemain rungkad total. Banyak yang mulai dari bet kecil doang, 100 atau 200 perak, eh tiba-tiba scatter dateng, free spin berantai, multiplier nambah-nambah, langsung pecah maxwin gede yang bikin saldo meledak. Server-nya stabil abis, gak ada lag meski main tengah malam pas rame, dan anti rungkad totalnya beneran ngefek – meskipun lagi apes dikit, saldo tetep aman, gak langsung jebol kayak di server biasa. Game yang lagi sering kasih cuan gede sekarang ada Sweet Bonanza CandyLand, Gates of Olympus versi baru, atau Aztec Powernudge, semuanya dari provider top yang update terus fitur-fiturnya. Buat yang modal tipis, cocok banget karena deposit kecil via Dana atau QRIS langsung masuk, plus bonus new member atau daily spin gratis yang bikin modal nambah tanpa keluar duit ekstra. Pemain-pemain lama sering bilang, WD-nya paling mantap – minimal tarik rendah, proses cepet banget, masuk rekening atau e-wallet tanpa nunggu berjam-jam. Kalau lagi pengen main santai tapi pengen ngerasain sensasi maxwin x10000 tanpa takut rungkad, slot gacor server Thailand di sini pas banget. Spin aja pelan-pelan, ikutin pola, dan siap-siap liat notif WD masuk tiap sesi.
 </p>
 <p></p>
@@ -1719,7 +1719,7 @@ src="https://www.facebook.com/tr?id=423063207362401&ev=PageView&noscript=1"
             <div class="footerCol-column">
 
                 <div class="footerLogo">
-                    <a href="https://samafood.com.my/contact-us/" data-google-interstitial="false">
+                    <a href="https://zafransecurity.com.my/services/" data-google-interstitial="false">
                         <img class="lozad fade" data-src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcXeRPLf0U5V-a9-fyxku2szzSkMtR_EBNgQouVt6EyfnqpqSZNy55yTavpXqg4idqeT8cOGXygoITDsLSj0pE546XpYrgG9fjBfXOAZS_-IWoy7WHyiZbQPNtmsjZg_e_88C2yiC5mJhfqYXaCPx9cEI4FR1tvGyqeo_attUO3Rq3NMXc1J_Ko7EvBnaC/s445/sewu88slot-logo~.png" alt="Slot Gacor Server Thailand Maxwin x10000 Anti Rungkad Total – Bet Kecil Cuan Gede 2026!" width="207" height="26" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcXeRPLf0U5V-a9-fyxku2szzSkMtR_EBNgQouVt6EyfnqpqSZNy55yTavpXqg4idqeT8cOGXygoITDsLSj0pE546XpYrgG9fjBfXOAZS_-IWoy7WHyiZbQPNtmsjZg_e_88C2yiC5mJhfqYXaCPx9cEI4FR1tvGyqeo_attUO3Rq3NMXc1J_Ko7EvBnaC/s445/sewu88slot-logo~.png" data-loaded="true" />
                     </a>
                 </div>
@@ -2516,7 +2516,7 @@ if (onSubmitNps !== null) {
 
 <script async="" src="https://accounts.google.com/gsi/client" defer type="text/javascript"></script>
 <script type="text/javascript">
-    var url_continue = "https://samafood.com.my/contact-us/";
+    var url_continue = "https://zafransecurity.com.my/services/";
     
     function oneTapShow(tipe='') {
         let otd = document.getElementById('kgmModal-onetap')
@@ -2768,7 +2768,7 @@ if (onSubmitNps !== null) {
             }
         };
         var data = JSON.stringify({
-            "pageurl" : "https://samafood.com.my/contact-us/",
+            "pageurl" : "https://zafransecurity.com.my/services/",
             "pagetype" : "baca-juga"
         });
         xhr_auto_baca_juga.send(data);
