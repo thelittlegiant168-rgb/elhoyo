@@ -395,7 +395,7 @@
         "name": "Bagaimana cara menemukan slot gacor anti rungkad hari ini?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Pantau update dari situs resmi, live chat CS, atau info pola harian yang dibagikan komunitas – biasanya game tertentu ditandai sebagai "hot" atau "stabil"
+          "text": "Pantau update dari situs resmi, live chat CS, atau info pola harian yang dibagikan komunitas – biasanya game tertentu ditandai sebagai "hot" atau "stabil""
         }
       }, {
         "@type": "Question",
