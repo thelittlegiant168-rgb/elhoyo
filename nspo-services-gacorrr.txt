@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="https://img.myipadbox.com/htdocs/css/jquery.autocomplete.css" />
     <script type="application/ld+json">
 {
-    "@context": "https://schema.org/",
+    "@context": "https://schema.org",
     "@type": "Product",
     "name": "Slot Gacor 10 Ribu: Deposit Murah, Jackpot Besar di Situs Slot Terpercaya",
     "description": "Nikmati slot gacor 10 ribu dengan deposit minimal hanya 10 ribu rupiah. Mainkan game slot online gacor hari ini dan raih kemenangan maxwin mudah di situs judi slot terbaik Indonesia. Daftar sekarang dan dapatkan bonus new member!\n\n",
