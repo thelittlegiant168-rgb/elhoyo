@@ -282,7 +282,7 @@
         "@type": "Answer",
         "text": "Provider seperti Pragmatic Play dan PG Soft sering direkomendasikan karena RTP tinggi dan fitur bonus melimpah."
       }
-    },
+    }
   ]
 }
 </script>
