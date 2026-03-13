@@ -282,7 +282,7 @@
         "@type": "Answer",
         "text": "Pastikan memilih situs berlisensi dengan sistem keamanan tinggi untuk melindungi data dan transaksi Anda."
       }
-    },
+    }
   ]
 }
 </script>
