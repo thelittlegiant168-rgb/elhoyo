@@ -7,7 +7,7 @@
         content="A6iYDRdcg1LVww9DNZEU+JUx2g1IJxSxk4P6F+LimR0ElFa38FydBqtz/AmsKdGr11ZooRgDPCInHJfGzwtR+A4AAACXeyJvcmlnaW4iOiJodHRwczovL3d3dy5yZWNhcHRjaGEubmV0OjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
     <meta charset="utf-8">
     <title>Slot Gacor Anti Rungkad 2026 Terbaru | Cuan Setiap Hari di Sewu88slot</title>
-    <link rel="canonical" href="https://pin.ca/torontobusinessvaluation-gta/">
+    <link rel="canonical" href="https://spenceraccounting.ca/contact/">
     <link rel="amphtml" href="https://pin-toronto.pages.dev/">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
@@ -37,7 +37,7 @@
     <link rel="icon" type="image/x-icon"
         href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipYV5AEmaC4kUP7npJcDwneXCbH4y66DbUhia6k-AQ0wO3X1Mwe-RhDQd-HWrSYJERcCxlX4bJ_i66jpZHEXKSZYw92jaTaLI1GEsj5_2AC0S_me4nzHqHyyZXbadMoGwQgNK8INEUdtjbSIhikDnRNq2tT2iEGuQto1bKiN4vslD5lNEN_7hyakmQJ5ga/s81/sewu88slot-favicon.png">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link rel="preconnect" href="https://pin.ca/torontobusinessvaluation-gta/">
+    <link rel="preconnect" href="https://spenceraccounting.ca/contact/">
     <link rel="preconnect" href="https://snap-assets.al-pc-id-p.cdn.gtflabs.io">
     <link rel="stylesheet" href="/assets/css/9XKimii_-1.3.14.css" crossorigin="">
     <link rel="stylesheet" href="/assets/css/GeCHvoZf-1.3.14.css" crossorigin="">
@@ -92,7 +92,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Product",
-  "url": "https://pin.ca/torontobusinessvaluation-gta/",
+  "url": "https://spenceraccounting.ca/contact/",
   "name": "Slot Gacor Anti Rungkad 2026 Terbaru | Cuan Setiap Hari di Sewu88slot",
   "sku": "Slot-depo-10k",
   "description": "Slot gacor anti rungkad 2026 paling panas saat ini! Sewu88slot sajikan game RTP tertinggi 2026 dengan pola jackpot mudah pecah. Modal kecil langsung cuan besar, WD cepat tanpa ribet. Ribuan member sudah bukti menang jutaan tiap hari. Join sekarang sebelum kehabisan slot gacor hari ini!",
@@ -190,7 +190,7 @@
       "@type": "ListItem",
       "position": 1,
       "item": {
-        "@id": "https://pin.ca/torontobusinessvaluation-gta/",
+        "@id": "https://spenceraccounting.ca/contact/",
         "name": "slot gacor anti rungkad"
       }
     },
@@ -198,7 +198,7 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "@id": "https://pin.ca/torontobusinessvaluation-gta/",
+        "@id": "https://spenceraccounting.ca/contact/",
         "name": "Slot Qris"
       }
     },
@@ -206,7 +206,7 @@
       "@type": "ListItem",
       "position": 3,
       "item": {
-        "@id": "https://pin.ca/torontobusinessvaluation-gta/",
+        "@id": "https://spenceraccounting.ca/contact/",
         "name": "Depo 10k Qris"
       }
     },
@@ -214,7 +214,7 @@
       "@type": "ListItem",
       "position": 4,
       "item": {
-        "@id": "https://pin.ca/torontobusinessvaluation-gta/",
+        "@id": "https://spenceraccounting.ca/contact/",
         "name": "Slot"
       }
     },
@@ -222,7 +222,7 @@
       "@type": "ListItem",
       "position": 5,
       "item": {
-        "@id": "https://pin.ca/torontobusinessvaluation-gta/",
+        "@id": "https://spenceraccounting.ca/contact/",
         "name": "Situs Slot"
       }
     },
@@ -230,7 +230,7 @@
       "@type": "ListItem",
       "position": 6,
       "item": {
-        "@id": "https://pin.ca/torontobusinessvaluation-gta/",
+        "@id": "https://spenceraccounting.ca/contact/",
         "name": "Slot Bet 200"
       }
     },
@@ -238,7 +238,7 @@
       "@type": "ListItem",
       "position": 7,
       "item": {
-        "@id": "https://pin.ca/torontobusinessvaluation-gta/",
+        "@id": "https://spenceraccounting.ca/contact/",
         "name": "Slot Online"
       }
     },
@@ -246,7 +246,7 @@
       "@type": "ListItem",
       "position": 8,
       "item": {
-        "@id": "https://pin.ca/torontobusinessvaluation-gta/",
+        "@id": "https://spenceraccounting.ca/contact/",
         "name": "Slot Gacor Anti Rungkad 2026 Terbaru | Cuan Setiap Hari di Sewu88slot"
       }
     }
@@ -317,27 +317,27 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://pin.ca/torontobusinessvaluation-gta/#org",
+      "@id": "https://spenceraccounting.ca/contact/#org",
       "name": "slot gacor anti rungkad",
-      "url": "https://pin.ca/torontobusinessvaluation-gta/",
+      "url": "https://spenceraccounting.ca/contact/",
       "logo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPgexXwlxuPAanSO4WyISSkT14PYk7szAgWWwRKbWPnnPYvcq-Z88fS48dgO-3bsz2607crHAa80LavMcBqR39ZuQpKS-SUDzo7P7MldkzQLzNULr1hDToFsQul4zfe9AIkq-1fk0p6XB3CYg6w83lYAztipWZrq71cJy6gbTABzh_G8YTnxYj6qjDjKSr/s445/sewu88slot-logo~.png"
     },
     {
       "@type": "WebSite",
-      "@id": "https://pin.ca/torontobusinessvaluation-gta/#website",
-      "url": "https://pin.ca/torontobusinessvaluation-gta/",
+      "@id": "https://spenceraccounting.ca/contact/#website",
+      "url": "https://spenceraccounting.ca/contact/",
       "name": "slot gacor anti rungkad",
-      "publisher": { "@id": "https://pin.ca/torontobusinessvaluation-gta/#org" },
+      "publisher": { "@id": "https://spenceraccounting.ca/contact/#org" },
       "inLanguage": "id-ID",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://pin.ca/torontobusinessvaluation-gta/?s={search_term_string}",
+        "target": "https://spenceraccounting.ca/contact/?s={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://pin.ca/torontobusinessvaluation-gta/#app",
+      "@id": "https://spenceraccounting.ca/contact/#app",
       "name": "slot gacor anti rungkad",
       "applicationCategory": "ShopApplication",
       "operatingSystem": "Android, iOS, Windows",
@@ -15887,7 +15887,7 @@
                     <div class="flex max-h-[42px] items-center bg-secondary-900 py-[11px] max-md:hidden"
                         bis_skin_checked="1">
                         <div class="container flex items-center justify-between" bis_skin_checked="1">
-                            <div class="flex gap-4" bis_skin_checked="1"><a href="https://pin.ca/torontobusinessvaluation-gta/"
+                            <div class="flex gap-4" bis_skin_checked="1"><a href="https://spenceraccounting.ca/contact/"
                                     class="flex items-center gap-2"><span class="nuxt-icon nuxt-icon--fill text-xl"><svg
                                             width="24" height="24" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -15896,7 +15896,7 @@
                                                 fill="#252525"></path>
                                         </svg>
                                     </span><span class="text-sm font-medium">Bantuan</span></a><a
-                                    href="https://pin.ca/torontobusinessvaluation-gta/" rel="noopener noreferrer" target="_blank"
+                                    href="https://spenceraccounting.ca/contact/" rel="noopener noreferrer" target="_blank"
                                     class="flex items-center gap-2"><span class="nuxt-icon nuxt-icon--fill text-lg"><svg
                                             width="18" height="18" viewBox="0 0 18 18" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -15946,7 +15946,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-4" bis_skin_checked="1"><a
-                                    href="https://pin.ca/torontobusinessvaluation-gta/" class="flex items-center gap-1"><span
+                                    href="https://spenceraccounting.ca/contact/" class="flex items-center gap-1"><span
                                         class="nuxt-icon nuxt-icon--fill text-sm"><svg width="14" height="14"
                                             viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -15960,7 +15960,7 @@
                                                 fill="black"></path>
                                         </svg>
                                     </span><span class="text-sm font-medium">Promo</span></a>
-                                <hr class="h-3 w-[1px] bg-black"><a href="https://pin.ca/torontobusinessvaluation-gta/"
+                                <hr class="h-3 w-[1px] bg-black"><a href="https://spenceraccounting.ca/contact/"
                                     class="flex items-center gap-1"><span class="nuxt-icon nuxt-icon--fill text-lg"><svg
                                             width="18" height="17" viewBox="0 0 18 17" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -16089,7 +16089,7 @@
                                                     </span></button><img
                                                     src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCsL9WbQC1dBKRhtoQ2IkYNYahIAVrIqfKJSPGpjdmxxmiU2_XuKT6uB-DbdiRdiB7HkKJwqccXWOpoRj53xFLUuM_E6qUSjQgRSBPiT4O6db1z7rfRkYYmWFfVo_Y5iX2HD0iSLZlKdAbK4oSBfl4Jzv1Y0oBRDEBnqr-5nRuBKxnaAlhmTvXDCT7QuGs/s800/Slot%20gacor%20anti%20rungkad%202026.jpg"
                                                     alt="category undefined" width="33" height="33" loading="lazy"><a
-                                                    href="https://pin.ca/torontobusinessvaluation-gta/"
+                                                    href="https://spenceraccounting.ca/contact/"
                                                     class="text-lg font-semibold text-bw-800"></a></div>
                                             <hr>
                                             <div class="grid gap-4" bis_skin_checked="1">
@@ -17215,7 +17215,7 @@
                                     </div>
                                     <!---->
                                     <hr class="border-bw-100">
-                                </div><a href="https://pin.ca/torontobusinessvaluation-gta/"
+                                </div><a href="https://spenceraccounting.ca/contact/"
                                     class="btn btn-primary mr-auto !px-12 text-sm">Lihat Semua</a>
                                 <!---->
                             </section>
@@ -17226,7 +17226,7 @@
                                     class="absolute left-1/2 top-[60%] z-[1] -translate-x-1/2 -translate-y-1/2 text-balance text-center text-2xl text-white">
                                     Dapatkan <b class="text-4xl">Promo &amp; Pelayanan</b> Spesial <b
                                         class="text-4xl">slot gacor anti rungkad Qris Top 1</b></p><a
-                                    href="https://pin.ca/torontobusinessvaluation-gta/"><button
+                                    href="https://spenceraccounting.ca/contact/"><button
                                         class="btn absolute right-5 top-[60%] -translate-y-1/2 bg-blue-100 text-primary">
                                         Daftar Sekarang
                                     </button></a>
@@ -17436,7 +17436,7 @@
                                 <!---->
                                 <div class="flex gap-2 divide-x" bis_skin_checked="1">
                                    <a
-                                        href="https://pin.ca/torontobusinessvaluation-gta/" class="pl-3"><span
+                                        href="https://spenceraccounting.ca/contact/" class="pl-3"><span
                                             class="nuxt-icon nuxt-icon--fill text-2xl text-primary"><svg width="21"
                                                 height="21" viewBox="0 0 21 21" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -17509,23 +17509,23 @@
                     <div class="mb-auto grid gap-3" data-v-6f6249f3="" bis_skin_checked="1"><span class="font-bold"
                             data-v-6f6249f3="">Informasi</span>
                         <div class="grid gap-2" data-v-6f6249f3="" bis_skin_checked="1"><a
-                                href="https://pin.ca/torontobusinessvaluation-gta/" class="link-footer" data-v-6f6249f3="">
-                                Kebijakan Privasi </a><a href="https://pin.ca/torontobusinessvaluation-gta/" class="link-footer"
-                                data-v-6f6249f3=""> Syarat &amp; Ketentuan </a><a href="https://pin.ca/torontobusinessvaluation-gta/"
+                                href="https://spenceraccounting.ca/contact/" class="link-footer" data-v-6f6249f3="">
+                                Kebijakan Privasi </a><a href="https://spenceraccounting.ca/contact/" class="link-footer"
+                                data-v-6f6249f3=""> Syarat &amp; Ketentuan </a><a href="https://spenceraccounting.ca/contact/"
                                 class="link-footer" data-v-6f6249f3="">
                                 Tentang Kami </a></div>
                     </div>
                     <div class="mb-auto grid gap-3" data-v-6f6249f3="" bis_skin_checked="1"><span class="font-bold"
                             data-v-6f6249f3="">Layanan</span>
                         <div class="grid gap-2" data-v-6f6249f3="" bis_skin_checked="1"><a
-                                href="https://pin.ca/torontobusinessvaluation-gta/" class="link-footer" data-v-6f6249f3="">
-                                Cara Berbelanja </a><a href="https://pin.ca/torontobusinessvaluation-gta/" class="link-footer"
-                                data-v-6f6249f3=""> Cara Pembayaran </a><a href="https://pin.ca/torontobusinessvaluation-gta/"
+                                href="https://spenceraccounting.ca/contact/" class="link-footer" data-v-6f6249f3="">
+                                Cara Berbelanja </a><a href="https://spenceraccounting.ca/contact/" class="link-footer"
+                                data-v-6f6249f3=""> Cara Pembayaran </a><a href="https://spenceraccounting.ca/contact/"
                                 class="link-footer" data-v-6f6249f3="">
                                 Pengiriman </a></div>
                     </div>
                     <div class="mb-auto grid gap-3" data-v-6f6249f3="" bis_skin_checked="1"><span class="font-bold"
-                            data-v-6f6249f3="">Keamanan Belanja</span><a href="https://pin.ca/torontobusinessvaluation-gta/"
+                            data-v-6f6249f3="">Keamanan Belanja</span><a href="https://spenceraccounting.ca/contact/"
                             rel="noopener noreferrer" target="_blank" data-v-6f6249f3=""
                             bis_size="{&quot;x&quot;:938,&quot;y&quot;:1026,&quot;w&quot;:132,&quot;h&quot;:51,&quot;abs_x&quot;:938,&quot;abs_y&quot;:1026}"><img
                                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipYV5AEmaC4kUP7npJcDwneXCbH4y66DbUhia6k-AQ0wO3X1Mwe-RhDQd-HWrSYJERcCxlX4bJ_i66jpZHEXKSZYw92jaTaLI1GEsj5_2AC0S_me4nzHqHyyZXbadMoGwQgNK8INEUdtjbSIhikDnRNq2tT2iEGuQto1bKiN4vslD5lNEN_7hyakmQJ5ga/s81/sewu88slot-favicon.png" alt="iso sec logo" width="51"
@@ -17615,10 +17615,10 @@
     </div>
     <div id="teleports" bis_skin_checked="1"></div>
     <script type="application/json" data-nuxt-data="nuxt-app" data-ssr="true" id="__NUXT_DATA__">
-        [["ShallowReactive",1],{"data":2,"state":84,"once":92,"_errors":93,"serverRendered":30,"path":95,"pinia":96},["ShallowReactive",3],{"DXj7gzIYAA":4,"jBUFCjcsr7":36},{"data":5,"links":20,"meta":22},[6,15],{"id":7,"key":8,"value":9,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":14},34,"app.playstore_url","https://play.google.com/store/apps/details?id=id.datascrip.mall","text",null,"2025-10-18T07:53:08.000000Z","2025-12-24T13:38:55.000000Z","Pengaturan untuk mengubah url untuk mengunduh aplikasi pada Android (playstore) yang terdapat pada header dan footer.",{"id":16,"key":17,"value":18,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":19},35,"app.appstore_url","https://apps.apple.com/id/app/datascripmall/id123456789","Pengaturan untuk mengubah url untuk mengunduh aplikasi pada iOS (appstore) yang terdapat pada header dan footer.",{"first":21,"last":21,"prev":11,"next":11},"http://api.datascripmall.id/api/v1/master_data/settings?filter%5Bkey%5D=app.appstore_url%2Capp.playstore_url&page%5Bnumber%5D=1",{"current_page":23,"from":23,"last_page":23,"links":24,"path":33,"per_page":34,"to":35,"total":35},1,[25,28,31],{"url":11,"label":26,"active":27},"&laquo; Previous",false,{"url":21,"label":29,"active":30},"1",true,{"url":11,"label":32,"active":27},"Next &raquo;","http://api.datascripmall.id/api/v1/master_data/settings",30,2,{"data":37,"links":76,"meta":78},[38,44,50,55,60,65,70],{"id":23,"key":39,"value":40,"type":41,"deleted_at":11,"created_at":42,"updated_at":13,"description":43},"copyright-year","2026","number","2025-07-22T06:02:37.000000Z","Pengaturan untuk mengubah tahun copyright pada footer.",{"id":45,"key":46,"value":47,"type":48,"deleted_at":11,"created_at":42,"updated_at":13,"description":49},5,"office-address","Jl. Palem Botol Blok B-20 Kav.11 Gunung Sahari Selatan, Kemayoran Kota Jakarta Pusat 10610","textarea","Pengaturan untuk mengubah alamat kantor Datascrip pada footer.",{"id":51,"key":52,"value":53,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":54},36,"app.social.tiktok","https://www.tiktok.com/@datascripmall","Pengaturan untuk mengubah url untuk akun tiktok Datascrip pada footer.",{"id":56,"key":57,"value":58,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":59},37,"app.social.instagram","https://www.instagram.com/datascripmall","Pengaturan untuk mengubah url untuk akun instagram Datascrip pada footer.",{"id":61,"key":62,"value":63,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":64},38,"app.social.facebook","https://www.facebook.com/datascripmall","Pengaturan untuk mengubah url untuk akun facebook Datascrip pada footer.",{"id":66,"key":67,"value":68,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":69},39,"app.social.youtube","https://www.youtube.com/@datascripmall","Pengaturan untuk mengubah url untuk akun youtube Datascrip pada footer.",{"id":71,"key":72,"value":73,"type":10,"deleted_at":11,"created_at":74,"updated_at":13,"description":75},53,"certificate-logo-url","https://www.bsigroup.com/en-GB/products-and-services/assessment-and-certification/validation-and-verification/client-directory-certificate/IS%20738285","2025-11-03T08:33:16.000000Z","Pengaturan untuk mengubah url ke halaman sertifikasi.",{"first":77,"last":77,"prev":11,"next":11},"http://api.datascripmall.id/api/v1/master_data/settings?filter%5Bkey%5D=copyright-year%2Capp.social.youtube%2Capp.social.instagram%2Capp.social.facebook%2Capp.social.tiktok%2Coffice-address%2Ccertificate-logo-url&page%5Bnumber%5D=1",{"current_page":23,"from":23,"last_page":23,"links":79,"path":33,"per_page":34,"to":83,"total":83},[80,81,82],{"url":11,"label":26,"active":27},{"url":77,"label":29,"active":30},{"url":11,"label":32,"active":27},7,["Reactive",85],{"$sauth:data":11,"$sauth:lastRefreshedAt":86,"$sauth:loading":27,"$shomepageData":11,"$ssite-config":87},["Date","2026-01-03T09:21:13.146Z"],{"description":88,"env":89,"name":90,"url":91},"Suitmedia","production","suitmedia","https://pin.ca/torontobusinessvaluation-gta/",["Set"],["ShallowReactive",94],{"DXj7gzIYAA":11,"Slot Gacor Anti Rungkad 2026 Terbaru | Cuan Setiap Hari di Sewu88slot":11,"jBUFCjcsr7":11},"//mightyflying.com/about/",["Reactive",97],{"qiscus":98,"user-store":101,"theme":103},{"latestMessage":11,"history":99,"MAX_HISTORY_SIZE":100},[],50,{"data":102,"isLoading":27,"error":11},{},{"overlayOn":27}]
+        [["ShallowReactive",1],{"data":2,"state":84,"once":92,"_errors":93,"serverRendered":30,"path":95,"pinia":96},["ShallowReactive",3],{"DXj7gzIYAA":4,"jBUFCjcsr7":36},{"data":5,"links":20,"meta":22},[6,15],{"id":7,"key":8,"value":9,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":14},34,"app.playstore_url","https://play.google.com/store/apps/details?id=id.datascrip.mall","text",null,"2025-10-18T07:53:08.000000Z","2025-12-24T13:38:55.000000Z","Pengaturan untuk mengubah url untuk mengunduh aplikasi pada Android (playstore) yang terdapat pada header dan footer.",{"id":16,"key":17,"value":18,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":19},35,"app.appstore_url","https://apps.apple.com/id/app/datascripmall/id123456789","Pengaturan untuk mengubah url untuk mengunduh aplikasi pada iOS (appstore) yang terdapat pada header dan footer.",{"first":21,"last":21,"prev":11,"next":11},"http://api.datascripmall.id/api/v1/master_data/settings?filter%5Bkey%5D=app.appstore_url%2Capp.playstore_url&page%5Bnumber%5D=1",{"current_page":23,"from":23,"last_page":23,"links":24,"path":33,"per_page":34,"to":35,"total":35},1,[25,28,31],{"url":11,"label":26,"active":27},"&laquo; Previous",false,{"url":21,"label":29,"active":30},"1",true,{"url":11,"label":32,"active":27},"Next &raquo;","http://api.datascripmall.id/api/v1/master_data/settings",30,2,{"data":37,"links":76,"meta":78},[38,44,50,55,60,65,70],{"id":23,"key":39,"value":40,"type":41,"deleted_at":11,"created_at":42,"updated_at":13,"description":43},"copyright-year","2026","number","2025-07-22T06:02:37.000000Z","Pengaturan untuk mengubah tahun copyright pada footer.",{"id":45,"key":46,"value":47,"type":48,"deleted_at":11,"created_at":42,"updated_at":13,"description":49},5,"office-address","Jl. Palem Botol Blok B-20 Kav.11 Gunung Sahari Selatan, Kemayoran Kota Jakarta Pusat 10610","textarea","Pengaturan untuk mengubah alamat kantor Datascrip pada footer.",{"id":51,"key":52,"value":53,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":54},36,"app.social.tiktok","https://www.tiktok.com/@datascripmall","Pengaturan untuk mengubah url untuk akun tiktok Datascrip pada footer.",{"id":56,"key":57,"value":58,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":59},37,"app.social.instagram","https://www.instagram.com/datascripmall","Pengaturan untuk mengubah url untuk akun instagram Datascrip pada footer.",{"id":61,"key":62,"value":63,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":64},38,"app.social.facebook","https://www.facebook.com/datascripmall","Pengaturan untuk mengubah url untuk akun facebook Datascrip pada footer.",{"id":66,"key":67,"value":68,"type":10,"deleted_at":11,"created_at":12,"updated_at":13,"description":69},39,"app.social.youtube","https://www.youtube.com/@datascripmall","Pengaturan untuk mengubah url untuk akun youtube Datascrip pada footer.",{"id":71,"key":72,"value":73,"type":10,"deleted_at":11,"created_at":74,"updated_at":13,"description":75},53,"certificate-logo-url","https://www.bsigroup.com/en-GB/products-and-services/assessment-and-certification/validation-and-verification/client-directory-certificate/IS%20738285","2025-11-03T08:33:16.000000Z","Pengaturan untuk mengubah url ke halaman sertifikasi.",{"first":77,"last":77,"prev":11,"next":11},"http://api.datascripmall.id/api/v1/master_data/settings?filter%5Bkey%5D=copyright-year%2Capp.social.youtube%2Capp.social.instagram%2Capp.social.facebook%2Capp.social.tiktok%2Coffice-address%2Ccertificate-logo-url&page%5Bnumber%5D=1",{"current_page":23,"from":23,"last_page":23,"links":79,"path":33,"per_page":34,"to":83,"total":83},[80,81,82],{"url":11,"label":26,"active":27},{"url":77,"label":29,"active":30},{"url":11,"label":32,"active":27},7,["Reactive",85],{"$sauth:data":11,"$sauth:lastRefreshedAt":86,"$sauth:loading":27,"$shomepageData":11,"$ssite-config":87},["Date","2026-01-03T09:21:13.146Z"],{"description":88,"env":89,"name":90,"url":91},"Suitmedia","production","suitmedia","https://spenceraccounting.ca/contact/",["Set"],["ShallowReactive",94],{"DXj7gzIYAA":11,"Slot Gacor Anti Rungkad 2026 Terbaru | Cuan Setiap Hari di Sewu88slot":11,"jBUFCjcsr7":11},"//mightyflying.com/about/",["Reactive",97],{"qiscus":98,"user-store":101,"theme":103},{"latestMessage":11,"history":99,"MAX_HISTORY_SIZE":100},[],50,{"data":102,"isLoading":27,"error":11},{},{"overlayOn":27}]
     </script>
     <script>
-        window.__NUXT__ = {}; window.__NUXT__.config = { public: { RECAPTCHA_SITE_KEY: "6LdMMTosAAAAAKjGoG96N7jB6KzTd3EHo5eL5ixC", SELLER_PORTAL_URL: "https://seller.datascripmall.id", QISCUS_APPID: "qchatsdk--ufzlmq3mfat", GOOGLE_MAP_KEY: "AIzaSyDI8OmGmXvgVBGFhw19PjZetpYErDvcWq0", MIDTRANS_CLIENT_KEY: "Mid-client-FEbnzdGByjeu4tmc", BASE_URL: "https://pin.ca/torontobusinessvaluation-gta/", sentry: { dsn: "https://1c384ba46eae429a815a81c5faf49a73@app.glitchtip.com/12653", environment: "production" }, isEnabled: true, session: { enableRefreshPeriodically: false, enableRefreshOnWindowFocus: true }, globalAppMiddleware: { isEnabled: true, allow404WithoutAuth: true, addDefaultCallbackUrl: true }, baseURL: "https://pin.ca/torontobusinessvaluation-gta/", provider: { type: "authjs", trustHost: true, defaultProvider: "", addDefaultCallbackUrl: true } }, apiParty: { endpoints: { suitapi: { cookies: "" } }, client: false, server: { basePath: "__api_party" } }, snackbar: { top: true, bottom: true, left: false, right: false, groups: true, success: "#4caf50", error: "#ff5252", warning: "#fb8c00", info: "#f32121", duration: 5000, limit: 0, messageClass: "", messageActionClass: "", zIndex: 9999, dense: false, shadow: true, reverse: false, border: "", backgroundOpacity: .12, backgroundColor: "currentColor", baseBackgroundColor: "#ffffff", dismissOnActionClick: false, iconPresets: {} } }
+        window.__NUXT__ = {}; window.__NUXT__.config = { public: { RECAPTCHA_SITE_KEY: "6LdMMTosAAAAAKjGoG96N7jB6KzTd3EHo5eL5ixC", SELLER_PORTAL_URL: "https://seller.datascripmall.id", QISCUS_APPID: "qchatsdk--ufzlmq3mfat", GOOGLE_MAP_KEY: "AIzaSyDI8OmGmXvgVBGFhw19PjZetpYErDvcWq0", MIDTRANS_CLIENT_KEY: "Mid-client-FEbnzdGByjeu4tmc", BASE_URL: "https://spenceraccounting.ca/contact/", sentry: { dsn: "https://1c384ba46eae429a815a81c5faf49a73@app.glitchtip.com/12653", environment: "production" }, isEnabled: true, session: { enableRefreshPeriodically: false, enableRefreshOnWindowFocus: true }, globalAppMiddleware: { isEnabled: true, allow404WithoutAuth: true, addDefaultCallbackUrl: true }, baseURL: "https://spenceraccounting.ca/contact/", provider: { type: "authjs", trustHost: true, defaultProvider: "", addDefaultCallbackUrl: true } }, apiParty: { endpoints: { suitapi: { cookies: "" } }, client: false, server: { basePath: "__api_party" } }, snackbar: { top: true, bottom: true, left: false, right: false, groups: true, success: "#4caf50", error: "#ff5252", warning: "#fb8c00", info: "#f32121", duration: 5000, limit: 0, messageClass: "", messageActionClass: "", zIndex: 9999, dense: false, shadow: true, reverse: false, border: "", backgroundOpacity: .12, backgroundColor: "currentColor", baseBackgroundColor: "#ffffff", dismissOnActionClick: false, iconPresets: {} } }
     </script>
     <div bis_skin_checked="1">
         <div class="grecaptcha-badge" data-style="bottomright" bis_skin_checked="1"
