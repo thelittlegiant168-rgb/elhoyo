@@ -341,24 +341,34 @@ var rl_adx_val = '';
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Service",
+  "@type": "Organization",
   "name": "GacorSlot2026 - Situs Slot Online Gacor 2026",
-  "description": "Platform slot online terpercaya dengan RTP tinggi, withdraw cepat, dan bonus mingguan. Main Mahjong Ways 2, Gates of Olympus, Starlight Princess, dan game gacor lainnya.",
-  "url": "https://mbins.com.my/about-us/",  // Ganti dengan URL situsmu
+  "url": "https://mbins.com.my/",  // Atau https://mbins.com.my/about-us/ jika ini halaman spesifik
+  "description": "Platform slot online terpercaya 2026 dengan RTP tinggi, withdraw cepat 1-5 menit, deposit minimal 10 ribu, dan game gacor seperti Mahjong Ways 2, Gates of Olympus, Starlight Princess 1000, Sweet Bonanza, Wild Bandito.",
+  "logo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYL1zaP0F8kE1x2Vf-qUS6VQWPIXRY2EPsKnC1Td6XDqTy4PgYiBN-LxLz4U8M-vTIfvLRWm4spohVLZXLVEHzsuv9WtW6i49ViYXtT8ntsl8LP-ALOK1jVy2NgJrkPCcSvBVr7LOHNQX84H2zW7gQOu3VqgZPDLBjWbhGYAHaqb6gDDSTjkcOHt7BHxpq/s445/sewu88slot-logo~.png",  // Ganti jika ada logo
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.9",
     "bestRating": "5",
     "worstRating": "1",
-    "reviewCount": "6",
-    "ratingCount": "6"
+    "ratingCount": "6",
+    "reviewCount": "6"
   },
   "review": [
     {
       "@type": "Review",
+      "itemReviewed": {
+        "@type": "Organization",
+        "name": "GacorSlot2026"
+      },
       "author": {
         "@type": "Person",
-        "name": "Rizky Firmansyah"
+        "name": "Rizky Firmansyah",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Surabaya",
+          "addressCountry": "ID"
+        }
       },
       "datePublished": "2026-02-15",
       "reviewBody": "Awalnya ragu, tapi setelah coba ternyata withdraw-nya cepet banget. Kurang dari 3 menit langsung masuk rekening. Main Mahjong Ways 2 modal 50 ribu bisa tembus 1,2 juta!",
@@ -371,9 +381,18 @@ var rl_adx_val = '';
     },
     {
       "@type": "Review",
+      "itemReviewed": {
+        "@type": "Organization",
+        "name": "GacorSlot2026"
+      },
       "author": {
         "@type": "Person",
-        "name": "Dewi Rahayu"
+        "name": "Dewi Rahayu",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Medan",
+          "addressCountry": "ID"
+        }
       },
       "datePublished": "2026-02-10",
       "reviewBody": "Udah nyoba banyak situs, ini yang paling jujur RTP-nya. Scatter-nya sering banget muncul, terutama kalau main di malam hari. Recommended banget buat yang mau cari slot gacor 2026.",
@@ -386,9 +405,18 @@ var rl_adx_val = '';
     },
     {
       "@type": "Review",
+      "itemReviewed": {
+        "@type": "Organization",
+        "name": "GacorSlot2026"
+      },
       "author": {
         "@type": "Person",
-        "name": "Andi Kurniawan"
+        "name": "Andi Kurniawan",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Makassar",
+          "addressCountry": "ID"
+        }
       },
       "datePublished": "2026-02-05",
       "reviewBody": "Deposit 10 ribu langsung bisa spin, nggak perlu modal gede. Kena free spin di Gates of Olympus, hasilnya lumayan banget buat nemenin akhir pekan. CS-nya juga fast respon!",
@@ -401,9 +429,18 @@ var rl_adx_val = '';
     },
     {
       "@type": "Review",
+      "itemReviewed": {
+        "@type": "Organization",
+        "name": "GacorSlot2026"
+      },
       "author": {
         "@type": "Person",
-        "name": "Siti Nuraini"
+        "name": "Siti Nuraini",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bandung",
+          "addressCountry": "ID"
+        }
       },
       "datePublished": "2026-01-28",
       "reviewBody": "Saya pemain baru, tapi langsung paham karena tampilannya simpel dan ada mode demo-nya. Pas udah PD baru main asli, eh langsung hoki di Starlight Princess. Seru banget!",
@@ -416,9 +453,18 @@ var rl_adx_val = '';
     },
     {
       "@type": "Review",
+      "itemReviewed": {
+        "@type": "Organization",
+        "name": "GacorSlot2026"
+      },
       "author": {
         "@type": "Person",
-        "name": "Bagas Prasetyo"
+        "name": "Bagas Prasetyo",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Semarang",
+          "addressCountry": "ID"
+        }
       },
       "datePublished": "2026-01-20",
       "reviewBody": "Yang paling saya suka itu bonusnya nggak ribet syaratnya. Cashback tiap minggu langsung bisa dipake main lagi. Slot Wild Bandito jadi favorit saya sekarang.",
@@ -431,9 +477,18 @@ var rl_adx_val = '';
     },
     {
       "@type": "Review",
+      "itemReviewed": {
+        "@type": "Organization",
+        "name": "GacorSlot2026"
+      },
       "author": {
         "@type": "Person",
-        "name": "Yuliana Safitri"
+        "name": "Yuliana Safitri",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Palembang",
+          "addressCountry": "ID"
+        }
       },
       "datePublished": "2026-01-15",
       "reviewBody": "Teman kantor yang ngenalin, katanya ini situs paling gacor 2026. Beneran deh, dalam seminggu pertama udah balik modal berkali-kali. Proses daftar juga cuma 2 menit.",
