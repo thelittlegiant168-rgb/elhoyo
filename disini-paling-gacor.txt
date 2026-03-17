@@ -4531,7 +4531,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                         </button>
                                         <div class="toto-answer">
                                             <div class="toto-answer-inner">
-                                                <p>Secara teknis, mesin slot berbasis RNG (Random Number Generator) tidak memiliki waktu "wajib" gacor. Namun, komunitas pemain berpengalaman sering berbagi pola dan sesi tertentu yang dinilai lebih produktif berdasarkan pengalaman bermain mereka.</p>
+                                                <p>Secara teknis, mesin slot berbasis RNG (Random Number Generator) tidak memiliki waktu wajib gacor. Namun, komunitas pemain berpengalaman sering berbagi pola dan sesi tertentu yang dinilai lebih produktif berdasarkan pengalaman bermain mereka.</p>
                                             </div>
                                         </div>
                                     </div>
