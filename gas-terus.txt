@@ -388,7 +388,7 @@
         "name": "Jam berapa waktu terbaik main slot untuk pemain Indonesia?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Tidak ada waktu yang "pasti gacor", tapi secara teknis jam siang (12–14.00 WIB) cenderung lebih sepi traffic sehingga server lebih ringan dan game lebih responsif. Kalau kamu mau main di jam ramai malam hari, pastikan platform yang kamu pilih benar-benar anti rungkad karena itulah waktu server paling diuji."
+          "text": "Tidak ada waktu yang pasti gacor, tapi secara teknis jam siang (12–14.00 WIB) cenderung lebih sepi traffic sehingga server lebih ringan dan game lebih responsif. Kalau kamu mau main di jam ramai malam hari, pastikan platform yang kamu pilih benar-benar anti rungkad karena itulah waktu server paling diuji."
         }
       }, {
         "@type": "Question",
