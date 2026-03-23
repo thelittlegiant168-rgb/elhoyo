@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="canonical" href="https://www.uogc.org.ar/uogc/convenios">
+  <link rel="canonical" href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">
   <link rel="amphtml" href="https://yuknaik-lagi.pages.dev/">
   <meta name="robots" content="index, follow">
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin="">
@@ -16,7 +16,7 @@
   <title>Main Slot Gacor Anti Rungkad 2026 Sekarang – Server Nggak Pernah Mati, Menang Lebih Nyata</title>
   <meta name="description" content="Udah siap main? Temukan slot gacor anti rungkad 2026 yang servernya stabil 24 jam, RTP tinggi, dan deposit mulai 10rb. Langsung main tanpa ribet — coba sekarang!">
   <meta property="og:site_name" content="SEWU88SLOT">
-  <meta property="og:url" content="https://www.uogc.org.ar/uogc/convenios">
+  <meta property="og:url" content="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">
   <meta property="og:title" content="Main Slot Gacor Anti Rungkad 2026 Sekarang – Server Nggak Pernah Mati, Menang Lebih Nyata">
   <meta property="og:type" content="product">
   <meta property="og:description" content="Udah siap main? Temukan slot gacor anti rungkad 2026 yang servernya stabil 24 jam, RTP tinggi, dan deposit mulai 10rb. Langsung main tanpa ribet — coba sekarang!">
@@ -183,7 +183,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      "url": "https://www.uogc.org.ar/uogc/convenios",
+      "url": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion",
       "name": "Main Slot Gacor Anti Rungkad 2026 Sekarang – Server Nggak Pernah Mati, Menang Lebih Nyata",
       "sku": "9016876988",
       "description": "Udah siap main? Temukan slot gacor anti rungkad 2026 yang servernya stabil 24 jam, RTP tinggi, dan deposit mulai 10rb. Langsung main tanpa ribet — coba sekarang!",
@@ -293,47 +293,47 @@
         "@type": "ListItem",
         "position": 1,
         "name": "SEWU88SLOT",
-        "item": "https://www.uogc.org.ar/uogc/convenios"
+        "item": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion"
       }, {
         "@type": "ListItem",
         "position": 2,
         "name": "SEWU88SLOT LOGIN",
-        "item": "https://www.uogc.org.ar/uogc/convenios"
+        "item": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion"
       }, {
         "@type": "ListItem",
         "position": 3,
         "name": "DAFTAR SEWU88SLOT",
-        "item": "https://www.uogc.org.ar/uogc/convenios"
+        "item": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion"
       }, {
         "@type": "ListItem",
         "position": 4,
         "name": "SITUS SEWU88SLOT",
-        "item": "https://www.uogc.org.ar/uogc/convenios"
+        "item": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion"
       }, {
         "@type": "ListItem",
         "position": 5,
         "name": "SEWU88SLOT LINK",
-        "item": "https://www.uogc.org.ar/uogc/convenios"
+        "item": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion"
       }, {
         "@type": "ListItem",
         "position": 6,
         "name": "SLOT GACOR 2026",
-        "item": "https://www.uogc.org.ar/uogc/convenios"
+        "item": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion"
       }, {
         "@type": "ListItem",
         "position": 7,
         "name": "SITUS GACOR 2026",
-        "item": "https://www.uogc.org.ar/uogc/convenios"
+        "item": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion"
       }, {
         "@type": "ListItem",
         "position": 8,
         "name": "SITUS SLOT GACOR",
-        "item": "https://www.uogc.org.ar/uogc/convenios"
+        "item": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion"
       }, {
         "@type": "ListItem",
         "position": 9,
         "name": "Main Slot Gacor Anti Rungkad 2026 Sekarang – Server Nggak Pernah Mati, Menang Lebih Nyata",
-        "item": "https://www.uogc.org.ar/uogc/convenios"
+        "item": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion"
       }]
     }
   </script>
@@ -342,27 +342,27 @@
       "@context": "https://schema.org",
       "@graph": [{
         "@type": "Organization",
-        "@id": "https://www.uogc.org.ar/uogc/convenios#org",
+        "@id": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion#org",
         "name": "SEWU88SLOT",
-        "url": "https://www.uogc.org.ar/uogc/convenios",
+        "url": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion",
         "logo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png"
       }, {
         "@type": "WebSite",
-        "@id": "https://www.uogc.org.ar/uogc/convenios#website",
-        "url": "https://www.uogc.org.ar/uogc/convenios",
+        "@id": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion#website",
+        "url": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion",
         "name": "SEWU88SLOT",
         "publisher": {
-          "@id": "https://www.uogc.org.ar/uogc/convenios#org"
+          "@id": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion#org"
         },
         "inLanguage": "id-ID",
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://www.uogc.org.ar/uogc/convenios?s={search_term_string}",
+          "target": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion?s={search_term_string}",
           "query-input": "required name=search_term_string"
         }
       }, {
         "@type": "SoftwareApplication",
-        "@id": "https://www.uogc.org.ar/uogc/convenios#app",
+        "@id": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion#app",
         "name": "SEWU88SLOT",
         "applicationCategory": "GameApplication",
         "operatingSystem": "Android, iOS, Windows",
@@ -1761,7 +1761,7 @@
         </script>
         <div class="header__heading">
           <div class="brand--logo">
-            <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="header__heading-link link link--text focus-inset" aria-label="Home">
+            <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="header__heading-link link link--text focus-inset" aria-label="Home">
               <div class="ratio" style="--ratio-percent: 25.875000000000004%">
                 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEim5lCrcLjW6Gv5YzGdWlDkxv-Em9GNevWkO9LEpF70W7r7LeqJQvlY1-GdTEQr-4rA3XfGFrJSUZ3mdcLk_7heM2fARfHHu2bl86lRBHvRj4rZ_9RymoDvU-PDbJZBawNao5R1G7diHlzNPtxdrQn0rupd1vlYCwkQS4mR71H1PeWOf8tlqh8XWtF91aRS/s445/sewu88slot-logo~.png" loading="lazy" class="header__heading-logo company_logo ratio" width="700" height="200" alt="SEWU88SLOT">
               </div>
@@ -1914,7 +1914,7 @@
                 <header-menu>
                   <details id="Details-HeaderMenu-1" class="mainMenuUpdate2">
                     <summary id="headerCss HeaderMenu-mac" class="header__menu-item list-menu__item link focus-inset" role="button" aria-expanded="false" aria-controls="HeaderMenu-MenuList-1">
-                      <p><a href="https://www.uogc.org.ar/uogc/convenios">SEWU88SLOT</a></p>
+                      <p><a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">SEWU88SLOT</a></p>
                       <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                         </path>
@@ -1928,7 +1928,7 @@
                 <header-menu>
                   <details id="Details-HeaderMenu-2" class="mainMenuUpdate2">
                     <summary id="headerCss HeaderMenu-ipad" class="header__menu-item list-menu__item link focus-inset" role="button" aria-expanded="false" aria-controls="HeaderMenu-MenuList-2">
-                      <p><a href="https://www.uogc.org.ar/uogc/convenios">SEWU88SLOT LOGIN</a></p>
+                      <p><a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">SEWU88SLOT LOGIN</a></p>
                       <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                         </path>
@@ -1942,7 +1942,7 @@
                 <header-menu>
                   <details id="Details-HeaderMenu-3" class="mainMenuUpdate2">
                     <summary id="headerCss HeaderMenu-iphone" class="header__menu-item list-menu__item link focus-inset" role="button" aria-expanded="false" aria-controls="HeaderMenu-MenuList-3">
-                      <p><a href="https://www.uogc.org.ar/uogc/convenios">DAFTAR SEWU88SLOT</a></p>
+                      <p><a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">DAFTAR SEWU88SLOT</a></p>
                       <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                         </path>
@@ -1956,7 +1956,7 @@
                 <header-menu>
                   <details id="Details-HeaderMenu-4" class="mainMenuUpdate2">
                     <summary id="headerCss HeaderMenu-watch" class="header__menu-item list-menu__item link focus-inset" role="button" aria-expanded="false" aria-controls="HeaderMenu-MenuList-4">
-                      <p><a href="https://www.uogc.org.ar/uogc/convenios">SITUS SEWU88SLOT</a></p>
+                      <p><a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">SITUS SEWU88SLOT</a></p>
                       <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                         </path>
@@ -1970,7 +1970,7 @@
                 <header-menu>
                   <details id="Details-HeaderMenu-5" class="mainMenuUpdate2">
                     <summary id="headerCss HeaderMenu-music" class="header__menu-item list-menu__item link focus-inset" role="button" aria-expanded="false" aria-controls="HeaderMenu-MenuList-5">
-                      <p><a href="https://www.uogc.org.ar/uogc/convenios">SLOT GACOR</a></p>
+                      <p><a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">SLOT GACOR</a></p>
                       <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                         </path>
@@ -1984,7 +1984,7 @@
                 <header-menu>
                   <details id="Details-HeaderMenu-6" class="mainMenuUpdate2">
                     <summary id="headerCss HeaderMenu-tv-home" class="header__menu-item list-menu__item link focus-inset" role="button" aria-expanded="false" aria-controls="HeaderMenu-MenuList-6">
-                      <p><a href="https://www.uogc.org.ar/uogc/convenios">SITUS SLOT GACOR</a></p>
+                      <p><a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">SITUS SLOT GACOR</a></p>
                       <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                         </path>
@@ -1998,7 +1998,7 @@
                 <header-menu>
                   <details id="Details-HeaderMenu-7" class="mainMenuUpdate2">
                     <summary id="headerCss HeaderMenu-accessories" class="header__menu-item list-menu__item link focus-inset" role="button" aria-expanded="false" aria-controls="HeaderMenu-MenuList-7">
-                      <p><a href="https://www.uogc.org.ar/uogc/convenios">SLOT GACOR 2026</a></p>
+                      <p><a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">SLOT GACOR 2026</a></p>
                       <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                         </path>
@@ -2012,7 +2012,7 @@
                 <header-menu>
                   <details id="Details-HeaderMenu-8" class="mainMenuUpdate2">
                     <summary id="headerCss HeaderMenu-services" class="header__menu-item list-menu__item link focus-inset" role="button" aria-expanded="false" aria-controls="HeaderMenu-MenuList-8">
-                      <p><a href="https://www.uogc.org.ar/uogc/convenios">SLOT GACOR TERPERCAYA</a></p>
+                      <p><a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">SLOT GACOR TERPERCAYA</a></p>
                       <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                         </path>
@@ -2026,7 +2026,7 @@
                 <header-menu>
                   <details id="Details-HeaderMenu-9" class="mainMenuUpdate2">
                     <summary id="headerCss HeaderMenu-offers" class="header__menu-item list-menu__item link focus-inset" role="button" aria-expanded="false" aria-controls="HeaderMenu-MenuList-9">
-                      <p><a href="https://www.uogc.org.ar/uogc/convenios">SLOT RESMI</a></p>
+                      <p><a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">SLOT RESMI</a></p>
                       <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                         </path>
@@ -2062,7 +2062,7 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "SEWU88SLOT",
-        "url": "https://www.uogc.org.ar/uogc/convenios",
+        "url": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion",
         "sameAs": ["https://www.facebook.com/SEWU88SLOT", "https://www.instagram.com/SEWU88SLOT/", "https://www.youtube.com/channel/SEWU88SLOT/"]
       }
     </script>
@@ -2116,7 +2116,7 @@
     <div class="nav-left-arrow"></div>
     <div class="apl_lob_slider without_main_title apl_lob_slider-ipad">
       <div class="apl_lob_list_item">
-        <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer">
+        <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer">
           <div class="list-lob">
             <div class="imagecontainer ratio" style="--ratio-percent: 100%;">
               <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=100" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=90 90w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=180 180w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=240 240w" sizes="(max-width): 90px,(max-width): 180px,100vw" height="84" width="84" loading="lazy" alt="">
@@ -2132,7 +2132,7 @@
         </a>
       </div>
       <div class="apl_lob_list_item">
-        <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer">
+        <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer">
           <div class="list-lob">
             <div class="imagecontainer ratio" style="--ratio-percent: 100%;">
               <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657995&amp;width=100" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=90 90w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=180 180w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=240 240w" sizes="(max-width): 90px,(max-width): 180px,100vw" height="84" width="84" loading="lazy" alt="">
@@ -2148,7 +2148,7 @@
         </a>
       </div>
       <div class="apl_lob_list_item">
-        <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer">
+        <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer">
           <div class="list-lob">
             <div class="imagecontainer ratio" style="--ratio-percent: 100%;">
               <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657995&amp;width=100" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=90 90w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=180 180w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=240 240w" sizes="(max-width): 90px,(max-width): 180px,100vw" height="84" width="84" loading="lazy" alt="">
@@ -2164,7 +2164,7 @@
         </a>
       </div>
       <div class="apl_lob_list_item">
-        <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer">
+        <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer">
           <div class="list-lob">
             <div class="imagecontainer ratio" style="--ratio-percent: 100%;">
               <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1740017919&amp;width=100" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=90 90w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=180 180w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=240 240w" sizes="(max-width): 90px,(max-width): 180px,100vw" height="84" width="84" loading="lazy" alt="">
@@ -2180,7 +2180,7 @@
         </a>
       </div>
       <div class="apl_lob_list_item">
-        <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer">
+        <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer">
           <div class="list-lob">
             <div class="imagecontainer ratio" style="--ratio-percent: 100%;">
               <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1731047537&amp;width=100" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=90 90w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=180 180w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=240 240w" sizes="(max-width): 90px,(max-width): 180px,100vw" height="84" width="84" loading="lazy" alt="">
@@ -2195,7 +2195,7 @@
         </a>
       </div>
       <div class="apl_lob_list_item">
-        <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer">
+        <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer">
           <div class="list-lob">
             <div class="imagecontainer ratio" style="--ratio-percent: 100%;">
               <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1731636011&amp;width=100" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=90 90w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=180 180w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=240 240w" sizes="(max-width): 90px,(max-width): 180px,100vw" height="84" width="84" loading="lazy" alt="">
@@ -2211,7 +2211,7 @@
         </a>
       </div>
       <div class="apl_lob_list_item">
-        <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer">
+        <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer">
           <div class="list-lob">
             <div class="imagecontainer ratio" style="--ratio-percent: 100%;">
               <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1731636011&amp;width=100" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=90 90w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=180 180w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=240 240w" sizes="(max-width): 90px,(max-width): 180px,100vw" height="84" width="84" loading="lazy" alt="">
@@ -2227,7 +2227,7 @@
         </a>
       </div>
       <div class="apl_lob_list_item">
-        <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer">
+        <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer">
           <div class="list-lob">
             <div class="imagecontainer ratio" style="--ratio-percent: 100%;">
               <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1731636011&amp;width=100" srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=90 90w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=180 180w,https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757657996&amp;width=240 240w" sizes="(max-width): 90px,(max-width): 180px,100vw" height="84" width="84" loading="lazy" alt="">
@@ -2243,7 +2243,7 @@
         </a>
       </div>
       <div class="apl_lob_list_item end_lob_text">
-        <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="end_lob_title">
+        <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="end_lob_title">
           <span class="end_title_anchor"> View All iPhone <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M0.649682 8.5L0 7.85032L3.35032 4.5L0 1.14968L0.649682 0.5L4.64968 4.5L0.649682 8.5Z" fill="#0071E3"></path>
             </svg>
@@ -2995,9 +2995,9 @@
                     </svg>
                   </summary>
                   <div class="accordion__content rte" id="ProductAccordion-popup_custom_VYxbeD-template--17605519376564__main">
-                    <p>Udah siap main? Temukan slot gacor anti rungkad 2026 yang servernya stabil 24 jam, RTP tinggi, dan deposit mulai 10rb. Langsung main tanpa ribet — coba sekarang!<br><br><a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer">Pelajari Selengkapnya</a></p>
+                    <p>Udah siap main? Temukan slot gacor anti rungkad 2026 yang servernya stabil 24 jam, RTP tinggi, dan deposit mulai 10rb. Langsung main tanpa ribet — coba sekarang!<br><br><a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer">Pelajari Selengkapnya</a></p>
                     <modal-opener class="popup_round_border product-popup-modal__opener no-js-hidden" data-modal="#PopupModal-popup_custom_VYxbeD"><button id="ProductPopup-popup_custom_VYxbeD" class="active_seemore text-decoration product-popup-modal__button link" type="button" aria-haspopup="dialog">Pelajari Selengkapnya</button></modal-opener>
-                    <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="product-popup-modal__button link no-js">Pelajari Selengkapnya</a>
+                    <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="product-popup-modal__button link no-js">Pelajari Selengkapnya</a>
                   </div>
                 </details>
               </div>
@@ -3034,7 +3034,7 @@
                   <div class="share-button__fallback motion-reduce">
                     <div class="field">
                       <span id="ShareMessage-template--17605519376564__main" class="share-button__message hidden" role="status"> </span>
-                      <input type="text" class="field__input" id="ShareUrl-template--17605519376564__main" value="https://www.uogc.org.ar/uogc/convenios" placeholder="Link" onclick="this.select();" readonly="">
+                      <input type="text" class="field__input" id="ShareUrl-template--17605519376564__main" value="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" placeholder="Link" onclick="this.select();" readonly="">
                       <label class="field__label" for="ShareUrl-template--17605519376564__main">Link</label>
                     </div>
                     <button class="share-button__close hidden no-js-hidden">
@@ -3060,17 +3060,17 @@
                     color: #ffffff;
                   }
                 </style>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.uogc.org.ar/uogc/convenios&amp;quote=Check%20this%20product%20out.%0A" class="facebook_icon" id="true" target="_blank" aria-label="Facebook">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.uogc.org.ar/uogc/solicitud-de-afiliacion&amp;quote=Check%20this%20product%20out.%0A" class="facebook_icon" id="true" target="_blank" aria-label="Facebook">
                   <svg aria-hidden="true" focusable="false" class="icon icon-facebook" viewBox="0 0 20 20">
                     <path fill="currentColor" d="M18 10.049C18 5.603 14.419 2 10 2c-4.419 0-8 3.603-8 8.049C2 14.067 4.925 17.396 8.75 18v-5.624H6.719v-2.328h2.03V8.275c0-2.017 1.195-3.132 3.023-3.132.874 0 1.79.158 1.79.158v1.98h-1.009c-.994 0-1.303.621-1.303 1.258v1.51h2.219l-.355 2.326H11.25V18c3.825-.604 6.75-3.933 6.75-7.951Z"></path>
                   </svg>
                 </a>
-                <a href="https://twitter.com/intent/tweet?text=Check%20this%20product%20out.%0A&amp;url=https://www.uogc.org.ar/uogc/convenios" class="twitter_icon" id="true" target="_blank" aria-label="Twitter">
+                <a href="https://twitter.com/intent/tweet?text=Check%20this%20product%20out.%0A&amp;url=https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" class="twitter_icon" id="true" target="_blank" aria-label="Twitter">
                   <svg aria-hidden="true" focusable="false" class="icon icon-twitter" viewBox="0 0 20 20">
                     <path fill="currentColor" d="M18.608 4.967a7.364 7.364 0 0 1-1.758 1.828c0 .05 0 .13.02.23l.02.232a10.014 10.014 0 0 1-1.697 5.565 11.023 11.023 0 0 1-2.029 2.29 9.13 9.13 0 0 1-2.832 1.607 10.273 10.273 0 0 1-8.94-.985c.342.02.613.04.834.04 1.647 0 3.114-.502 4.4-1.506a3.616 3.616 0 0 1-3.315-2.46c.528.128 1.08.107 1.597-.061a3.485 3.485 0 0 1-2.029-1.216 3.385 3.385 0 0 1-.803-2.23v-.03c.462.242.984.372 1.587.402A3.465 3.465 0 0 1 2.116 5.76c0-.612.14-1.205.452-1.798a9.723 9.723 0 0 0 3.214 2.612A10.044 10.044 0 0 0 9.88 7.649a3.013 3.013 0 0 1-.13-.804c0-.974.34-1.808 1.034-2.49a3.466 3.466 0 0 1 2.561-1.035 3.505 3.505 0 0 1 2.551 1.104 6.812 6.812 0 0 0 2.24-.853 3.415 3.415 0 0 1-1.547 1.948 7.732 7.732 0 0 0 2.02-.542v-.01Z"></path>
                   </svg>
                 </a>
-                <a href="https://pinterest.com/pin/create/button/?url=https://www.uogc.org.ar/uogc/convenios&amp;description=" class="pinterest_icon" id="true" target="_blank" aria-label="Pinterest">
+                <a href="https://pinterest.com/pin/create/button/?url=https://www.uogc.org.ar/uogc/solicitud-de-afiliacion&amp;description=" class="pinterest_icon" id="true" target="_blank" aria-label="Pinterest">
                   <svg aria-hidden="true" focusable="false" class="icon icon-pinterest" viewBox="0 0 20 20">
                     <path fill="currentColor" d="M10 2.01c2.124.01 4.16.855 5.666 2.353a8.087 8.087 0 0 1 1.277 9.68A7.952 7.952 0 0 1 10 18.04a8.164 8.164 0 0 1-2.276-.307c.403-.653.672-1.24.816-1.729l.567-2.2c.134.27.393.5.768.702.384.192.768.297 1.19.297.836 0 1.585-.24 2.248-.72a4.678 4.678 0 0 0 1.537-1.969c.37-.89.554-1.848.537-2.813 0-1.249-.48-2.315-1.43-3.227a5.061 5.061 0 0 0-3.65-1.374c-.893 0-1.729.154-2.478.461a5.023 5.023 0 0 0-3.236 4.552c0 .72.134 1.355.413 1.902.269.538.672.922 1.22 1.152.096.039.182.039.25 0 .066-.028.114-.096.143-.192l.173-.653c.048-.144.02-.288-.105-.432a2.257 2.257 0 0 1-.548-1.565 3.803 3.803 0 0 1 3.976-3.861c1.047 0 1.863.288 2.44.855.585.576.883 1.315.883 2.228 0 .768-.106 1.479-.317 2.122a3.813 3.813 0 0 1-.893 1.556c-.384.384-.836.576-1.345.576-.413 0-.749-.144-1.018-.451-.259-.307-.345-.672-.25-1.085.147-.514.298-1.026.452-1.537l.173-.701c.057-.25.086-.451.086-.624 0-.346-.096-.634-.269-.855-.192-.22-.451-.336-.797-.336-.432 0-.797.192-1.085.595-.288.394-.442.893-.442 1.499.005.374.063.746.173 1.104l.058.144c-.576 2.478-.913 3.938-1.037 4.36-.116.528-.154 1.153-.125 1.863A8.067 8.067 0 0 1 2 10.03c0-2.208.778-4.11 2.343-5.666A7.721 7.721 0 0 1 10 2.001v.01Z"></path>
                   </svg>
@@ -3245,7 +3245,7 @@
             "@context": "https://schema.org",
             "@type": "Product",
             "name": "Main Slot Gacor Anti Rungkad 2026 Sekarang – Server Nggak Pernah Mati, Menang Lebih Nyata",
-            "url": "https://www.uogc.org.ar/uogc/convenios",
+            "url": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion",
             "image": ["https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje3VwPSUpY61R6Uf9dZMZky5XIzqGYQKBjNtJEfS9WftDBMn-p1hmDfVv8O06KdDX5AS3NZQjkzXBKfBS99zCOAtaRtbOfp0FpTI5-uuKrcnz0IBN0a1uzNZQo3W-OJ1EEtNVnF0YyK-PFlI0K6WSWFm_vYs0Z6yfTZmB-pSS_PV1NJ4aF2XzyBB-RS2Cf/s1000/ribuan%20pemain%20sudah%20spin%20duluan%20hari%20ini.png?v=1757450054&width=823"],
             "description": "Udah siap main? Temukan slot gacor anti rungkad 2026 yang servernya stabil 24 jam, RTP tinggi, dan deposit mulai 10rb. Langsung main tanpa ribet — coba sekarang!",
             "sku": "9016876988",
@@ -3260,7 +3260,7 @@
               "availability": "https://schema.org/OutOfStock",
               "price": 300.00,
               "priceCurrency": "SGD",
-              "url": "https://www.uogc.org.ar/uogc/convenios"
+              "url": "https://www.uogc.org.ar/uogc/solicitud-de-afiliacion"
             }]
           }
         </script>
@@ -3644,9 +3644,9 @@
         <div class="product-title-style product__title">
           <h1 style="text-align: center;">Main Slot Gacor Anti Rungkad 2026 Sekarang – Server Nggak Pernah Mati, Menang Lebih Nyata</h1>
         </div>
-        <p style="text-align: center;" data-start="195" data-end="858"><span style="color: #000000;"><em><a style="color: #000000;" href="https://www.uogc.org.ar/uogc/convenios">SEWU88SLOT</a> Kamu buka halaman ini bukan untuk baca panjang-panjang. Kamu mau main. Dan kita di sini bukan untuk buang waktumu dengan teori yang nggak perlu. Tapi ada satu hal yang perlu kamu tahu sebelum mulai spin — supaya sesi main kamu hari ini beneran worth it, bukan berakhir frustrasi karena platform yang salah. Jadi ini singkat. Langsung ke intinya. Kamu Butuh Platform yang Nggak Bikin Deg-degan Karena Alasan yang Salah Deg-degan nunggu hasil spin? Itu enak. Itu bagian dari serunya main slot. Deg-degan karena takut game tiba-tiba freeze? Deg-degan karena WD nggak masuk-masuk? Deg-degan karena nggak tahu platform-nya beneran bayar atau nggak? Itu bukan excitement — itu anxiety. Dan kamu nggak harus merasakan itu. Slot gacor anti rungkad 2026 yang beneran akan terasa beda dari menit pertama. Server responsif, game langsung jalan, spin langsung keluar hasilnya. Tidak ada jeda aneh, tidak ada loading yang bikin jantung berdebar karena alasan yang salah. Mulai dari yang Kecil, Rasakan Dulu Bedanya Salah satu keputusan terbaik yang bisa kamu buat hari ini adalah mulai dari modal kecil di platform yang tepat — bukan modal besar di platform yang salah. Dengan deposit minimal mulai 10 ribu rupiah, kamu sudah bisa masuk, pilih game favorit, dan rasakan sendiri apakah platform ini layak untuk sesi main yang lebih serius. Tidak perlu langsung all-in. Cukup rasakan dulu: apakah spinnya mulus? Apakah fitur bonusnya trigger dengan wajar? Apakah ada lag yang mencurigakan?</em></span></p>
+        <p style="text-align: center;" data-start="195" data-end="858"><span style="color: #000000;"><em><a style="color: #000000;" href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">SEWU88SLOT</a> Kamu buka halaman ini bukan untuk baca panjang-panjang. Kamu mau main. Dan kita di sini bukan untuk buang waktumu dengan teori yang nggak perlu. Tapi ada satu hal yang perlu kamu tahu sebelum mulai spin — supaya sesi main kamu hari ini beneran worth it, bukan berakhir frustrasi karena platform yang salah. Jadi ini singkat. Langsung ke intinya. Kamu Butuh Platform yang Nggak Bikin Deg-degan Karena Alasan yang Salah Deg-degan nunggu hasil spin? Itu enak. Itu bagian dari serunya main slot. Deg-degan karena takut game tiba-tiba freeze? Deg-degan karena WD nggak masuk-masuk? Deg-degan karena nggak tahu platform-nya beneran bayar atau nggak? Itu bukan excitement — itu anxiety. Dan kamu nggak harus merasakan itu. Slot gacor anti rungkad 2026 yang beneran akan terasa beda dari menit pertama. Server responsif, game langsung jalan, spin langsung keluar hasilnya. Tidak ada jeda aneh, tidak ada loading yang bikin jantung berdebar karena alasan yang salah. Mulai dari yang Kecil, Rasakan Dulu Bedanya Salah satu keputusan terbaik yang bisa kamu buat hari ini adalah mulai dari modal kecil di platform yang tepat — bukan modal besar di platform yang salah. Dengan deposit minimal mulai 10 ribu rupiah, kamu sudah bisa masuk, pilih game favorit, dan rasakan sendiri apakah platform ini layak untuk sesi main yang lebih serius. Tidak perlu langsung all-in. Cukup rasakan dulu: apakah spinnya mulus? Apakah fitur bonusnya trigger dengan wajar? Apakah ada lag yang mencurigakan?</em></span></p>
         <p style="text-align: center;" data-start="195" data-end="858">&nbsp;</p>
-        <p style="text-align: center;" data-start="860" data-end="1506"><span style="color: #000000;"><em>Sebagai <a style="color: #000000;" href="https://www.uogc.org.ar/uogc/convenios">situs slot terpercaya</a>, Kalau semua itu berjalan lancar — dan di platform yang benar memang selalu lancar — baru kamu naikkan level permainan sesuai kenyamananmu. Jam Ini, Banyak yang Sudah Dapat Di saat kamu membaca ini, ada ribuan pemain yang sedang aktif spin di platform slot anti rungkad terpercaya. Beberapa dari mereka baru mulai 10 menit lalu. Beberapa sudah main sejak tadi pagi dan masih betah karena servernya nggak pernah ngajak drama. Bukan berarti semua pasti menang besar — itu bukan janji realistis dari siapapun. Tapi semua dari mereka main di tempat yang fair, stabil, dan kalau memang rezeki hari ini lagi bagus, hasilnya bisa langsung dicairkan tanpa ribet. Itu yang kamu mau, kan? Tiga Hal yang Bikin Sesi Main Hari Ini Beda Pertama, pilih game dengan RTP di atas 96%. Bukan jaminan menang, tapi persentase kembalinya modal kamu secara teoritis lebih tinggi. Di platform yang bagus, info RTP ini ditampilkan transparan per game — tidak perlu tebak-tebakan. Kedua, aktifkan mode demo dulu kalau kamu belum familiar sama game-nya. Lima menit di demo lebih berharga dari lima menit langsung bakar modal tanpa tahu pola game-nya. Ini bukan soal takut — ini soal main dengan lebih cerdas. Ketiga, tetapkan batas sesi sebelum mulai. Bukan batas kalah saja, tapi juga batas menang. Pemain yang tahu kapan harus berhenti — ke dua arah — adalah pemain yang paling sering pulang dengan senyum. Servernya Lagi Stabil. Kamu Lagi Siap. Apalagi yang Ditunggu? Satu hal yang nggak bisa direncanakan dalam main slot adalah momentum. Kamu nggak tahu kapan game-nya akan masuk mode gacor. Yang bisa kamu kontrol adalah di mana kamu main — dan pastikan tempat itu nggak akan mengkhianati momentum itu dengan server yang tiba-tiba rungkad. Platform slot gacor anti rungkad 2026 yang tepat adalah yang siap kapanpun kamu siap. Tidak peduli jam berapa, tidak peduli seberapa ramai server saat itu — game tetap jalan, spin tetap responsif, dan kalau kamu menang, WD tetap lancar. Kamu sudah di sini. Kamu sudah siap. Sekarang tinggal satu langkah lagi.</em></span></p>
+        <p style="text-align: center;" data-start="860" data-end="1506"><span style="color: #000000;"><em>Sebagai <a style="color: #000000;" href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion">situs slot terpercaya</a>, Kalau semua itu berjalan lancar — dan di platform yang benar memang selalu lancar — baru kamu naikkan level permainan sesuai kenyamananmu. Jam Ini, Banyak yang Sudah Dapat Di saat kamu membaca ini, ada ribuan pemain yang sedang aktif spin di platform slot anti rungkad terpercaya. Beberapa dari mereka baru mulai 10 menit lalu. Beberapa sudah main sejak tadi pagi dan masih betah karena servernya nggak pernah ngajak drama. Bukan berarti semua pasti menang besar — itu bukan janji realistis dari siapapun. Tapi semua dari mereka main di tempat yang fair, stabil, dan kalau memang rezeki hari ini lagi bagus, hasilnya bisa langsung dicairkan tanpa ribet. Itu yang kamu mau, kan? Tiga Hal yang Bikin Sesi Main Hari Ini Beda Pertama, pilih game dengan RTP di atas 96%. Bukan jaminan menang, tapi persentase kembalinya modal kamu secara teoritis lebih tinggi. Di platform yang bagus, info RTP ini ditampilkan transparan per game — tidak perlu tebak-tebakan. Kedua, aktifkan mode demo dulu kalau kamu belum familiar sama game-nya. Lima menit di demo lebih berharga dari lima menit langsung bakar modal tanpa tahu pola game-nya. Ini bukan soal takut — ini soal main dengan lebih cerdas. Ketiga, tetapkan batas sesi sebelum mulai. Bukan batas kalah saja, tapi juga batas menang. Pemain yang tahu kapan harus berhenti — ke dua arah — adalah pemain yang paling sering pulang dengan senyum. Servernya Lagi Stabil. Kamu Lagi Siap. Apalagi yang Ditunggu? Satu hal yang nggak bisa direncanakan dalam main slot adalah momentum. Kamu nggak tahu kapan game-nya akan masuk mode gacor. Yang bisa kamu kontrol adalah di mana kamu main — dan pastikan tempat itu nggak akan mengkhianati momentum itu dengan server yang tiba-tiba rungkad. Platform slot gacor anti rungkad 2026 yang tepat adalah yang siap kapanpun kamu siap. Tidak peduli jam berapa, tidak peduli seberapa ramai server saat itu — game tetap jalan, spin tetap responsif, dan kalau kamu menang, WD tetap lancar. Kamu sudah di sini. Kamu sudah siap. Sekarang tinggal satu langkah lagi.</em></span></p>
         <style type="text/css">
           div.advertisement-placeholder {
             text-align: center;
@@ -4175,28 +4175,28 @@
           <div class="panel2">
             <ul class="footer-block__details-content list-unstyled">
               <li>
-                <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SEWU88SLOT </a>
+                <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SEWU88SLOT </a>
               </li>
               <li>
-                <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SEWU88SLOT LOGIN </a>
+                <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SEWU88SLOT LOGIN </a>
               </li>
               <li>
-                <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> DAFTAR SEWU88SLOT </a>
+                <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> DAFTAR SEWU88SLOT </a>
               </li>
               <li>
-                <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SITUS SEWU88SLOT </a>
+                <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SITUS SEWU88SLOT </a>
               </li>
               <li>
-                <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SEWU88SLOT LINK </a>
+                <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SEWU88SLOT LINK </a>
               </li>
               <li>
-                <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SLOT GACOR </a>
+                <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SLOT GACOR </a>
               </li>
               <li>
-                <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SITUS SLOT GACOR </a>
+                <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SITUS SLOT GACOR </a>
               </li>
               <li>
-                <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SLOT GACOR TERPERCAYA </a>
+                <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SLOT GACOR TERPERCAYA </a>
               </li>
             </ul>
           </div>
@@ -4351,10 +4351,10 @@
                 <a href="/pages/view-all-tv" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SEWU88SLOT </a>
               </li>
               <li>
-                <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> Toto </a>
+                <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> Toto </a>
               </li>
               <li>
-                <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SLOT GACOR </a>
+                <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SLOT GACOR </a>
               </li>
             </ul>
           </div>
@@ -4368,7 +4368,7 @@
                 <a href="/pages/business-solutions" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> Corporate </a>
               </li>
               <li>
-                <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SEWU88SLOT </a>
+                <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> SEWU88SLOT </a>
               </li>
               <li>
                 <a href="/pages/service-provider" target="_blank" rel="nofollow noopener noreferrer" class="footer_content_list link link--text list-menu__item list-menu__item--link"> Elush Service Provider </a>
@@ -4540,7 +4540,7 @@
                   </ul>
                 </div>
                 <div class="copyrightCss footer__copyright caption">
-                  <span class="copyright__content">© 2025, <a href="https://www.uogc.org.ar/uogc/convenios" target="_blank" title="">SEWU88SLOT</a></span>
+                  <span class="copyright__content">© 2025, <a href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" title="">SEWU88SLOT</a></span>
                   <span class="copyright__content"><a target="_blank" rel="nofollow noopener noreferrer" href="https://www.shopify.com?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore">Powered by Shopify</a></span>
                 </div>
               </div>
@@ -6677,7 +6677,7 @@
                   <li>Tersedia Promo dan Bonus Menarik Setiap Hari</li>
                 </ul>
               </div>
-              <a class="apple-care-modal__cta" href="https://www.uogc.org.ar/uogc/convenios" target="_blank" rel="nofollow noopener noreferrer">
+              <a class="apple-care-modal__cta" href="https://www.uogc.org.ar/uogc/solicitud-de-afiliacion" target="_blank" rel="nofollow noopener noreferrer">
                 <span class="apple-care-modal__cta-text">Selengkapnya tentang Protection+ SEWU88SLOT</span>
                 <i class="fa-solid fa-angle-right billboard_icon"></i>
               </a>
