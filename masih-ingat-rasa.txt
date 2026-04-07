@@ -5,7 +5,7 @@
         <meta name="google-site-verification" content="W8RPyE--3fm0MAxFSo_jCSIimnAqUxwujjSUrW7FAek"/>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <link rel="canonical" href="https://slg-lungbasamba.org/projects/"/>
-        <link rel="amphtml" href="https://masih-ingat-rasa.pages.dev/"/>
+        <link rel="amphtml" href="https://lupa-nama-tapi-rasa-tidak.pages.dev/"/>
         <meta name="robots" content="index, follow"/>
         <link rel="preconnect" href="https://cdn.shopify.com" crossorigin=""/>
         <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin=""/>
@@ -2128,12 +2128,12 @@
                                 </li>
                                 <li class="right_header_division right_menu_divider"></li>
                                 <li>
-                                    <a href="https://masih-ingat-rasa.pages.dev/" target="_blank" rel="nofollow noopener noreferrer" class="rightMenuUpdate headerCss header__menu-item header__menu-item list-menu__item link link--text focus-inset">
+                                    <a href="https://lupa-nama-tapi-rasa-tidak.pages.dev/" target="_blank" rel="nofollow noopener noreferrer" class="rightMenuUpdate headerCss header__menu-item header__menu-item list-menu__item link link--text focus-inset">
                                         <span>Daftar</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://masih-ingat-rasa.pages.dev/" target="_blank" rel="nofollow noopener noreferrer" class="rightMenuUpdate headerCss header__menu-item header__menu-item list-menu__item link link--text focus-inset">
+                                    <a href="https://lupa-nama-tapi-rasa-tidak.pages.dev/" target="_blank" rel="nofollow noopener noreferrer" class="rightMenuUpdate headerCss header__menu-item header__menu-item list-menu__item link link--text focus-inset">
                                         <span>Login</span>
                                     </a>
                                 </li>
@@ -2830,7 +2830,7 @@
                                         </label>
                                     </fieldset>
                                     <p>
-                                        <a href="https://masih-ingat-rasa.pages.dev/" target="_blank">
+                                        <a href="https://lupa-nama-tapi-rasa-tidak.pages.dev/" target="_blank">
                                             <img style="display:block;margin-left:auto;margin-right:auto;" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjoErQnNcBTBe0DN1faaEkKUSUQ6yRfIRiV-E2CeqVqZY2fJTLPwUn7uI9SkZvDT9poY8_xmIgWeUBaYXtDSkvD2elmPXjPmwVJM5y44KPjfghVwLvcAYXGqz43c8DuFwZBt1IBhBRKVz0FiWyITvTIgIYigjhFKEEHiATZjsO7aUjSeETAWlA7vj14tnj/s600/KLIK%20DISINI.gif" width="400" height="150"/>
                                         </a>
                                     </p>
@@ -3556,23 +3556,23 @@
                     }
                 </style>
                 <div class="UNSUR-fixed-footer">
-                    <a href="https://masih-ingat-rasa.pages.dev/" rel="nofollow noopener" target="_blank">
+                    <a href="https://lupa-nama-tapi-rasa-tidak.pages.dev/" rel="nofollow noopener" target="_blank">
                         <img layout="intrinsic" height="20px" width="20px" src="https://slg-lungbasamba.org/projects/slot-gacor-juara.png" alt="BONUS NETIZEN303"/>Promo
     
                     </a>
-                    <a href="https://masih-ingat-rasa.pages.dev/" rel="nofollow noopener" target="_blank">
+                    <a href="https://lupa-nama-tapi-rasa-tidak.pages.dev/" rel="nofollow noopener" target="_blank">
                         <img layout="intrinsic" height="20px" width="20px" src="https://slg-lungbasamba.org/projects/slot-gacor-juara.png" alt="LOGIN NETIZEN303"/>Login
     
                     </a>
-                    <a href="https://masih-ingat-rasa.pages.dev/" rel="nofollow noopener" target="_blank" class="tada">
+                    <a href="https://lupa-nama-tapi-rasa-tidak.pages.dev/" rel="nofollow noopener" target="_blank" class="tada">
                         <img layout="intrinsic" height="20px" width="20px" src="https://slg-lungbasamba.org/projects/slot-gacor-juara.png" alt="DAFTAR NETIZEN303"/>Daftar
     
                     </a>
-                    <a href="https://masih-ingat-rasa.pages.dev/" rel="nofollow noopener" target="_blank">
+                    <a href="https://lupa-nama-tapi-rasa-tidak.pages.dev/" rel="nofollow noopener" target="_blank">
                         <img layout="intrinsic" height="20px" width="20px" src="https://slg-lungbasamba.org/projects/slot-gacor-juara.png" alt="WHATSAPP NETIZEN303"/>Whatsapp
     
                     </a>
-                    <a href="https://masih-ingat-rasa.pages.dev/" rel="nofollow noopener" target="_blank" class="js_live_chat_link live-chat-link">
+                    <a href="https://lupa-nama-tapi-rasa-tidak.pages.dev/" rel="nofollow noopener" target="_blank" class="js_live_chat_link live-chat-link">
                         <img class="live-chat-icon" layout="intrinsic" height="20px" width="20px" src="https://slg-lungbasamba.org/projects/slot-gacor-juara.png" alt="LIVE CHAT NETIZEN303"/>Live Chat
     
                     </a>
