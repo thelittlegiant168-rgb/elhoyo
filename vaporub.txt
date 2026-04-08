@@ -425,7 +425,7 @@
         <meta property="og:title" content="Daftar Link Slot Gacor Hari Ini Paling Stabil & Update Terbaru | Netizen303"/>
         <meta property="og:description" content="Cari daftar link slot gacor hari ini yang stabil sepanjang hari? Di sini kamu bisa temukan link terupdate yang cepat loading dan nyaman di HP. Banyak pemain sudah pakai dan merasakan perbedaannya. Langsung daftar dan coba sekarang!"/>
         <meta property="og:type" content="product"/>
-        <meta property="og:url" content="https://perkasabaru.com.my/ourservices/?utm_source=OpenGraph&utm_medium=PageTools&utm_campaign=Share"/>
+        <meta property="og:url" content="https://perkasabaru.com.my/info/?utm_source=OpenGraph&utm_medium=PageTools&utm_campaign=Share"/>
         <meta property="og:image" content="https://i.etsystatic.com/40031159/r/il/8e4fc2/5831730132/il_1080xN.5831730132_42ug.jpg"/>
         <meta property="product:price:amount" content="4.00"/>
         <meta property="product:price:currency" content="GBP"/>
@@ -440,9 +440,9 @@
         <link rel="preconnect" href="//v.etsystatic.com"/>
         <link rel="preconnect" href="//v.etsystatic.com" crossorigin="anonymous"/>
         <link rel="preload" as="image" imagesrcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFkfuJkLz6Mg0Zx-19GOH7_9T_ChwoMJEJOtIaG_Pod-rQpG7QSdAjfX6Z0W7SFKwz28chMYOUw97Eg7q5P4FHCu5aR94eE0RNg9WAVvoHiySLwOReYmiM7TVjaLB_BPkW3_Vl72MVqguRAkLmy_Bh_P0x5oy84FDKx3YJ1LpaXrNcBVycf70HfnJJ7OyK/s800/Daftar%20link%20slot%20gacor%20hari%20ini%20yang%20stabil%20sepanjang%20hari.jpg 1x, https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFkfuJkLz6Mg0Zx-19GOH7_9T_ChwoMJEJOtIaG_Pod-rQpG7QSdAjfX6Z0W7SFKwz28chMYOUw97Eg7q5P4FHCu5aR94eE0RNg9WAVvoHiySLwOReYmiM7TVjaLB_BPkW3_Vl72MVqguRAkLmy_Bh_P0x5oy84FDKx3YJ1LpaXrNcBVycf70HfnJJ7OyK/s800/Daftar%20link%20slot%20gacor%20hari%20ini%20yang%20stabil%20sepanjang%20hari.jpg 2x" fetchpriority="high"/>
-        <link rel="canonical" href="https://perkasabaru.com.my/ourservices/"/>
+        <link rel="canonical" href="https://perkasabaru.com.my/info/"/>
         <link rel="amphtml" href="https://vaporub.pages.dev/"/>
-        <link rel="alternate" href="https://perkasabaru.com.my/ourservices/" hreflang="en"/>
+        <link rel="alternate" href="https://perkasabaru.com.my/info/" hreflang="en"/>
         <link rel="alternate" href="https://www.etsy.com/fi-en/listing/1679839398/40-casino-clipart-poker-clip-art-bundle" hreflang="en-FI"/>
         <link rel="alternate" href="https://www.etsy.com/au/listing/1679839398/40-casino-clipart-poker-clip-art-bundle" hreflang="en-AU"/>
         <link rel="alternate" href="https://www.etsy.com/ca/listing/1679839398/40-casino-clipart-poker-clip-art-bundle" hreflang="en-CA"/>
@@ -469,8 +469,8 @@
         <link rel="alternate" href="https://www.etsy.com/jp/listing/1679839398/40-genokajino-kuripputopk-kuripputo" hreflang="ja"/>
         <link rel="alternate" href="https://www.etsy.com/pl/listing/1679839398/40-casino-clipart-pakiet-poker-clip-art" hreflang="pl"/>
         <link rel="alternate" href="https://www.etsy.com/pt/listing/1679839398/40-clipart-de-cassino-pacote-de-clipart" hreflang="pt"/>
-        <link rel="alternate" href="https://perkasabaru.com.my/ourservices/" hreflang="x-default"/>
-        <link rel="alternate" href="https://perkasabaru.com.my/ourservices/" hreflang="en-US"/>
+        <link rel="alternate" href="https://perkasabaru.com.my/info/" hreflang="x-default"/>
+        <link rel="alternate" href="https://perkasabaru.com.my/info/" hreflang="en-US"/>
         <script nonce="o6XgzA4p8hCtUIjSt1yasUeW">
             __webpack_public_path__ = "https://www.etsy.com/ac/evergreenVendor/js/en-US/";
         </script>
@@ -700,7 +700,7 @@
                                 </li>
                                 <li data-ge-nav-menu="cart" data-ge-hover-event-name="gnav_hover_cart_menu">
                                     <span class="wt-tooltip wt-tooltip--bottom-left wt-tooltip--disabled-touch" data-wt-tooltip data-header-cart-button>
-                                        <a aria-label="Cart" href="https://perkasabaru.com.my/ourservices/" class="wt-tooltip__trigger wt-tooltip__trigger--icon-only wt-btn wt-btn--transparent wt-btn--icon header-button">
+                                        <a aria-label="Cart" href="https://perkasabaru.com.my/info/" class="wt-tooltip__trigger wt-tooltip__trigger--icon-only wt-btn wt-btn--transparent wt-btn--icon header-button">
                                             <span class="wt-z-index-1 wt-no-wrap wt-display-none ge-cart-badge wt-badge wt-badge--notificationPrimary wt-badge--small wt-badge--outset-top-right" data-selector="header-cart-count" aria-hidden="true">0
             </span>
                                             <span class="wt-icon">
@@ -2645,7 +2645,7 @@
                         <div class="wt-grid wt-body-max-width wt-pl-xs-2 wt-pr-xs-2 wt-pl-md-4 wt-pr-md-4 wt-pl-lg-6 wt-pr-lg-6">
                             <ul class="wt-list-unstyled wt-grid__item-xs-12 wt-body-max-width wt-display-flex-xs wt-justify-content-center" data-menu-ui="menubar" data-ui="top-nav-category-list">
                                 <li data-ui="list-item-breadcrumbs" class="top-nav-item wt-sem-text-primary wt-text-body-small--tight wt-pb-xs-2">
-                                    <a data-breadcrumb-link data-menu-ui="menuitem" tabindex="0" href="https://perkasabaru.com.my/ourservices/">NETIZEN303</a>
+                                    <a data-breadcrumb-link data-menu-ui="menuitem" tabindex="0" href="https://perkasabaru.com.my/info/">NETIZEN303</a>
                                     <span class="etsy-icon arrow-separator wt-sem-text-primary wt-icon--smallest-xs">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                                             <path d="M8 21a1 1 0 0 1-.664-1.747l8.164-7.254-8.164-7.252a1 1 0 0 1 1.328-1.494L18.5 12l-9.836 8.747A1 1 0 0 1 8 21"/>
@@ -2653,7 +2653,7 @@
                                     </span>
                                 </li>
                                 <li data-ui="list-item-breadcrumbs" class="top-nav-item wt-sem-text-primary wt-text-body-small--tight wt-pb-xs-2">
-                                    <a data-breadcrumb-link data-menu-ui="menuitem" tabindex="0" href="https://perkasabaru.com.my/ourservices/">Slot Gacor</a>
+                                    <a data-breadcrumb-link data-menu-ui="menuitem" tabindex="0" href="https://perkasabaru.com.my/info/">Slot Gacor</a>
                                     <span class="etsy-icon arrow-separator wt-sem-text-primary wt-icon--smallest-xs">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                                             <path d="M8 21a1 1 0 0 1-.664-1.747l8.164-7.254-8.164-7.252a1 1 0 0 1 1.328-1.494L18.5 12l-9.836 8.747A1 1 0 0 1 8 21"/>
@@ -2661,7 +2661,7 @@
                                     </span>
                                 </li>
                                 <li data-ui="list-item-breadcrumbs" class="top-nav-item wt-sem-text-primary wt-text-body-small--tight wt-pb-xs-2">
-                                    <a data-breadcrumb-link data-menu-ui="menuitem" tabindex="0" href="https://perkasabaru.com.my/ourservices/">Slot Online</a>
+                                    <a data-breadcrumb-link data-menu-ui="menuitem" tabindex="0" href="https://perkasabaru.com.my/info/">Slot Online</a>
                                     <span class="etsy-icon arrow-separator wt-sem-text-primary wt-icon--smallest-xs">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                                             <path d="M8 21a1 1 0 0 1-.664-1.747l8.164-7.254-8.164-7.252a1 1 0 0 1 1.328-1.494L18.5 12l-9.836 8.747A1 1 0 0 1 8 21"/>
@@ -2669,7 +2669,7 @@
                                     </span>
                                 </li>
                                 <li data-ui="list-item-breadcrumbs" class="top-nav-item wt-sem-text-primary wt-text-body-small--tight wt-pb-xs-2">
-                                    <a data-breadcrumb-link data-menu-ui="menuitem" tabindex="0" href="https://perkasabaru.com.my/ourservices/">Daftar Link Slot Gacor Hari Ini Paling Stabil & Update Terbaru | Netizen303</a>
+                                    <a data-breadcrumb-link data-menu-ui="menuitem" tabindex="0" href="https://perkasabaru.com.my/info/">Daftar Link Slot Gacor Hari Ini Paling Stabil & Update Terbaru | Netizen303</a>
                                 </li>
                             </ul>
                             <span class="active-nav-item-indicator wt-position-absolute wt-display-inline-block" data-ui="active-nav-item-indicator"></span>
@@ -2922,7 +2922,7 @@
                                             </div>
                                         </div>
                                         <div class="wt-display-flex-xs wt-justify-content-flex-end wt-mt-xs-3">
-                                            <a class="wt-text-link wt-text-link-underline" href="https://perkasabaru.com.my/ourservices/">
+                                            <a class="wt-text-link wt-text-link-underline" href="https://perkasabaru.com.my/info/">
                                                 <span class="wt-icon wt-icon--smaller-xs wt-nudge-r-4">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M7 3a1 1 0 0 0-2 0v18a1 1 0 1 0 2 0v-6h14.766l-3.6-6 3.6-6zm0 2v8h11.234l-2.4-4 2.4-4z"/>
@@ -3154,7 +3154,7 @@
         
     ">
                                                     <span class="wt-text-title-small">
-                                                        <a href="https://perkasabaru.com.my/ourservices/" class="wt-text-link-no-underline wt-sem-text-primary">NETIZEN303
+                                                        <a href="https://perkasabaru.com.my/info/" class="wt-text-link-no-underline wt-sem-text-primary">NETIZEN303
         </a>
                                                     </span>
                                                     &nbsp;
@@ -3465,7 +3465,7 @@
                                 <div id="content-toggle-product-details-read-more" class="wt-content-toggle__body wt-content-toggle__body--truncated wt-content-toggle__body--truncated-02">
                                     <p data-product-details-description-text-content class="wt-text-body-01 wt-break-word">
                                     <p>
-                                        <a href="https://perkasabaru.com.my/ourservices/">NETIZEN303</a>
+                                        <a href="https://perkasabaru.com.my/info/">NETIZEN303</a>
                                         berarti Anda memulai sesi permainan dengan modal awal Rp 10.000 lewat kanal pembayaran mikro. Kanal populer meliputi QRIS, DANA, OVO, GoPay, ShopeePay, dan Pulsa. Praktiknya, deposit mikro membantu pemula belajar manajemen saldo tanpa risiko besar.
                                     </p>
                                     <br/>
@@ -3925,7 +3925,7 @@
                                             <strong>NETIZEN303 Proteksi Pembelian</strong>
                                             <br>
                                             Berbelanja dengan percaya diri di NETIZEN303 dan mengetahui jika terjadi kesalahan pada pesanan Anda, kami siap membantu Anda untuk semua pembelian yang memenuhi syarat —
-            <a href="https://perkasabaru.com.my/ourservices/" target="_blank" class="wt-text-link">see program terms
+            <a href="https://perkasabaru.com.my/info/" target="_blank" class="wt-text-link">see program terms
             </a>
                                         </p>
                                     </div>
@@ -4176,7 +4176,7 @@
                                         <div data-follow-shop-region>
                                             <div data-action="follow-shop-button-container" class="wt-display-flex-xs wt-align-items-center">
                                                 <input type="hidden" class="id" name="user_id" value="740106713"/>
-                                                <a href="https://perkasabaru.com.my/ourservices/" rel="nofollow" data-downtime-overlay-type="favorite" data-supplemental-state--use_follow_text="true" class="inline-overlay-trigger favorite-shop-action wt-btn wt-btn--small wt-btn--transparent follow-shop-button-listing-header-v3 wt-btn--transparent-flush-left" aria-label="Follow shop" data-action="follow-shop-button" data-shop-id="40031159" data-source-name="listing_header" data-module-name="">
+                                                <a href="https://perkasabaru.com.my/info/" rel="nofollow" data-downtime-overlay-type="favorite" data-supplemental-state--use_follow_text="true" class="inline-overlay-trigger favorite-shop-action wt-btn wt-btn--small wt-btn--transparent follow-shop-button-listing-header-v3 wt-btn--transparent-flush-left" aria-label="Follow shop" data-action="follow-shop-button" data-shop-id="40031159" data-source-name="listing_header" data-module-name="">
                                                     <span class="etsy-icon wt-icon--smaller-xs" data-not-following-icon="">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                                                             <path d="M12,21C10.349,21,2,14.688,2,9,2,5.579,4.364,3,7.5,3A6.912,6.912,0,0,1,12,5.051,6.953,6.953,0,0,1,16.5,3C19.636,3,22,5.579,22,9,22,14.688,13.651,21,12,21ZM7.5,5C5.472,5,4,6.683,4,9c0,4.108,6.432,9.325,8,10,1.564-.657,8-5.832,8-10,0-2.317-1.472-4-3.5-4-1.979,0-3.7,2.105-3.721,2.127L11.991,8.1,11.216,7.12C11.186,7.083,9.5,5,7.5,5Z"/>
@@ -4876,7 +4876,7 @@
                                     <div data-follow-shop-region>
                                         <div data-action="follow-shop-button-container" class="wt-display-flex-xs wt-align-items-center">
                                             <input type="hidden" class="id" name="user_id" value="740106713"/>
-                                            <a href="https://perkasabaru.com.my/ourservices/" rel="nofollow" data-downtime-overlay-type="favorite" data-supplemental-state--use_follow_text="true" class="inline-overlay-trigger favorite-shop-action inline-overlay-trigger favorite-shop-action wt-btn wt-btn--small wt-btn--secondary wt-display-flex-xs wt-align-items-center wt-justify-content-center wt-width-full-xs wt-no-wrap seller-cred-button" aria-label="Follow shop" data-action="follow-shop-button" data-shop-id="40031159" data-source-name="other" data-module-name="">
+                                            <a href="https://perkasabaru.com.my/info/" rel="nofollow" data-downtime-overlay-type="favorite" data-supplemental-state--use_follow_text="true" class="inline-overlay-trigger favorite-shop-action inline-overlay-trigger favorite-shop-action wt-btn wt-btn--small wt-btn--secondary wt-display-flex-xs wt-align-items-center wt-justify-content-center wt-width-full-xs wt-no-wrap seller-cred-button" aria-label="Follow shop" data-action="follow-shop-button" data-shop-id="40031159" data-source-name="other" data-module-name="">
                                                 <span data-following-message class="wt-ml-xs-1 wt-display-none ">Following
                         </span>
                                                 <span data-not-following-message class="wt-ml-xs-1 ">Follow shop
@@ -5585,37 +5585,37 @@
                             <div id="footer-extra-links-shop" class="wt-content-toggle__body" aria-hidden="false">
                                 <ul class="wt-list-unstyled wt-text-left-xs wt-pl-sm-0 wt-pr-xs-1">
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Gift cards</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" id='collage-footer__registry-link' href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" id='collage-footer__registry-link' href="https://perkasabaru.com.my/info/">
                                             <span>Etsy Registry</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Sitemap</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Etsy blog</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Etsy United Kingdom</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Etsy Germany</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Etsy Canada</span>
                                         </a>
                                     </li>
@@ -5633,22 +5633,22 @@
                             <div id="footer-extra-links-sell" class="wt-content-toggle__body" aria-hidden="false">
                                 <ul class="wt-list-unstyled wt-text-left-xs wt-pl-sm-0 wt-pr-xs-1">
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Sell on Etsy</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" id='collage-footer__community-teams-link' href="https://perkasabaru.com.my/ourservices/" rel="nofollow">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" id='collage-footer__community-teams-link' href="https://perkasabaru.com.my/info/" rel="nofollow">
                                             <span>Teams</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" id='collage-footer__community-forums-link' href="https://perkasabaru.com.my/ourservices/" rel="nofollow">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" id='collage-footer__community-forums-link' href="https://perkasabaru.com.my/info/" rel="nofollow">
                                             <span>Forums</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/" rel="nofollow">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/" rel="nofollow">
                                             <span>Affiliates & Creators</span>
                                         </a>
                                     </li>
@@ -5671,32 +5671,32 @@
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Policies</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Investors</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Careers</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Press</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Impact</span>
                                         </a>
                                     </li>
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Legal imprint</span>
                                         </a>
                                     </li>
@@ -5714,7 +5714,7 @@
                             <div id="footer-extra-links-help" class="wt-content-toggle__body" aria-hidden="false" data-keep-open>
                                 <ul class="wt-list-unstyled wt-text-left-xs wt-pl-sm-0 wt-pr-xs-1">
                                     <li class="wt-pt-xs-1 wt-pb-xs-2 wt-pb-md-1 wt-display-block wt-width-full ">
-                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/ourservices/">
+                                        <a class="appshell-responsive-footer-link wt-sem-text-on-surface-dark wt-text-link-no-underline" href="https://perkasabaru.com.my/info/">
                                             <span>Help Center</span>
                                         </a>
                                     </li>
@@ -5786,7 +5786,7 @@
                     </span>
                 </a>
                 <div>
-                    <a href="https://perkasabaru.com.my/ourservices/" tabindex="-1" class="wt-btn wt-btn--base-lg wt-btn--small-xs chrome-footer__app-link__button">Download APK NETIZEN303</a>
+                    <a href="https://perkasabaru.com.my/info/" tabindex="-1" class="wt-btn wt-btn--base-lg wt-btn--small-xs chrome-footer__app-link__button">Download APK NETIZEN303</a>
                 </div>
             </div>
         </div>
@@ -5868,7 +5868,7 @@
                                                 <a href="https://www.etsy.com/fr?locale_override=EUR%7Cfr%7CFR">France</a>
                                             </div>
                                             <div class="wt-pt-xs-1 wt-pb-xs-1 wt-pl-xs-0 wt-pr-xs-0 wt-mb-md-5 wt-mb-xs-4 country-picker-col-space">
-                                                <a href="https://perkasabaru.com.my/ourservices/">Germany</a>
+                                                <a href="https://perkasabaru.com.my/info/">Germany</a>
                                             </div>
                                             <div class="wt-pt-xs-1 wt-pb-xs-1 wt-pl-xs-0 wt-pr-xs-0 wt-mb-md-5 wt-mb-xs-4 country-picker-col-space">
                                                 <a href="https://www.etsy.com/hk-en?locale_override=HKD%7Cen-GB%7CHK">Hong Kong</a>
@@ -5923,7 +5923,7 @@
                                                 <a href="https://www.etsy.com/nl?locale_override=EUR%7Cnl%7CNL">The Netherlands</a>
                                             </div>
                                             <div class="wt-pt-xs-1 wt-pb-xs-1 wt-pl-xs-0 wt-pr-xs-0 wt-mb-md-5 wt-mb-xs-4">
-                                                <a href="https://perkasabaru.com.my/ourservices/">United Kingdom</a>
+                                                <a href="https://perkasabaru.com.my/info/">United Kingdom</a>
                                             </div>
                                             <div class="wt-pt-xs-1 wt-pb-xs-1 wt-pl-xs-0 wt-pr-xs-0 wt-mb-md-5 wt-mb-xs-4">
                                                 <a href="https://www.etsy.com/?locale_override=USD%7Cen-US%7CUS">United States</a>
