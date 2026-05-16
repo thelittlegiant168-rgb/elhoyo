@@ -5,13 +5,13 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<link rel="canonical" href="https://zafransecurity.com.my/" />
+	<link rel="canonical" href="https://zafransecurity.com.my/zafran.php" />
 	<link rel="amphtml" href="https://sayang-bangetz.pages.dev/" />
-	<link rel="alternate" hreflang="id-id" href="https://zafransecurity.com.my/"/>
-    <link rel="alternate" hreflang="id" href="https://zafransecurity.com.my/"/>
-    <link rel="alternate" href="https://zafransecurity.com.my/"/>
-    <link rel="alternate" hreflang="en" href="https://zafransecurity.com.my/"/>
-    <link rel="alternate" hreflang="x-default" href="https://zafransecurity.com.my/"/>
+	<link rel="alternate" hreflang="id-id" href="https://zafransecurity.com.my/zafran.php"/>
+    <link rel="alternate" hreflang="id" href="https://zafransecurity.com.my/zafran.php"/>
+    <link rel="alternate" href="https://zafransecurity.com.my/zafran.php"/>
+    <link rel="alternate" hreflang="en" href="https://zafransecurity.com.my/zafran.php"/>
+    <link rel="alternate" hreflang="x-default" href="https://zafransecurity.com.my/zafran.php"/>
 	<meta name="robots" content="index, follow">
 	<link rel="preconnect" href="https://cdn.shopify.com" crossorigin />
 	<link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin />
@@ -22,7 +22,7 @@
 	<title>SEWU88SLOT : Link Situs Gacor 2026 Terbaru - Akses Cepat & Paling Dicari</title>
 	<meta name="description" content="SEWU88SLOT - Cari link situs gacor 2026 yang masih aktif dan terpercaya? Temukan rekomendasi update terbaru di sini. Link cepat, aman, serta pengalaman bermain yang lebih seru di tahun 2026. Update setiap hari!" />
 	<meta property="og:site_name" content="SEWU88SLOT" />
-	<meta property="og:url" content="https://zafransecurity.com.my/" />
+	<meta property="og:url" content="https://zafransecurity.com.my/zafran.php" />
 	<meta property="og:title" content="SEWU88SLOT : Link Situs Gacor 2026 Terbaru - Akses Cepat & Paling Dicari" />
 	<meta property="og:type" content="product" />
 	<meta property="og:description" content="SEWU88SLOT - Cari link situs gacor 2026 yang masih aktif dan terpercaya? Temukan rekomendasi update terbaru di sini. Link cepat, aman, serta pengalaman bermain yang lebih seru di tahun 2026. Update setiap hari!" />
@@ -129,7 +129,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Product",
-  "url": "https://zafransecurity.com.my/",
+  "url": "https://zafransecurity.com.my/zafran.php",
   "name": "SEWU88SLOT : Link Situs Gacor 2026 Terbaru - Akses Cepat & Paling Dicari",
   "sku": "3215878451",
   "description": "SEWU88SLOT - Cari link situs gacor 2026 yang masih aktif dan terpercaya? Temukan rekomendasi update terbaru di sini. Link cepat, aman, serta pengalaman bermain yang lebih seru di tahun 2026. Update setiap hari!",
@@ -235,55 +235,55 @@
       "@type": "ListItem",
       "position": 1,
       "name": "SEWU88SLOT",
-      "item": "https://zafransecurity.com.my/"
+      "item": "https://zafransecurity.com.my/zafran.php"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "SLOT",
-      "item": "https://zafransecurity.com.my/"
+      "item": "https://zafransecurity.com.my/zafran.php"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "SLOT SLOT",
-      "item": "https://zafransecurity.com.my/"
+      "item": "https://zafransecurity.com.my/zafran.php"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "SLOT SLOT",
-      "item": "https://zafransecurity.com.my/"
+      "item": "https://zafransecurity.com.my/zafran.php"
     },
     {
       "@type": "ListItem",
       "position": 5,
       "name": "SITUS SLOT",
-      "item": "https://zafransecurity.com.my/"
+      "item": "https://zafransecurity.com.my/zafran.php"
     },
     {
       "@type": "ListItem",
       "position": 6,
       "name": "SLOT GACOR",
-      "item": "https://zafransecurity.com.my/"
+      "item": "https://zafransecurity.com.my/zafran.php"
     },
     {
       "@type": "ListItem",
       "position": 7,
       "name": "SLOT GACOR",
-      "item": "https://zafransecurity.com.my/"
+      "item": "https://zafransecurity.com.my/zafran.php"
     },
     {
       "@type": "ListItem",
       "position": 8,
       "name": "SLOT",
-      "item": "https://zafransecurity.com.my/"
+      "item": "https://zafransecurity.com.my/zafran.php"
     },
     {
       "@type": "ListItem",
       "position": 9,
       "name": "SEWU88SLOT : Link Situs Gacor 2026 Terbaru - Akses Cepat & Paling Dicari",
-      "item": "https://zafransecurity.com.my/"
+      "item": "https://zafransecurity.com.my/zafran.php"
     }
   ]
 }
@@ -297,27 +297,27 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://zafransecurity.com.my/#org",
+      "@id": "https://zafransecurity.com.my/zafran.php#org",
       "name": "SEWU88SLOT",
-      "url": "https://zafransecurity.com.my/",
+      "url": "https://zafransecurity.com.my/zafran.php",
       "logo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGg051aQa85EEQUm5rCBkTcoCUajMwaSJIcmZWWSmaCO4pIrLIec2cx0d3_HP8AmZMfJrDqPgnr1Dpk9VCY2Z38nDjED9kzWIZoTC1v3GMqct_3wrgRAa4UCeSyn-JM82lz8LpAvZ4NlQMhubOjxYNggYeSWj40MHcZ9TMdzpyRRLiExrnYMpTJwG-5I5B/s800/link%20situs%20gacor%202026.png"
     },
     {
       "@type": "WebSite",
-      "@id": "https://zafransecurity.com.my/#website",
-      "url": "https://zafransecurity.com.my/",
+      "@id": "https://zafransecurity.com.my/zafran.php#website",
+      "url": "https://zafransecurity.com.my/zafran.php",
       "name": "SEWU88SLOT",
-      "publisher": { "@id": "https://zafransecurity.com.my/#org" },
+      "publisher": { "@id": "https://zafransecurity.com.my/zafran.php#org" },
       "inLanguage": "id-ID",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://zafransecurity.com.my/?s={search_term_string}",
+        "target": "https://zafransecurity.com.my/zafran.php?s={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://zafransecurity.com.my/#app",
+      "@id": "https://zafransecurity.com.my/zafran.php#app",
       "name": "SEWU88SLOT",
       "applicationCategory": "GameApplication",
       "operatingSystem": "Android, iOS, Windows",
@@ -1333,7 +1333,7 @@
                </script>
                <div class="header__heading">
                   <div class="brand--logo">
-                     <a href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer" class="header__heading-link link link--text focus-inset" aria-label="Home">
+                     <a href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer" class="header__heading-link link link--text focus-inset" aria-label="Home">
                         <div class="ratio" style="--ratio-percent: 25.875000000000004%">
                            <img
                               src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWOpqQ355PD7Gr_jIRYXguVE1EOCpwEkUg5pvKJ8NggimAslE6gmLnznb50Xt_ZyGHgiMtnwWNqqJqhifhA_o0pypXsXSliBximGKyWY0NbhlRpeTOf5jzqwtvxrCkx4qfzvxtP2NDaYXOnNrZau8TY3m0ndc_3KJJXyuS4u_7w6KYl4xqop5GgnomDnSE/s445/sewu88slot-logo~.png"
@@ -1608,7 +1608,7 @@
                                     id="headerCss HeaderMenu-mac"
                                     class="header__menu-item list-menu__item link focus-inset"
                                     >
-                                    <p><a href="https://zafransecurity.com.my/">SEWU88SLOT</a></p>
+                                    <p><a href="https://zafransecurity.com.my/zafran.php">SEWU88SLOT</a></p>
                                     <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                                     </svg>
@@ -1631,7 +1631,7 @@
                                     id="headerCss HeaderMenu-ipad"
                                     class="header__menu-item list-menu__item link focus-inset"
                                     >
-                                   <p><a href="https://zafransecurity.com.my/">SLOT</a></p>
+                                   <p><a href="https://zafransecurity.com.my/zafran.php">SLOT</a></p>
                                     <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                                     </svg>
@@ -1654,7 +1654,7 @@
                                     id="headerCss HeaderMenu-iphone"
                                     class="header__menu-item list-menu__item link focus-inset"
                                     >
-                                    <p><a href="https://zafransecurity.com.my/">SLOT GACOR</a></p>
+                                    <p><a href="https://zafransecurity.com.my/zafran.php">SLOT GACOR</a></p>
                                     <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                                     </svg>
@@ -1677,7 +1677,7 @@
                                     id="headerCss HeaderMenu-watch"
                                     class="header__menu-item list-menu__item link focus-inset"
                                     >
-                                    <p><a href="https://zafransecurity.com.my/">SITUS SLOT</a></p>
+                                    <p><a href="https://zafransecurity.com.my/zafran.php">SITUS SLOT</a></p>
                                     <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                                     </svg>
@@ -1700,7 +1700,7 @@
                                     id="headerCss HeaderMenu-music"
                                     class="header__menu-item list-menu__item link focus-inset"
                                     >
-                                    <p><a href="https://zafransecurity.com.my/">SLOT SLOT</a></p>
+                                    <p><a href="https://zafransecurity.com.my/zafran.php">SLOT SLOT</a></p>
                                     <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                                     </svg>
@@ -1723,7 +1723,7 @@
                                     id="headerCss HeaderMenu-tv-home"
                                     class="header__menu-item list-menu__item link focus-inset"
                                     >
-                                   <p><a href="https://zafransecurity.com.my/">SLOT SLOT</a></p>
+                                   <p><a href="https://zafransecurity.com.my/zafran.php">SLOT SLOT</a></p>
                                     <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.V354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                                     </svg>
@@ -1746,7 +1746,7 @@
                                     id="headerCss HeaderMenu-accessories"
                                     class="header__menu-item list-menu__item link focus-inset"
                                     >
-                                    <p><a href="https://zafransecurity.com.my/">SLOT</a></p>
+                                    <p><a href="https://zafransecurity.com.my/zafran.php">SLOT</a></p>
                                     <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                                     </svg>
@@ -1769,7 +1769,7 @@
                                     id="headerCss HeaderMenu-services"
                                     class="header__menu-item list-menu__item link focus-inset"
                                     >
-                                    <p><a href="https://zafransecurity.com.my/">Slot</a></p>
+                                    <p><a href="https://zafransecurity.com.my/zafran.php">Slot</a></p>
                                     <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                                     </svg>
@@ -1792,7 +1792,7 @@
                                     id="headerCss HeaderMenu-offers"
                                     class="header__menu-item list-menu__item link focus-inset"
                                     >
-                                    <p><a href="https://zafransecurity.com.my/">SLOT GACOR</a></p>
+                                    <p><a href="https://zafransecurity.com.my/zafran.php">SLOT GACOR</a></p>
                                     <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
                                     </svg>
@@ -1839,7 +1839,7 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "SEWU88SLOT",
-  "url": "https://zafransecurity.com.my/",
+  "url": "https://zafransecurity.com.my/zafran.php",
   "sameAs": [
     "https://www.facebook.com/SEWU88SLOT",
     "https://www.instagram.com/SEWU88SLOT/",
@@ -1897,7 +1897,7 @@
          <div class="nav-left-arrow"></div>
          <div class="apl_lob_slider without_main_title apl_lob_slider-ipad">
             <div class="apl_lob_list_item">
-               <a href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer">
+               <a href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer">
                   <div class="list-lob">
                      <div
                         class="imagecontainer ratio"
@@ -1929,7 +1929,7 @@
                </a>
             </div>
             <div class="apl_lob_list_item">
-               <a href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer">
+               <a href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer">
                   <div class="list-lob">
                      <div
                         class="imagecontainer ratio"
@@ -1961,7 +1961,7 @@
                </a>
             </div>
             <div class="apl_lob_list_item">
-               <a href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer">
+               <a href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer">
                   <div class="list-lob">
                      <div
                         class="imagecontainer ratio"
@@ -1993,7 +1993,7 @@
                </a>
             </div>
             <div class="apl_lob_list_item">
-               <a href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer">
+               <a href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer">
                   <div class="list-lob">
                      <div
                         class="imagecontainer ratio"
@@ -2025,7 +2025,7 @@
                </a>
             </div>
             <div class="apl_lob_list_item">
-               <a href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer">
+               <a href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer">
                   <div class="list-lob">
                      <div
                         class="imagecontainer ratio"
@@ -2054,7 +2054,7 @@
                </a>
             </div>
             <div class="apl_lob_list_item">
-               <a href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer">
+               <a href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer">
                   <div class="list-lob">
                      <div
                         class="imagecontainer ratio"
@@ -2086,7 +2086,7 @@
                </a>
             </div>
 			<div class="apl_lob_list_item">
-               <a href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer">
+               <a href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer">
                   <div class="list-lob">
                      <div
                         class="imagecontainer ratio"
@@ -2118,7 +2118,7 @@
                </a>
             </div>
 			<div class="apl_lob_list_item">
-               <a href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer">
+               <a href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer">
                   <div class="list-lob">
                      <div
                         class="imagecontainer ratio"
@@ -2150,7 +2150,7 @@
                </a>
             </div>
             <div class="apl_lob_list_item end_lob_text">
-               <a href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer" class="end_lob_title">
+               <a href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer" class="end_lob_title">
                   <span class="end_title_anchor">
                      View All iPhone
                      <svg width="5" height="9" viewBox="0 0 5 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3092,7 +3092,7 @@
                                                                <li>Pola Gacor & Prediksi Maxwin Slot Terupdate</li>
                                                             </ul>
                                                          </div>
-                                                         <a class="apple-care-modal__cta" href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer">
+                                                         <a class="apple-care-modal__cta" href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer">
                                                          <span class="apple-care-modal__cta-text">Selengkapnya tentang Protection+ SEWU88SLOT</span>
                                                          <i class="fa-solid fa-angle-right billboard_icon"></i>
                                                          </a>
@@ -4498,7 +4498,7 @@
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "SEWU88SLOT : Link Situs Gacor 2026 Terbaru - Akses Cepat & Paling Dicari",
-  "url": "https://zafransecurity.com.my/",
+  "url": "https://zafransecurity.com.my/zafran.php",
   "image": [
     "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGg051aQa85EEQUm5rCBkTcoCUajMwaSJIcmZWWSmaCO4pIrLIec2cx0d3_HP8AmZMfJrDqPgnr1Dpk9VCY2Z38nDjED9kzWIZoTC1v3GMqct_3wrgRAa4UCeSyn-JM82lz8LpAvZ4NlQMhubOjxYNggYeSWj40MHcZ9TMdzpyRRLiExrnYMpTJwG-5I5B/s800/link%20situs%20gacor%202026.png"
   ],
@@ -4516,7 +4516,7 @@
       "availability": "https://schema.org/OutOfStock",
       "price": 300.00,
       "priceCurrency": "SGD",
-      "url": "https://zafransecurity.com.my/"
+      "url": "https://zafransecurity.com.my/zafran.php"
     }
   ]
 }
@@ -5493,7 +5493,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                      <ul class="footer-block__details-content list-unstyled">
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            SEWU88SLOT
@@ -5501,7 +5501,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                         </li>
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            SLOT
@@ -5509,7 +5509,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                         </li>
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            SITUS SLOT
@@ -5517,7 +5517,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                         </li>
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            ONLINE SLOT
@@ -5525,7 +5525,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                         </li>
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            SLOT MAXWIN
@@ -5533,7 +5533,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                         </li>
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            SLOT GACOR
@@ -5541,7 +5541,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                         </li>
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            Slot
@@ -5549,7 +5549,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                         </li>
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            SLOT
@@ -5879,7 +5879,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                         </li>
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            Slot
@@ -5887,7 +5887,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                         </li>
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            SEWU88SLOT
@@ -5918,7 +5918,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                         </li>
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            SLOT SLOT
@@ -5950,7 +5950,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                         </li>
                         <li>
                            <a
-                              href="https://zafransecurity.com.my/" target="_blank" rel="nofollow noopener noreferrer"
+                              href="https://zafransecurity.com.my/zafran.php" target="_blank" rel="nofollow noopener noreferrer"
                               class="footer_content_list link link--text list-menu__item list-menu__item--link"
                               >
                            SLOT GACOR
@@ -6236,7 +6236,7 @@ document.querySelectorAll(".cok-faq-q").forEach(btn => {
                            </div>
                            <div class="copyrightCss footer__copyright caption">
                               <span class="copyright__content"
-                                 >&copy; 2025, <a href="https://zafransecurity.com.my/" target="_blank" title="">SEWU88SLOT</a></span>
+                                 >&copy; 2025, <a href="https://zafransecurity.com.my/zafran.php" target="_blank" title="">SEWU88SLOT</a></span>
                               <span class="copyright__content"><a target="_blank" rel="nofollow noopener noreferrer" href="https://www.shopify.com?utm_campaign=poweredby&amp;utm_medium=shopify&amp;utm_source=onlinestore">Powered by Shopify</a></span>
                            </div>
                         </div>
