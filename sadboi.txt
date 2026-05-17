@@ -330,7 +330,7 @@
       }, {
         "@type": "ListItem",
         "position": 7,
-        "name": "Teknik Mencapai Maxwin"",
+        "name": "Teknik Mencapai Maxwin",
         "item": "https://alafrique.com/lodges/"
       }, {
         "@type": "ListItem",
