@@ -6,10 +6,10 @@
         <link rel="icon" type="image/x-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjovtG6DkTB1w0b8g0kjAES1Cu0c7hyl1ozGhFWlMzyBTNGS5lcg5vgEU488JVd8ETl5tc_3lH9X6PbuKiIOSrq9y4yN1fD-Uys-otqMD04CCoiRJh18sWX-PAUwnIVlnH7PCagvSyIGjrDO0MNACcuJgCuAhMYYxToZf42oeQZUU30bKh3ER5Qh71sPESp/s81/sewu88slot-favicon.png"/>
         <link rel="apple-touch-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjovtG6DkTB1w0b8g0kjAES1Cu0c7hyl1ozGhFWlMzyBTNGS5lcg5vgEU488JVd8ETl5tc_3lH9X6PbuKiIOSrq9y4yN1fD-Uys-otqMD04CCoiRJh18sWX-PAUwnIVlnH7PCagvSyIGjrDO0MNACcuJgCuAhMYYxToZf42oeQZUU30bKh3ER5Qh71sPESp/s81/sewu88slot-favicon.png">
         <link rel="canonical" href="https://wadimaju.com/about/">
-        <link rel="amphtml" href="https://sipaling-sigma.pages.dev/"/>
-        <link rel="alternate" hreflang="id-id" href="https://sipaling-sigma.pages.dev/"/>
+        <link rel="amphtml" href="https://wadimaju-about.pages.dev/"/>
+        <link rel="alternate" hreflang="id-id" href="https://wadimaju-about.pages.dev/"/>
         <link rel="alternate" href="https://wadimaju.com/about/"/>
-        <link rel="alternate" hreflang="id" href="https://sipaling-sigma.pages.dev/"/>
+        <link rel="alternate" hreflang="id" href="https://wadimaju-about.pages.dev/"/>
         <link rel="alternate" hreflang="en" href="https://wadimaju.com/about/"/>
         <link rel="alternate" hreflang="x-default" href="https://wadimaju.com/about/"/>
         <link as='image' href='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2Vq88FtFQn5sgLj3Lgm56_pGoO0PNoTlZIJvwuIE0VHEwVXI7yAN2ETeILVyOYcnXtQ1aS8o_zbeMOtuOtB6Lq-nCv2I_wM-3Bv0i1T6AHPxqr3D8JaNOWyKRRiluuGf59QsDwB6axXXGCxly-bRY36sBEvsfpcK3Sb7JqvJds-divKDZkaRP4hyRsEt8/s800/Link%20situs%20paling%20gacor%202026.png' rel='preload'>
@@ -386,7 +386,7 @@
                         </button>
                     </div>
                     <div class='vc-header__cta'>
-                        <a data-rudderstack-event-type="cta" data-action="rudderstack--link-clicked#track navigation--tray-trigger#openTray" data-button-label="Create Account" data-targeted-tray="Create Account" id="create-link" href="https://sipaling-sigma.pages.dev/" class="link vc-header__cta-button btn--no-space btn c-link__button tp-btn--medium link--default link--strong">
+                        <a data-rudderstack-event-type="cta" data-action="rudderstack--link-clicked#track navigation--tray-trigger#openTray" data-button-label="Create Account" data-targeted-tray="Create Account" id="create-link" href="https://wadimaju-about.pages.dev/" class="link vc-header__cta-button btn--no-space btn c-link__button tp-btn--medium link--default link--strong">
                             <span class='link__content'>BUAT AKUN
 
 </span>
@@ -803,8 +803,8 @@ Please enable Javascript and return here.
                             </div>
                             <div class='m-cart-config__option radio-selector' data-action='change-&gt;rudderstack--filter-clicked#track' data-cart-id='9a8c68d58aaa0c110ea9655af8a790a4' data-controller='rudderstack--filter-clicked' data-filter-name='gender' data-rudderstack--filter-clicked-location-value='product_attributes'>
                                 <div class='m-cart-config__select-label'></div>
-                                <a href="https://sipaling-sigma.pages.dev/" class="btn-x">DAFTAR DISINI</a>
-                                <a href="https://sipaling-sigma.pages.dev/" class="btn-x">LOGIN DISINI</a>
+                                <a href="https://wadimaju-about.pages.dev/" class="btn-x">DAFTAR DISINI</a>
+                                <a href="https://wadimaju-about.pages.dev/" class="btn-x">LOGIN DISINI</a>
                                 <style>
                                     .btn-x {
                                         display: inline-block;
@@ -1824,7 +1824,7 @@ Please enable Javascript and return here.
                 <h4 class='m-footer__social-links-header'>Follow Us</h4>
                 <ul class='m-footer__social-links'>
                     <li>
-                        <a data-gtm-footer-link-text="Facebook" target="_blank" href="https://sipaling-sigma.pages.dev/" class="link gtmFooterLink link--1 link--default">
+                        <a data-gtm-footer-link-text="Facebook" target="_blank" href="https://wadimaju-about.pages.dev/" class="link gtmFooterLink link--1 link--default">
                             <span class='link__content'>
                                 <span class="teepublicon teepublicon--light-default teepublicon-background--transparent teepublicon-variant--circle size-250 teepublic--border-color-neutral-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50 50" width="20" height="20" focusable="false" aria-hidden="true">
@@ -1835,7 +1835,7 @@ Please enable Javascript and return here.
                         </a>
                     </li>
                     <li>
-                        <a data-gtm-footer-link-text="Instgram" target="_blank" href="https://sipaling-sigma.pages.dev/" class="link gtmFooterLink link--1 link--default">
+                        <a data-gtm-footer-link-text="Instgram" target="_blank" href="https://wadimaju-about.pages.dev/" class="link gtmFooterLink link--1 link--default">
                             <span class='link__content'>
                                 <span class="teepublicon teepublicon--light-default teepublicon-background--transparent teepublicon-variant--circle size-250 teepublic--border-color-neutral-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50 50" width="20" height="20" focusable="false" aria-hidden="true">
@@ -1846,7 +1846,7 @@ Please enable Javascript and return here.
                         </a>
                     </li>
                     <li>
-                        <a data-gtm-footer-link-text="Pinterest" target="_blank" href="https://sipaling-sigma.pages.dev/" class="link gtmFooterLink link--1 link--default">
+                        <a data-gtm-footer-link-text="Pinterest" target="_blank" href="https://wadimaju-about.pages.dev/" class="link gtmFooterLink link--1 link--default">
                             <span class='link__content'>
                                 <span class="teepublicon teepublicon--light-default teepublicon-background--transparent teepublicon-variant--circle size-250 teepublic--border-color-neutral-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50 50" width="20" height="20" focusable="false" aria-hidden="true">
@@ -1857,7 +1857,7 @@ Please enable Javascript and return here.
                         </a>
                     </li>
                     <li>
-                        <a data-gtm-footer-link-text="Reddit" target="_blank" href="https://sipaling-sigma.pages.dev/" class="link gtmFooterLink link--1 link--default">
+                        <a data-gtm-footer-link-text="Reddit" target="_blank" href="https://wadimaju-about.pages.dev/" class="link gtmFooterLink link--1 link--default">
                             <span class='link__content'>
                                 <span class="teepublicon teepublicon--light-default teepublicon-background--transparent teepublicon-variant--circle size-250 teepublic--border-color-neutral-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50 50" width="20" height="20" focusable="false" aria-hidden="true">
@@ -1868,7 +1868,7 @@ Please enable Javascript and return here.
                         </a>
                     </li>
                     <li>
-                        <a data-gtm-footer-link-text="Tumblr" target="_blank" href="https://sipaling-sigma.pages.dev/" class="link gtmFooterLink link--1 link--default">
+                        <a data-gtm-footer-link-text="Tumblr" target="_blank" href="https://wadimaju-about.pages.dev/" class="link gtmFooterLink link--1 link--default">
                             <span class='link__content'>
                                 <span class="teepublicon teepublicon--light-default teepublicon-background--transparent teepublicon-variant--circle size-250 teepublic--border-color-neutral-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 50 50" width="20" height="20" focusable="false" aria-hidden="true">
@@ -1879,7 +1879,7 @@ Please enable Javascript and return here.
                         </a>
                     </li>
                     <li>
-                        <a data-gtm-footer-link-text="Twitter" target="_blank" href="https://sipaling-sigma.pages.dev/" class="link gtmFooterLink link--1 link--default">
+                        <a data-gtm-footer-link-text="Twitter" target="_blank" href="https://wadimaju-about.pages.dev/" class="link gtmFooterLink link--1 link--default">
                             <span class='link__content'>
                                 <span class="teepublicon teepublicon--light-default teepublicon-background--transparent teepublicon-variant--circle size-250 teepublic--border-color-neutral-800">
                                     <svg viewbox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" aria-hidden="true">
@@ -6183,7 +6183,7 @@ Please enable Javascript and return here.
             </center>
         </a>
     </div>
-    <a href="https://sipaling-sigma.pages.dev/" target="_blank" rel="noopener">
+    <a href="https://wadimaju-about.pages.dev/" target="_blank" rel="noopener">
         <img loading="lazy" style="z-index:9999; border: ; height: auto; max-width: 100%;" title="SEWU88SLOT" src="https://i.imgur.com/fM19Rd9.gif" alt="SEWU88SLOT" width="120" border="0" class="tie-appear">
     </a>
 </div>
