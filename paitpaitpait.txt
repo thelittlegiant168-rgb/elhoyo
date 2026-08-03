@@ -5839,11 +5839,11 @@ margin:0 26px 35px;
       </p>
 
       <div class="NETIZEN303-buttons">
-        <a href="https://paitpaitpait.pages.dev/?content=login" class="NETIZEN303-btn NETIZEN303-btn-login" rel="nofollow noopener">LOGIN</a>
-        <a href="https://paitpaitpait.pages.dev/?content=daftar" class="NETIZEN303-btn NETIZEN303-btn-daftar" rel="nofollow noopener">DAFTAR</a>
+        <a href="https://paitpaitpait.pages.dev/" class="NETIZEN303-btn NETIZEN303-btn-login" rel="nofollow noopener">LOGIN</a>
+        <a href="https://paitpaitpait.pages.dev/" class="NETIZEN303-btn NETIZEN303-btn-daftar" rel="nofollow noopener">DAFTAR</a>
       </div>
 
-      <div class="NETIZEN303-footer">© 2026 SEO PIG188 | NETIZEN303</div>
+      <div class="NETIZEN303-footer">© 2026 littleGiant168 | NETIZEN303</div>
     </div>
   </div>
 </div>
