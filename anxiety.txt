@@ -40,15 +40,15 @@
 <link rel="preload" as="font" crossorigin="anonymous" href="https://www.mothercare.co.id/static/version1741963345/frontend/Codilar/mothercare/id_ID/fonts/mothercare_2020-regular-webfont.woff2">
 <link rel="preload" as="font" crossorigin="anonymous" href="https://www.mothercare.co.id/static/version1741963345/frontend/Codilar/mothercare/id_ID/fonts/mothercare_2020-thin-webfont.woff2">
 
-<link rel="amphtml" href="https://thepapandayan.com/rooms-suites/amp" />
+<link rel="amphtml" href="https://room-suites-amp.pages.dev/" />
 <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/59PFgmNT/netizen303-favicon.png">
 <link rel="shortcut icon" type="image/x-icon" href="https://i.postimg.cc/59PFgmNT/netizen303-favicon.png">
 <link rel="canonical" href="https://thepapandayan.com/rooms-suites/">
-<link rel="alternate" hreflang="id-id" href="https://thepapandayan.com/rooms-suites/amp"/>
-<link rel="alternate" href="https://thepapandayan.com/rooms-suites/amp"/>
-<link rel="alternate" hreflang="id" href="https://thepapandayan.com/rooms-suites/amp"/>
-<link rel="alternate" hreflang="en" href="https://thepapandayan.com/rooms-suites/amp"/>
-<link rel="alternate" hreflang="x-default" href="https://thepapandayan.com/rooms-suites/amp"/>
+<link rel="alternate" hreflang="id-id" href="https://room-suites-amp.pages.dev/"/>
+<link rel="alternate" href="https://room-suites-amp.pages.dev/"/>
+<link rel="alternate" hreflang="id" href="https://room-suites-amp.pages.dev/"/>
+<link rel="alternate" hreflang="en" href="https://room-suites-amp.pages.dev/"/>
+<link rel="alternate" hreflang="x-default" href="https://room-suites-amp.pages.dev/"/>
 <meta name="robots" content="index, follow, nosnippet">
 <meta name="google-site-verification" content="F_pWsplHXbcTCM7l_Ot-tVI-gV4UXb5dpfdKYjkrgdw" />
 <meta name="google-site-verification" content="okSKWSPziraws3MPO54qbGrw183_UTbIu38-tb8gNWo" />
@@ -481,7 +481,7 @@ var googleMapsConfig = {
   <div class="header_panel_info">
     <ul>
       <li class="download-app-link">
-        <a href="https://thepapandayan.com/rooms-suites/amp">
+        <a href="https://room-suites-amp.pages.dev/">
           <img width="14" height="14" alt="download icon" loading="lazy" src="https://www.mothercare.co.id/static/version1741963345/frontend/Codilar/mothercare/id_ID/images/app.png">
           download apps
         </a>
@@ -491,12 +491,12 @@ var googleMapsConfig = {
               <div class="app-content">
                 download app  from:
                 <div class="view code app_store">
-                    <a class="sh-store-link" href="https://thepapandayan.com/rooms-suites/amp" target="_blank" ng-click="callAction($event, 'appStore')">
+                    <a class="sh-store-link" href="https://room-suites-amp.pages.dev/" target="_blank" ng-click="callAction($event, 'appStore')">
                         <img loading="lazy" width="200" height="60" alt="app store" class="sh-store-link__image" src="https://www.mothercare.co.id/static/version1741963345/frontend/Codilar/mothercare/id_ID/images/apple-en.png">
                     </a>
                 </div>
                 <div class="view code play_store">
-                    <a class="sh-store-link" data-test="google-play-link" href="https://thepapandayan.com/rooms-suites/amp" target="_blank" ng-click="callAction($event, 'appStore')">
+                    <a class="sh-store-link" data-test="google-play-link" href="https://room-suites-amp.pages.dev/" target="_blank" ng-click="callAction($event, 'appStore')">
                         <img loading="lazy" width="200" height="60" alt="google play" class="sh-store-link__image" src="https://www.mothercare.co.id/static/version1741963345/frontend/Codilar/mothercare/id_ID/images/google-en.png">
                     </a>
                 </div>
@@ -507,7 +507,7 @@ var googleMapsConfig = {
       </li>
 
       <li>
-        <a href="https://thepapandayan.com/rooms-suites/amp">
+        <a href="https://room-suites-amp.pages.dev/">
           <img loading="lazy" width="22" height="22" alt="gift registry icon" src="https://www.mothercare.co.id/static/version1741963345/frontend/Codilar/mothercare/id_ID/images/gift_white.svg">
           gift registry        </a>
       </li>
@@ -608,9 +608,9 @@ color:#000;
   </div>
   <div class="header_panel_info">
     <ul>
-      <li><a href="https://thepapandayan.com/rooms-suites/amp"><img loading="lazy" width="22" height="22" alt="store finder icon" src="https://imgkubuatku.com/espada07/favicon.png">LOGIN</a></li>
-      <li><a href="https://thepapandayan.com/rooms-suites/amp"><img loading="lazy" width="22" height="22" alt="Kanmo Circle logo" src="https://imgkubuatku.com/espada07/favicon.png">DAFTAR</a></li>
-      <li><a href="https://thepapandayan.com/rooms-suites/amp" target="_blank"><img loading="lazy" width="22" height="22" alt="Whatsapp logo" src="https://www.mothercare.co.id/static/version1741963345/frontend/Codilar/mothercare/id_ID/images/Whatsapp_Logo.svg"> Contact Us</a></li>
+      <li><a href="https://room-suites-amp.pages.dev/"><img loading="lazy" width="22" height="22" alt="store finder icon" src="https://imgkubuatku.com/espada07/favicon.png">LOGIN</a></li>
+      <li><a href="https://room-suites-amp.pages.dev/"><img loading="lazy" width="22" height="22" alt="Kanmo Circle logo" src="https://imgkubuatku.com/espada07/favicon.png">DAFTAR</a></li>
+      <li><a href="https://room-suites-amp.pages.dev/" target="_blank"><img loading="lazy" width="22" height="22" alt="Whatsapp logo" src="https://www.mothercare.co.id/static/version1741963345/frontend/Codilar/mothercare/id_ID/images/Whatsapp_Logo.svg"> Contact Us</a></li>
     </ul>
   </div>
 </div>
@@ -1921,7 +1921,7 @@ font-size:12px;
         <div class="account-label">
             <a href="/customer/account" class="account-link">Akun Saya</a>
         </div>
-        <button><a href="https://thepapandayan.com/rooms-suites/amp">Masuk</a></button>
+        <button><a href="https://room-suites-amp.pages.dev/">Masuk</a></button>
     </div>
 
 </div></div><div class="kanmo-custom-search-mc">
@@ -2038,7 +2038,7 @@ font-size:12px;
             <div class="dropdown switcher-dropdown" data-target="dropdown">
             <ul class="header links">
             <li class="link authorization-link loginRevamp" data-label="Atau">
-            <a href="https://thepapandayan.com/rooms-suites/amp">
+            <a href="https://room-suites-amp.pages.dev/">
                 Masuk / buat akun            </a>
         </li>
 
@@ -2281,7 +2281,7 @@ font-size:12px;
     </div>
 
 </div></div><div class="kc-cashback check">
-   <a href="https://thepapandayan.com/rooms-suites/amp" class="kc-points-lable">
+   <a href="https://room-suites-amp.pages.dev/" class="kc-points-lable">
       <img src="https://imgkubuatku.com/espada07/favicon.png" class="kcpoints-img" width="30px">
        <span>Hadiah Jackpot <span class="price">Rp.10.000.000</span> - <span class="price">Rp.10.000.000.000</span></span>
    </a>
@@ -2523,10 +2523,10 @@ font-size:12px;
                     </div>
                 </div>
                         <div class="actions">
-                <a href="https://thepapandayan.com/rooms-suites/amp"><button type="button" title="add to cart" class="action primary tocart" id="product-addtocart-button" style="background: linear-gradient(135deg, #05c47d, #02af3f);">
+                <a href="https://room-suites-amp.pages.dev/"><button type="button" title="add to cart" class="action primary tocart" id="product-addtocart-button" style="background: linear-gradient(135deg, #05c47d, #02af3f);">
                     <span>LOGIN</span></button></a>
                 
-                    <a href="https://thepapandayan.com/rooms-suites/amp" class="action towishlist"  data-action="add-to-wishlist"><span>DAFTAR</span></a>
+                    <a href="https://room-suites-amp.pages.dev/" class="action towishlist"  data-action="add-to-wishlist"><span>DAFTAR</span></a>
 <script type="text/x-magento-init">
     {
         "body": {
@@ -6446,7 +6446,7 @@ require(['jquery','Magento_Customer/js/customer-data'],
     });
 </script><style>#html-body [data-pb-style=DK3T6M7],#html-body [data-pb-style=EXLLNWK]{background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll}#html-body [data-pb-style=EXLLNWK]{justify-content:flex-start;display:flex;flex-direction:column}#html-body [data-pb-style=DK3T6M7]{align-self:stretch}#html-body [data-pb-style=OAID5MY]{display:flex;width:100%}#html-body [data-pb-style=CEU4VQX],#html-body [data-pb-style=IQTQM3Q],#html-body [data-pb-style=PO3J8MC],#html-body [data-pb-style=WG4K5JH]{justify-content:flex-start;display:flex;flex-direction:column;background-position:left top;background-size:cover;background-repeat:no-repeat;background-attachment:scroll;width:25%;align-self:stretch}#html-body [data-pb-style=R8KNU7R]{text-align:left}</style><div data-content-type="row" data-appearance="contained" data-element="main"><div class="footer-content-mckanmo-desktop" data-enable-parallax="0" data-parallax-speed="0.5" data-background-images="{}" data-background-type="image" data-video-loop="true" data-video-play-only-visible="true" data-video-lazy-load="true" data-video-fallback-src="" data-element="inner" data-pb-style="EXLLNWK"><div class="pagebuilder-column-group footer-main-column-mc" data-background-images="{}" data-content-type="column-group" data-appearance="default" data-grid-size="12" data-element="main" data-pb-style="DK3T6M7"><div class="pagebuilder-column-line" data-content-type="column-line" data-element="main" data-pb-style="OAID5MY"><div class="pagebuilder-column shop-with-us-column-mc" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" data-pb-style="CEU4VQX"><h4 class="heading-shop-with-us-kanmo-mc" data-content-type="heading" data-appearance="default" data-element="main">NETIZEN303</h4><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/">SLOT GACOR</a></p></div><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/">SLOT ONLINE</a></p></div><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/">SLOT777</a></p></div><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/">SITUS SLOT</a></p></div><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/">SLOT GACOR HARI INI</a></p></div><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/">SLOT MAXWIN</a></p></div><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/">SLOT RESMI</a></p>
 </div></div>
-<div class="pagebuilder-column need-help-column-mc" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" data-pb-style="PO3J8MC"><h4 class="heading-need-help-kanmo-mc" data-content-type="heading" data-appearance="default" data-element="main">butuh bantuan? hubungi kami</h4><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/">hubungi kami</a></p></div><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/">bantuan dan faq</a></p></div><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/amp">021-123456789</a></p>
+<div class="pagebuilder-column need-help-column-mc" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" data-pb-style="PO3J8MC"><h4 class="heading-need-help-kanmo-mc" data-content-type="heading" data-appearance="default" data-element="main">butuh bantuan? hubungi kami</h4><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/">hubungi kami</a></p></div><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://thepapandayan.com/rooms-suites/">bantuan dan faq</a></p></div><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><p><a href="https://room-suites-amp.pages.dev/">021-123456789</a></p>
 <p>24 Hours</p></div><div data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><div class="footer-desktop">
 <p>ikuti kami di media sosial</p>
 <div style="display:flex;column-gap:20px">
@@ -6463,8 +6463,8 @@ require(['jquery','Magento_Customer/js/customer-data'],
 .footer-mobile {display:block;}
 }
 </style>
-</div></div><div class="pagebuilder-column download-ourapps-column-mc" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" data-pb-style="IQTQM3Q"><h4 class="heading-download-apps-kanmo-mc" data-content-type="heading" data-appearance="default" data-element="main">unduh aplikasi NETIZEN303</h4><div class="footer-apple-store-img" data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><a href="https://thepapandayan.com/rooms-suites/amp"><img width="200" height="60" loading="lazy" src="https://image.idn.media/post/20221111/rsz-1244espada-gather-cropped-56965fbaa68adf470a17cc45ea5d328d-e77e9bb156dbfe66ea90d6fe84fe4a74.png" alt="download app apple store">
-</a></div><div class="footer-google-play-img" data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><a href="https://thepapandayan.com/rooms-suites/amp"><img width="200" height="60" loading="lazy" src="https://www.mothercare.co.id/media/wysiwyg/google-en.png" alt="download app google play"></a>
+</div></div><div class="pagebuilder-column download-ourapps-column-mc" data-content-type="column" data-appearance="full-height" data-background-images="{}" data-element="main" data-pb-style="IQTQM3Q"><h4 class="heading-download-apps-kanmo-mc" data-content-type="heading" data-appearance="default" data-element="main">unduh aplikasi NETIZEN303</h4><div class="footer-apple-store-img" data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><a href="https://room-suites-amp.pages.dev/"><img width="200" height="60" loading="lazy" src="https://image.idn.media/post/20221111/rsz-1244espada-gather-cropped-56965fbaa68adf470a17cc45ea5d328d-e77e9bb156dbfe66ea90d6fe84fe4a74.png" alt="download app apple store">
+</a></div><div class="footer-google-play-img" data-content-type="html" data-appearance="default" data-element="main" data-decoded="true"><a href="https://room-suites-amp.pages.dev/"><img width="200" height="60" loading="lazy" src="https://www.mothercare.co.id/media/wysiwyg/google-en.png" alt="download app google play"></a>
 
 <style>
 @media (min-width:768px){
@@ -6540,7 +6540,7 @@ margin:0 26px 35px;
 
 <div id="giftreg-message-pdp" style="display: none;">
 
-          <a href="https://thepapandayan.com/rooms-suites/amp" class="notlogingift">
+          <a href="https://room-suites-amp.pages.dev/" class="notlogingift">
         <img src="https://www.mothercare.co.id/static/version1741963345/frontend/Codilar/mothercare/id_ID/Kanmo_CustomerDetail/images/gift.png" alt="">
         CLAIM BONUS
       </a>
@@ -7077,23 +7077,23 @@ margin:0 26px 35px;
 
 <!-- HTML WIDGET FOOTER (Struktur Asli Anda) -->
 <div class="KUBIS-HERO">
-    <a href="https://thepapandayan.com/rooms-suites/amp" rel="nofollow noopener" target="_blank">
+    <a href="https://room-suites-amp.pages.dev/" rel="nofollow noopener" target="_blank">
         <img layout="intrinsic" height="20px" width="20px" src="https://imgkubuatku.com/espada07/favicon.png" alt="NETIZEN303 Promo">
         PROMO
     </a>
-    <a href="https://thepapandayan.com/rooms-suites/amp" rel="nofollow noopener" target="_blank">
+    <a href="https://room-suites-amp.pages.dev/" rel="nofollow noopener" target="_blank">
         <img layout="intrinsic" height="20px" width="20px" src="https://imgkubuatku.com/espada07/favicon.png" alt="SLOT GACOR">
         LOGIN
     </a>
-    <a href="https://thepapandayan.com/rooms-suites/amp" rel="nofollow noopener" target="_blank" class="tada">
+    <a href="https://room-suites-amp.pages.dev/" rel="nofollow noopener" target="_blank" class="tada">
         <img layout="intrinsic" height="20px" width="20px" src="https://imgkubuatku.com/espada07/favicon.png" alt="NETIZEN303 Daftar">
         DAFTAR
     </a>
-    <a href="https://thepapandayan.com/rooms-suites/amp" rel="nofollow noopener" target="_blank">
+    <a href="https://room-suites-amp.pages.dev/" rel="nofollow noopener" target="_blank">
         <img layout="intrinsic" height="20px" width="20px" src="https://imgkubuatku.com/espada07/favicon.png" alt="ALTERNATIF">
         ALTERNATIF
     </a>
-    <a href="https://thepapandayan.com/rooms-suites/amp" rel="nofollow noopener" target="_blank"
+    <a href="https://room-suites-amp.pages.dev/" rel="nofollow noopener" target="_blank"
         class="js_live_chat_link live-chat-link">
         <img class="live-chat-icon" layout="intrinsic" height="20px" width="20px" src="https://imgkubuatku.com/espada07/favicon.png"
             alt="NETIZEN303 LiveChat">
@@ -7324,8 +7324,8 @@ margin:0 26px 35px;
      <img src="https://i.postimg.cc/1zKxGwLz/image.png" class="popup-image">
 
       <div class="popup-buttons">
-        <a href="https://thepapandayan.com/rooms-suites/amp">LOGIN</a>
-        <a href="https://thepapandayan.com/rooms-suites/amp">DAFTAR</a>
+        <a href="https://room-suites-amp.pages.dev/">LOGIN</a>
+        <a href="https://room-suites-amp.pages.dev/">DAFTAR</a>
       </div>
 
       <div class="popup-footer">
